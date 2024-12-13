@@ -1,7 +1,7 @@
 # CyberNotebook
 Collection of notes regarding Cybersecurity vocabulary for my personal reference.
 
-# OPSEC
+## OPSEC
 <b>Step 1: Identify critical information</b>
 
 Critical information may include:
@@ -41,3 +41,12 @@ Consider these factors:
 + Efficiency of the countermeasure in reducing the risk
 + Cost of the countermeasure compared to the impact of the vulnerability being exploited
 + Possibility that the countermeasure can reveal information to the adversary
+
+## ElasticStack
+Elastic stack is the collection of different open source components that help users take data from any source and format to perofrm a search, analyse, and visualise data in real-time.
+
+The components include:
++ <i>Elasticsearch</i> - full-text search and analytics engine used to store JSON-formatted documents; supports RESTFul API to interact with the data
++ <i>Logstash</i> - data processing engine used to take data from different sources, apply filters/normalise them, and send to the destination such as Kibana/listening port; configuration file is dvided into input, filter, and output parts
++ <i>Beats</i> - host-based agent known as Data-shippers used to ship/transfer data from endpoints to elasticsearch; each beat is a single-purpose agent that sends specific data (e.g. Winlogbeat:windows event logs, Packetbeat:network traffic flows)
++ <i>Kibana</i> - web-based data visualiusation that works with elasticsearch to analyse, investigate, and visualise data streams in real-time; allows users to create multiple visualisations and dashboards
