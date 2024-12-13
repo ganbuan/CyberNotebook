@@ -42,7 +42,7 @@ Consider these factors:
 + Cost of the countermeasure compared to the impact of the vulnerability being exploited
 + Possibility that the countermeasure can reveal information to the adversary
 
-## ElasticStack
+## Elastic/ELK Stack
 Elastic stack is the collection of different open source components that help users take data from any source and format to perofrm a search, analyse, and visualise data in real-time.
 
 The components include:
