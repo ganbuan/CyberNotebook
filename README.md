@@ -55,3 +55,41 @@ The components include:
 Atomic Red Team is an open-source framework for performing security testing and threat emulation, consisting of TTPs that simulate various types of attacks and security threats (e.g. malware, phishing attacks, network compromise)
 
 <i>Atomics</i> - different testing techniques based on the MITRE ATT&CK framework that security analysts can use to emulate a specific technique.
+
+## Windows Fundamentals
+**NTFS**
+<i>New Technology File System (NTFS)</i> - file system used in modern version of Windows
+
+NTFS addresses many limitations of previous file systems (i.e. FAT16/FAT32, HPFS):
++ Supports larger file sizes
++ Sets specific permissions on folders/files
++ Folder/file compression
++ Encryption using Encryption File System (EFS)
+
+Permissions include:
++ Full control
++ Modify
++ Read & execute
++ List folder contents
++ Read
++ Write
+
+<i>Alternate Data Streams (ADS)</i> - file attribute specific to NTFS
+
+**Windows\System32**
+C:\Windows traditionally contains the OS. This is where the environmental variables are. The system environment variable for the Windows directory is <i>%windir%</i>.
+
+System32 folder holds all the critical files for the OS.
+
+**User Accounts, Profiles, & Permissions**
+User account type can either be: 
++ <i>administrator</i> - can make changes to the system (e.g. add users, delete users, modify groups, modify system settings, etc)
++ <i>standard user</i> - can only make change to folders/files attributed to the user
+
+Running <i>lusrmgr.msc</i> will open the <i>Local User and Group Management</i>.
+
+<i>User Account Control (UAC)</i> - prompts confirmation from the admin user when an operation requiring higher-level privileges needs to execute
+
+
+
+
