@@ -58,6 +58,7 @@ Atomic Red Team is an open-source framework for performing security testing and 
 
 ## Windows Fundamentals
 **NTFS**
+
 <i>New Technology File System (NTFS)</i> - file system used in modern version of Windows
 
 NTFS addresses many limitations of previous file systems (i.e. FAT16/FAT32, HPFS):
@@ -77,11 +78,13 @@ Permissions include:
 <i>Alternate Data Streams (ADS)</i> - file attribute specific to NTFS
 
 **Windows\System32**
+
 C:\Windows traditionally contains the OS. This is where the environmental variables are. The system environment variable for the Windows directory is <i>%windir%</i>.
 
 System32 folder holds all the critical files for the OS.
 
 **User Accounts, Profiles, & Permissions**
+
 User account type can either be: 
 + <i>administrator</i> - can make changes to the system (e.g. add users, delete users, modify groups, modify system settings, etc)
 + <i>standard user</i> - can only make change to folders/files attributed to the user
