@@ -104,12 +104,12 @@ The utility has five tabs:
 6. Tools - various utilities
 
 Tools include:
-+ Change UAC Settings
-+ Computer Management (compmgmt), which includes Task Scheduler, Event Viewer, Device Manager, Local Users & Groups, etc.
-+ System Information (msinfo32) gathers information and displays hardware, system components, and software environment
-+ Resource Monitor (resmon) displays CPU, memory, disk, and network usage information; start, stop, pause and resume services
-+ Command Prompt (cmd)
-+ Registry Editor (regedit) edit Windows Registry, which is the database that stores user profiles, installed applications, property sheet settings for folders/application icons, hardware, used ports
++ <i>Change UAC Settings</i>
++ <i>Computer Management (compmgmt)</i>, which includes Task Scheduler, Event Viewer, Device Manager, Local Users & Groups, etc.
++ <i>System Information (msinfo32)</i> gathers information and displays hardware, system components, and software environment
++ <i>Resource Monitor (resmon)</i> displays CPU, memory, disk, and network usage information; start, stop, pause and resume services
++ <i>Command Prompt (cmd)</i>
++ <i>Registry Editor (regedit)</i> edit Windows Registry, which is the database that stores user profiles, installed applications, property sheet settings for folders/application icons, hardware, used ports
 
 
 
