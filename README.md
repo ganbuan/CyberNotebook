@@ -145,4 +145,29 @@ Devices have two identifiable fingerprints:
 
 **ping [IP address/website URL]**: command for ping
 
+## LAN
+LANs can be configured into various topologies:
++ Star
++ Bus
++ Ring
+
+A <i>switch</i> is a device that aggregates multiple networking-capable devices using ethernet. 
+
+A <i>router</i> is a device that connects networks and pass data between them. Routing involves creating a path between networks for data to be delivered. 
+
+<i>Subnetting</i> is used to split the number of hosts that can fit in a network, represented by a number called the subnet mask (e.g. 255.255.255.0). Subnets use IP addresses in three ways:
++ Identify the network address (i.e. 192.168.1.0)
++ Identify the host address (i.e. 192.168.1.100)
++ Identify the default gateway (i.e. 192.168.1.254)
+
+<i>Address Resolution Protocol (ARP)</i> allows a device to associate its MAC address with an IP address on a network. Each device on a network will keep logs of the MAC addresses associated with other devices. This is done by:
+1. ARP request is broadcasted on the network (i.e. asking for the IP address for a particular MAC address).
+2. The owning device will send an ARP reply with its MAC address.
+3. The requesting device maps and stores this in its ARP cache.
+
+<i>Dynamic Host Configuration Protocol (DHCP)</i> automatically assigns IP addresses to devices in a network. This process is done by:
+1. A newly connected device sends out a DHCP Discover request to see if any DHCP servers are on the network.
+2. The DHCP server replies with a DHCP offer, an IP address the device can use.
+3. The device then sends a DHCP Request, confirming that it wants the IP address.
+4. Lastly, the DHCP server sends a DHCP ACK, acknowledging that the device can start using the IP address.
 
