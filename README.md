@@ -130,7 +130,17 @@ Tools include:
 + Configure restore settings
 + Delete restore points
 
+## Networking Basics
+<i>Networks</i> are the connections between technological devices. These can be formed from two devices to billions. A network can be one of two types:
++ Private
++ Public
 
+The <i>Internet</i> is simply a giant network that consists of many smaller networks. The first iteration was ARPANET in the 1960s, which then led to the creation of the World Wide Web (WWW). 
 
+Devices have two identifiable fingerprints: 
++ <i>Internet Protocol (IP) Address</i> - identifies a host on a network; can be public or private; can be IPv4 or IPv6
++ <i>Media Access Control (MAC) Address</i> - unique 12 hexadecimal number that identifies vendor and unique address of the network interface
+
+<i>Ping</i> determine the performance of connection between devices (e.g. if connection exists or is reliable). This uses the Internet Control Message Protocol (ICMP), where the time for packets to travel between devices is measured. **ping [IP address/website URL]**: command for ping
 
 
