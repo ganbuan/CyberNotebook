@@ -93,6 +93,25 @@ Running <i>lusrmgr.msc</i> will open the <i>Local User and Group Management</i>.
 
 <i>User Account Control (UAC)</i> - prompts confirmation from the admin user when an operation requiring higher-level privileges needs to execute
 
+## MSConfig
+The <i>System Configuration</i> utility is for troubleshooting, primarily to help diagnose startup issues.
+
+The utility has five tabs:
+1. General - select what devices and services to load on boot (i.e. Normal, Diagnostic, Selective)
+2. Boot - define various boot options for the OS
+3. Services - lists all services configured for the system, both running or stopped
+4. Startup - manage startup items
+6. Tools - various utilities
+
+Tools include:
++ Change UAC Settings
++ Computer Management (compmgmt), which includes Task Scheduler, Event Viewer, Device Manager, Local Users & Groups, etc.
++ System Information (msinfo32) gathers information and displays hardware, system components, and software environment
++ Resource Monitor (resmon) displays CPU, memory, disk, and network usage information; start, stop, pause and resume services
++ Command Prompt (cmd)
++ Registry Editor (regedit) edit Windows Registry, which is the database that stores user profiles, installed applications, property sheet settings for folders/application icons, hardware, used ports
+
+
 
 
 
