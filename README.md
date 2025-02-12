@@ -141,6 +141,8 @@ Devices have two identifiable fingerprints:
 + <i>Internet Protocol (IP) Address</i> - identifies a host on a network; can be public or private; can be IPv4 or IPv6
 + <i>Media Access Control (MAC) Address</i> - unique 12 hexadecimal number that identifies vendor and unique address of the network interface
 
-<i>Ping</i> determine the performance of connection between devices (e.g. if connection exists or is reliable). This uses the Internet Control Message Protocol (ICMP), where the time for packets to travel between devices is measured. **ping [IP address/website URL]**: command for ping
+<i>Ping</i> determine the performance of connection between devices (e.g. if connection exists or is reliable). This uses the Internet Control Message Protocol (ICMP), where the time for packets to travel between devices is measured. 
+
+**ping [IP address/website URL]**: command for ping
 
 
