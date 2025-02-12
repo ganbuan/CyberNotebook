@@ -171,3 +171,13 @@ A <i>router</i> is a device that connects networks and pass data between them. R
 3. The device then sends a DHCP Request, confirming that it wants the IP address.
 4. Lastly, the DHCP server sends a DHCP ACK, acknowledging that the device can start using the IP address.
 
+## OSI Model
+The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictating how all networked devices send, receive, and interpret data. This model consists of seven layers, wherein specific process take place, and pieces of information are added to the data. These layers are the following:
+1. <i>Physical</i> - references the physical components of hardware used in networking (e.g. ethernet cables) that transfer data in binary
+2. <i>Data Link</i> - focuses on physical addressing of the transmission, adding the physical MAC address of the receiving endpoint
+3. <i>Network</i> - where routing and reassembly of data take place; everything is dealt in IP addresses; protocols determine optimal path data should take, such as Open Shortest Path First (OPSF) and Routing Information Protocol (RIP)
+4. <i>Transport</i> - focuses on the transmition of data, which can follow either TCP or UDP protocols
+5. <i>Session</i> - creates and maintains connection to the destination computer; responsible for closing the connection
+6. <i>Presentation</i> - standardisation and translation of data takes place to ensure both users can understand the data; security features occur at this layer, such as HTTPS and data encryption
+7. <i>Application</i> - determines how user should interact with data sent or received (e.g. GUI, DNS)
+
