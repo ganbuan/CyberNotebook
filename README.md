@@ -111,6 +111,25 @@ Tools include:
 + <i>Command Prompt (cmd)</i>
 + <i>Registry Editor (regedit)</i> edit Windows Registry, which is the database that stores user profiles, installed applications, property sheet settings for folders/application icons, hardware, used ports
 
+## Windows Security
+<i>Windows Update</i> provides security updates, feature enhancements, and patches for the OS, and other products. 
+
+**control /name Microsoft.WindowsUpdate**: access Windows Update
+
+<i>Windows Security</i> centralises the management of device and data protection tools. Protection areas include:
++ Virus & threat protection - scans, threat history, manage settings, check updates, ransomware protection
++ Firewall & network protection - firewall settings (i.e. domain, private, public), advanced settings; **WF.msc**: opens Windows Defender Firewall
++ App & browser control - Microsoft Defender Smartscreen, check apps and files, exploit protection 
++ Device security - core isolation (i.e. memory integrity), security processor details (i.e. TPM)
+
+<i>BitLocker</i> is a data protection feature using drive encryption. Most protection is achieved when used with a TPM version 1.2 or later. 
+
+<i>Volume Shadow Copy Service (VSS)</i> creates a consistent shadow copy (i.e. snapshot, point-in-time copy) of data to be backed up. These copies are stored on the System Volume Information folder on each drive that has protection enabled. If enabled (i.e. System Protection is turned on), the following tasks can be performed:
++ Create a restore point
++ Perform system restore
++ Configure restore settings
++ Delete restore points
+
 
 
 
