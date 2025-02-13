@@ -224,3 +224,23 @@ A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to co
 + IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
 
 A <i>Virtual Local Area Network (VLAN)</i> allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
+
+## DNS
+<i>Domain Name System (DNS)</i> allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
++ A <i>Top-Level Domain (TLD)</i> is the most righthand part of a domain name (e.g. .com in tryhackme.com).
++ A <i>Second-Level Domain</i> includes the domain name (e.g. tryhackme in tryhackme.com)
++ A <i>subdomain</i> sits on the left-hand side of the domain name, using a period to separate it (e.g. admin in admin.tryhackme.com). Multiple subdomains that are split with periods can create longer names (e.g. jupiter.servers in jupter.servers.tryhackme.com)
+
+Types of DNS records include:
++ A Record - resolve to IPv4 addresses
++ AAAA Record - resolve to IPv6 addresses
++ CNAME Record - resolve to another domain name
++ MX Record - resolve to the address of the servers that handle email for the domain being queried
++ TXT Record - free text fields where any-text based data can be stored; commonly used to list servers that have authority to send emails on behalf of the domain; can also be used to verify ownership of the domain name
+
+DNS request process:
+1. When requesting a domain name, your device first checks its local cache. If not available, a request to your Recursive DNS server will be made.
+2. A Recursive DNS Server then check its own local cache. If the request cannot be found locally, it queries the internet's root DNS servers.
+3. The root server will recognise the TLD of the request and refer you to the correct TLD server.
+4. The TLD server holds records for where to find the authoritative server for the DNS request, where DNS records for domain names are kept.
+5. The DNS record is then sent back to the Recursive DNS Server, where a local copy will be cached for future requests. This record will have a TTL value.
