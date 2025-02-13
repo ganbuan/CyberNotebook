@@ -244,3 +244,38 @@ DNS request process:
 3. The root server will recognise the TLD of the request and refer you to the correct TLD server.
 4. The TLD server holds records for where to find the authoritative server for the DNS request, where DNS records for domain names are kept.
 5. The DNS record is then sent back to the Recursive DNS Server, where a local copy will be cached for future requests. This record will have a TTL value.
+
+## HTTP/S
+<i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
+
+<i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof.
+
+A <i>Uniform Resource Locator (URL)</i> is used as an instruction on how to access a resource on the net. URLs have multiple parts. Take for example http://user:password@tryhackme.com:80/view-room?id=1#task3
++ Scheme - instructs on what protocol to use (e.g. HTTP, HTTPS, FTP)
++ User - some services require authentication to log in
++ Host - domain name or IP address of the server
++ Port - port you are going to connet to (e.g. 80 for HTTP, 443 for HTTPS)
++ Path - file name or location of the resource
++ Query String - extra bits of information that can be sent to the requested path
++ Fragment - reference to a location on the actual page requested, commonly used for pages with long content
+
+HTTP methods show the client's intended action when making HTTP requests. The most common include:
++ GET - used for getting information from a web server
++ POST - used for submitting data to the web server and potentially creating new records
++ PUT - used for submitting data to a web server to update information
++ DELETE - used for deleting information/records from a web server
+
+Common HTTP status codes:
+| Code | Description |
+| :-----: | :--------: |
+| 200 - OK | Request completed successfully |
+| 201 - Created | Resources has been created |
+| 301 - Moved Permanently | Redirects to a new webpage or tells search engines to look elsewhere |
+| 302 - Found | Similar to 302 but only a temporary change |
+| 400 - Bad Request | Something is wrong or missing in the request |
+| 401 - Not Authorised | Not currently allowed to view resource |
+| 403 - Forbidden | No permission to view the resource |
+| 405 - Method Not Allowed | Resource does not allow the method request |
+| 404 - Page Not Found | Requested resource does not exist |
+| 500 - Internal Service Error | Server has encountered some error |
+| 503 - Service Unavailable | Server is either overloaded or down for maintenance |
