@@ -297,3 +297,21 @@ Common response headers include:
 
 <i>Cookies</i> are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
 
+## Websites
+When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
+
+There are two major components that make up a website:
+1. Front End (Client-Side) - the way your browser renders a website
+2. Back End (Server-Side) - server that processes your request and returns a response
+
+Websites are primarily created using:
++ HyperText Markup Language (HTML) - to build websites and define their structure
++ CSS - to add styling options
++ JavaScript - to implement complex features on pages using interactivity
+
+In a browser, you can view <i>Page Source</i> to see website elements. Note that sometimes, sensitive information can be left here (e.g. login credentials)
+
+## HTML Injection
+<i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
+
+<i>Input sanitation</i> is a means to protect a website secure. 
