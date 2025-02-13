@@ -279,3 +279,21 @@ Common HTTP status codes:
 | 404 - Page Not Found | Requested resource does not exist |
 | 500 - Internal Service Error | Server has encountered some error |
 | 503 - Service Unavailable | Server is either overloaded or down for maintenance |
+
+<i>Headers</i> are additional bits of data you can send to the web server when making requests. 
+
+Common request headers include:
++ Host - specify which website you require
++ User-Agent - your browser software and version number; aids in formatting website to your browser needs
++ Content-Length - tells web server how much data to expect in the web request
++ Accept-Encoding - tells web server what types of compression methods your browser supports for smaller data transmission
++ Cookie - data sent to server to help remember your information
+
+Common response headers include:
++ Set-Cookie - information to store, which gets sent back to the web server on each request
++ Cache-Control - how long to store the content of the response in the browser's cache before requesting again
++ Content-Type - tells the client what type of data is being returned (e.g. HTML, CSS, JavaScript, images, etc)
++ Content-Encoding - what method has been used to compress the data for smaller data transmission
+
+<i>Cookies</i> are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
+
