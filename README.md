@@ -205,3 +205,22 @@ Networking devices use <i>ports</i> to communicate with each other. There are ru
 + 443 for HTTPS
 + 445 for SMB
 + 3389 for RDP
+
+<i>Port fowarding</i> allows connection of application and services to the internet by opening specific ports. This can be configured at a network's router.
+
+A <i>firewall</i> is responsible for determining what traffic is allowed to enter and exit a network. An administrator can permit or deny traffic based on these factors:
++ Source of traffic
++ Destination of traffic
++ Destination port
++ Protocol being used
+
+Firewalls can be cateogrised into:
++ Stateful - determines the behaviour of a device based on the entire connection
++ Stateless - determines whether individual packets are acceptable or not
+
+A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to communicate securely by creating a dedicated path between each other over the Internet using a tunnel. Connected devices form their own private network. Some existing VPN technologies include:
++ PPP - allows for authentication and data encryption by using private keys and public certificates; not capable of leaving a network by itself (i.e. non-routable)
++ PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
++ IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
+
+A <i>Virtual Local Area Network (VLAN)</i> allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
