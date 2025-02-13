@@ -311,6 +311,20 @@ Websites are primarily created using:
 
 In a browser, you can view <i>Page Source</i> to see website elements. Note that sometimes, sensitive information can be left here (e.g. login credentials)
 
+Other website components include:
++ <i>Load Balancers</i> - provides two main features: 1) ensure high traffic websites can handle the load, and 2) provide a failover if a server becomes unresponsive
++ <i>Content Delivery Networks (CDN)</i> - cuts down traffic to a busy website by allowing hosting of static files from your website to other servers; the nearest server is physically located and sends the request there for efficiency
++ <i>Databases</i> - communicates with webservers to store and recall data; examples include MySQL, MSSQL, MongoDB, Postgred, etc
++ <i>Web Application Firewall (WAF)</i> - protects the web servers from hacking or DoS attacks (e.g. bot detection, rate limiting)
+
+A <i>web server</i> is a software that listens for incoming connections and uses the HTTP protocol to deliver web content to clients. Common web server software include Apache, Nginx, IIS, and NodeJS. Web servers delivers files from the root directory (e.g. /var/www/html for Linux OS, C:\inetpub\wwwroot for Windows OS).
+
+Web servers use <i>virtual hosts</i> to host multiple websites with different domain names. They do this using text-based configuration files. There is no limit to the number of different websites you can host on a web server.
+
+<i>Static content</i> is content that never changes. Common examples are pictures, JavaScript, CSS, HTML, etc. 
+
+<i>Dynamic content</i> is content that could change with different requests. Examples include searching in a website. These changes are done in the backend using programming and scripting languages. Some examples of the languages include PHP, Python, Ruby, NodeJS, Perl, etc. 
+
 ## HTML Injection
 <i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
 
