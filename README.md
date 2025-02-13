@@ -181,3 +181,27 @@ The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictati
 6. <i>Presentation</i> - standardisation and translation of data takes place to ensure both users can understand the data; security features occur at this layer, such as HTTPS and data encryption
 7. <i>Application</i> - determines how user should interact with data sent or received (e.g. GUI, DNS)
 
+## Packets
+<i>Packets</i> are small pieces of data that combine together to make a piece of information/message. <i>Frames</i> are slightly different as they are at layer 2, meaning no information such as IP addresses are included. These have a set of headers that include:
++ Time to Live (TTL) - sets an expiry timer for the packet
++ Checksum - provides integrity checking, where changes in data will indicated corrupted packets
++ Source Address - IP address of the device the packet is being sent from
++ Destination Address - IP address the packet is being sent to
+
+<i>Transmission Control Protocol (TCP)</i> guarantees that any data sent will be received on the other end. This is done via a 'three-way handshake':
+1. SYN message is send by the client; initiates a connection and sychronises the two devices.
+2. SYN/ACK packet is sent by the receiving device.
+3. ACK packet is used to acknowledge that the series of packets have been received.
+4. Once the connection has been established, DATA message is sent.
+5. FIN packet is used to cleanly close the connection after completion.
+6. *A RST packet is the last resort used to abruptly end all communication, usually done if there is a problem.
+
+<i>User Datagram Protocol (UDP)</i> is a stateless protocol that does not require a constant connection between devices (i.e. three-way handshake not needed). This also means that there are no data integrity safeguards in place. However, UDP communication is much faster than TCP.
+
+Networking devices use <i>ports</i> to communicate with each other. There are rules for which protocols apply to which ports. These include the following:
++ 21 for FTP
++ 22 for SSH
++ 80 for HTTP
++ 443 for HTTPS
++ 445 for SMB
++ 3389 for RDP
