@@ -365,7 +365,16 @@ FTP server listens on TCP port 21 by default. Data transfer is conducted via ano
 **ftp [IP address]**: connects to the remote FTP server using the local ftp client
 
 ### SMTP
+<i>Simple Mail Transfer Protocol (SMTP)</i> defines how a mail client communicates with a mail server and how a mail server communicates with another.
 
+Example SMTP commands used by the mail client to the SMTP server:
++ HELO/EHLO - initiates an SMTP session
++ MAIL FROM - specifies the sender's email address
++ RCPT TO - specifies the recipient's email address
++ DATA - indicates that the client will begin sending the email contents
++ . - indicates the end of the email message
+
+The SMTP server listens on TCP port 25 by default.
 
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
