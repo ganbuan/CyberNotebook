@@ -273,6 +273,7 @@ A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to co
 
 ## Networking Core Protocols
 ### DNS
+(Remembering Addresses)
 <i>Domain Name System (DNS)</i> allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
 + A <i>Top-Level Domain (TLD)</i> is the most righthand part of a domain name (e.g. .com in tryhackme.com).
 + A <i>Second-Level Domain</i> includes the domain name (e.g. tryhackme in tryhackme.com)
@@ -300,6 +301,7 @@ A <i>WHOIS</i> record provides information about the entity that registered a do
 **whois**: looks up the WHOIS records of a registered domain name
 
 ### HTTP/S
+(Accessing the Web)
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
 <i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof.
@@ -352,29 +354,46 @@ Common response headers include:
 <i>Cookies</i> are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
 
 ### FTP
+(Transferring Files)
 <i>File Transfer Protocol (FTP)</i> is designed to transfer files, which it can achieve at higher speeds than HTTP.
 
 Example FTP commands include:
-+ USER - used to input the username
-+ PASS - used to enter the passwords
-+ RETR - used to download a file from the FTP server to the client
-+ STOR - used to upload a file from the client to the FTP server
++ USER [username] - used to input the username
++ PASS [password] - used to enter the passwords
++ RETR [file_name] - used to download a file from the FTP server to the client
++ STOR [file_name] - used to upload a file from the client to the FTP server
 
 FTP server listens on TCP port 21 by default. Data transfer is conducted via another connection from the client to the server.
 
 **ftp [IP address]**: connects to the remote FTP server using the local ftp client
 
 ### SMTP
+(Sending Email)
 <i>Simple Mail Transfer Protocol (SMTP)</i> defines how a mail client communicates with a mail server and how a mail server communicates with another.
 
 Example SMTP commands used by the mail client to the SMTP server:
 + HELO/EHLO - initiates an SMTP session
-+ MAIL FROM - specifies the sender's email address
-+ RCPT TO - specifies the recipient's email address
-+ DATA - indicates that the client will begin sending the email contents
++ MAIL FROM [email_address] - specifies the sender's email address
++ RCPT TO [email_address] - specifies the recipient's email address
++ DATA [text] - indicates that the client will begin sending the email contents
 + . - indicates the end of the email message
 
 The SMTP server listens on TCP port 25 by default.
+
+### POP3
+(Receiving Email)
+The <i>Post Office Protocol v3 (POP3)</i> allows the client to communicate with a mail server to retrieve email messages.
+
+Some common POP3 commands include:
++ USER [username] - identifies the user
++ PASS [password] - provides the user's password
++ STAT - requests the number of messages and total size
++ LIST - list all messages and their size
++ RETR [message_number] - retrieves the specified message
++ DELE [message_number] - marks a message for deletion
++ QUIT - ends the POP3 session, while applying changes (e.g. deletions)
+
+The POP3 server listens on TCP port 110 by default.
 
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
