@@ -141,20 +141,20 @@ Devices have two identifiable fingerprints:
 + <i>Internet Protocol (IP) Address</i> - identifies a host on a network; can be public or private; can be IPv4 or IPv6
 + <i>Media Access Control (MAC) Address</i> - unique 12 hexadecimal number that identifies vendor and unique address of the network interface
 
-<i>Ping</i> determine the performance of connection between devices (e.g. if connection exists or is reliable). This uses the Internet Control Message Protocol (ICMP), where the time for packets to travel between devices is measured. 
-
-**ping [IP address/website URL]**: command for ping
-
-## LAN
-LANs can be configured into various topologies:
-+ Star
-+ Bus
-+ Ring
+## Networking Devices
 
 A <i>switch</i> is a device that aggregates multiple networking-capable devices using ethernet. 
 
 A <i>router</i> is a device that connects networks and pass data between them. Routing involves creating a path between networks for data to be delivered. 
 
+## Routing Algorithms
+Routing algorithms are used by routers to figure out which appropriate links to send packets to. Some algorithms include:
++ <i>Open Shortest Path First (OSPF)</i> - routers hare information about network topology and calculate the most efficient paths; routers exchange updates about the state of their connected links and networks
++ <i>Enhanced Interior Gateway Routing Protocol (EIGRP)</i> - a Cisco proprietary protocol; routers share information about the networks they can reach and the bandwidth/delay costs associated with these routes
++ <i>Border Gateway Protocol (BGP)</i> - the primary protocol used on the Internet; allows different networks (e.g. ISPs) to exchange routing information and establish paths between the networks
++ <i>Routing Information Protocol</i> - often used in small networks; routers share information about networks they can reach and the number of hops required; each router builds a routing table
+
+## Subnets
 <i>Subnetting</i> is used to split the number of hosts that can fit in a network, represented by a number called the subnet mask (e.g. 255.255.255.0). Subnets use IP addresses in three ways:
 + Identify the network address (i.e. 192.168.1.0)
 + Identify the host address (i.e. 192.168.1.100)
@@ -251,6 +251,9 @@ Note that an ARP Request or ARP reply is not encapsulated within a UDP or IP pac
 <i>Internet Control Message Protocol (ICMP)</i> is mainly for network diagnotics and error reporting. Two popular commands that rely on ICMP are:
 + **ping**: uses ICMP (i.e. ICMP type 8 - Echo Request, ICMP type 0 - Echo Reply) to test connectivity to a target system and measures rount-trip time (RTT)
 + **tracert/traceroute**: uses ICMP (i.e. ICMP type 11 - Time Exceeded message) to discover the route from your host to target machine
+
+## NAT
+<i>Network Address Translation (NAT)</i> allows the use of one public IP address to provide Internet access to many private IP addresses. This is done by NAT-supporting routers maintaining a table that translates network addresses between internal and external networks. In effect, the internal network would use a private IP address (i.e. intra-network), while the external network (i.e. gateway to the Internet) would use the public IP address.
 
 ## Firewalls
 A <i>firewall</i> is responsible for determining what traffic is allowed to enter and exit a network. An administrator can permit or deny traffic based on these factors:
