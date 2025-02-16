@@ -171,6 +171,8 @@ A <i>router</i> is a device that connects networks and pass data between them. R
 3. The device then sends a DHCP Request, confirming that it wants the IP address.
 4. Lastly, the DHCP server sends a DHCP ACK, acknowledging that the device can start using the IP address.
 
+A <i>Virtual Local Area Network (VLAN)</i> allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
+
 RFC 1918 defines the following three ranges of private IP addresses:
 + 10.0.0.0 - 10.255.255.255 (10/8)
 + 172.16.0.0 - 172.31.255.255 (172.16/12)
@@ -209,6 +211,13 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 + Source Address - IP address of the device the packet is being sent from
 + Destination Address - IP address the packet is being sent to
 
+<i>Encapsulation</i> is the process of every layer adding a header/trailer to a received unit of data. The process is as follows:
+1. We start with application data.
+2. At the transport layer, a TCP or UDP header is added to create a <i>TCP segment</i> or <i>UDP datagram</i>.
+3. At the network layer, an IP header is added to get an <i>IP packet</i>, which can be router over the Internet.
+4. Lastly, a header and trailer is added to get a <i>WiFi/Ethernet frame</i> at the link layer.
+
+## TCP/UDP
 <i>Transmission Control Protocol (TCP)</i> guarantees that any data sent will be received on the other end. This protocol operates at the transport layer (i.e. layer 4). This is done via a 'three-way handshake':
 1. SYN message is send by the client; initiates a connection and sychronises the two devices.
 2. SYN/ACK packet is sent by the receiving device.
@@ -219,6 +228,7 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 
 <i>User Datagram Protocol (UDP)</i> is a stateless protocol that does not require a constant connection between devices (i.e. three-way handshake not needed). This also means that there are no data integrity safeguards in place. However, UDP communication is much faster than TCP. This protocol operates at the transport layer (i.e. layer 4)
 
+## Ports & Port Forwarding
 Networking devices use <i>ports</i> to communicate with each other. There are rules for which protocols apply to which ports. These include the following:
 + 21 for FTP
 + 22 for SSH
@@ -229,6 +239,7 @@ Networking devices use <i>ports</i> to communicate with each other. There are ru
 
 <i>Port fowarding</i> allows connection of application and services to the internet by opening specific ports. This can be configured at a network's router.
 
+## Firewalls
 A <i>firewall</i> is responsible for determining what traffic is allowed to enter and exit a network. An administrator can permit or deny traffic based on these factors:
 + Source of traffic
 + Destination of traffic
@@ -239,12 +250,11 @@ Firewalls can be cateogrised into:
 + Stateful - determines the behaviour of a device based on the entire connection
 + Stateless - determines whether individual packets are acceptable or not
 
+## VPN
 A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to communicate securely by creating a dedicated path between each other over the Internet using a tunnel. Connected devices form their own private network. Some existing VPN technologies include:
 + PPP - allows for authentication and data encryption by using private keys and public certificates; not capable of leaving a network by itself (i.e. non-routable)
 + PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
 + IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
-
-A <i>Virtual Local Area Network (VLAN)</i> allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
 
 ## DNS
 <i>Domain Name System (DNS)</i> allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
