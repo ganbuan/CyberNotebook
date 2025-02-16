@@ -324,8 +324,6 @@ A <i>WHOIS</i> record provides information about the entity that registered a do
 
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
-<i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof.
-
 A <i>Uniform Resource Locator (URL)</i> is used as an instruction on how to access a resource on the net. URLs have multiple parts. Take for example http://user:password@tryhackme.com:80/view-room?id=1#task3
 + Scheme - instructs on what protocol to use (e.g. HTTP, HTTPS, FTP)
 + User - some services require authentication to log in
@@ -440,6 +438,28 @@ TLS revolves around the use of signed TLS certificates. The process is as follow
 1. Server administrator submits a Certificate Signing Request (CSR) to a Certificate Authority (CA).
 2. The CA verifies the CSR and issues a digital certificate.
 3. Once the signed certificate is received, it can be used to identify the server/client to others, who can confirm the validity of the signature. Certificates of the signing authorities are installed on the host.
+
+A summary of secure versions of protocols:
+
+| Protocol | Default Port # |
+| :------: | :------------: |
+| HTTPS | 443 |
+| SMTPS | 465/587 |
+| POP3S | 995 |
+| IMAPS | 993 |
+
+### HTTPS
+<i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof. Essentially, this is HTTP with TLS.
+
+Requesting a page over HTTPS will require the following three steps after resolving the domain name:
+1. Establish a TCP three-way handshake with the target server
+2. Establish a TLS session
+3. Communicate using the HTTP protocol (e.g. issue HTTP request like Get / HTTP/1.1)
+
+Opening the contents of HTTPS packets will return encrypted text. An encryption key is needed to read the contents.
+
+### SMTPS, POP3S, & IMAPS
+Adding TLS to SMTP, POP3, and IMAP appends an S for "Secure." They work the same way as HTTPS.
 
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
