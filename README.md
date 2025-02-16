@@ -294,6 +294,11 @@ DNS request process:
 
 DNS operates at layer 7, using UDP port 53 by default and TCP port 53 as a default fallback.
 
+## WHOIS
+A <i>WHOIS</i> record provides information about the entity that registered a domain name, including their name, phone number, email, and address. Note that privacy services can hide information, if required.
+
+**whois**: looks up the WHOIS records of a registered domain name
+
 ### HTTP/S
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
