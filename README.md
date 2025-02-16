@@ -184,6 +184,19 @@ The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictati
 | Layer 2 | Data-Link layer | Reliable data transfer between adjacent nodes | 802.3, 802.11 |
 | Layer 1 | Physical layer | Physical data transmission media | Electrical, optical, and wireless signals |
 
+## TCP/IP Model
+While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet Protocol (TCP/IP) model</i> is implemented. A strength of this model is that it allows a network to continue to function as parts of it become out of service. This is made possible due to the design of routing protocols to adapt as network topologies change. This model is as follows:
+
+| Layer # | OSI Model | TCP/IP Model | Example Protocols & Standards |
+| :-----: | :------: | :------: | :------: |
+| Layer 7 | Application layer | Application layer | HTTP, FTP, DNS, POP3, SMTP, IMAP |
+| Layer 6 | Presentation layer |  |  |
+| Layer 5 | Session layer |  |  |
+| Layer 4 | Transport layer | Transport layer | UDP, TCP |
+| Layer 3 | Network layer | Internet layer | IP, ICMP, IPSec |
+| Layer 2 | Data-Link layer | Link layer | 802.3, 802.11 |
+| Layer 1 | Physical layer |  |  |
+
 ## Packets
 <i>Packets</i> are small pieces of data that combine together to make a piece of information/message. <i>Frames</i> are slightly different as they are at layer 2, meaning no information such as IP addresses are included. These have a set of headers that include:
 + Time to Live (TTL) - sets an expiry timer for the packet
