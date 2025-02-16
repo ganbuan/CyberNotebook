@@ -227,7 +227,7 @@ Networking devices use <i>ports</i> to communicate with each other. There are ru
 
 <i>Port fowarding</i> allows connection of application and services to the internet by opening specific ports. This can be configured at a network's router.
 
-## DHCP
+### DHCP
 <i>Dynamic Host Configuration Protocol (DHCP)</i> automatically assigns IP addresses to devices in a network. This is an application-level protocol that relies on UDP. The server listens on UDP port 67, and the client sends from UDP port 68. 
 
 This protocol follows the Discover, Offer, Request, and Acknowledge (DORA) steps. This process is done by:
