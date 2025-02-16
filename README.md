@@ -173,13 +173,16 @@ A <i>router</i> is a device that connects networks and pass data between them. R
 
 ## OSI Model
 The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictating how all networked devices send, receive, and interpret data. This model consists of seven layers, wherein specific process take place, and pieces of information are added to the data. These layers are the following:
-1. <i>Physical</i> - references the physical components of hardware used in networking (e.g. ethernet cables) that transfer data in binary
-2. <i>Data Link</i> - focuses on physical addressing of the transmission, adding the physical MAC address of the receiving endpoint
-3. <i>Network</i> - where routing and reassembly of data take place; everything is dealt in IP addresses; protocols determine optimal path data should take, such as Open Shortest Path First (OPSF) and Routing Information Protocol (RIP)
-4. <i>Transport</i> - focuses on the transmition of data, which can follow either TCP or UDP protocols
-5. <i>Session</i> - creates and maintains connection to the destination computer; responsible for closing the connection
-6. <i>Presentation</i> - standardisation and translation of data takes place to ensure both users can understand the data; security features occur at this layer, such as HTTPS and data encryption
-7. <i>Application</i> - determines how user should interact with data sent or received (e.g. GUI, DNS)
+
+| Layer # | Layer Name | Main Function | Example Protocols & Standards |
+| :-----: | :------: | :------: | :------: |
+| Layer 7 | Application layer | Providing services and interfaces to applications | HTTP, FTP, DNS, POP3, SMTP, IMAP |
+| Layer 6 | Presentation layer | Data encoding, encryption, and compression | Unicode, MIME, JPEG, PNG, MPEG |
+| Layer 5 | Session layer | Establishing, maintaining, and synchronising sessions | NFS, RPC |
+| Layer 4 | Transport layer | End-to-end communication and data segmentation | UDP, TCP |
+| Layer 3 | Network layer | Logical addressing and routing between networks | IP, ICMP, IPSec |
+| Layer 2 | Data-Link layer | Reliable data transfer between adjacent nodes | 802.3, 802.11 |
+| Layer 1 | Physical layer | Physical data transmission media | Electrical, optical, and wireless signals |
 
 ## Packets
 <i>Packets</i> are small pieces of data that combine together to make a piece of information/message. <i>Frames</i> are slightly different as they are at layer 2, meaning no information such as IP addresses are included. These have a set of headers that include:
