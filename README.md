@@ -272,6 +272,19 @@ A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to co
 + IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
 
 ## Networking Core Protocols
+Summary of default port numbers of the protocols listed below:
+
+| Protocol | Transport Protocol | Default Port # |
+| :------: | :----------------: | :------------: |
+| TELNET | TCP | 23 |
+| DNS | UDP/TCP | 53 |
+| HTTP | TCP | 80 |
+| HTTPS | TCP | 443 |
+| FTP | TCP | 21 |
+| SMTP | TCP | 25 |
+| POP3 | TCP | 110 |
+| IMAP | TCP | 143 |
+
 ### DNS
 (Remembering Addresses)
 
