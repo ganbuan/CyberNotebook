@@ -285,6 +285,11 @@ Summary of default port numbers of the protocols listed below:
 | POP3 | TCP | 110 |
 | IMAP | TCP | 143 |
 
+### Telnet
+The <i>Teletype Network (TELNET)</i> protocol allows connection and communication with a remote system and issue text commands. This can be used for remote administration or to connect to any server listening on a TCP port number.
+
+**telnet [ip_address] [port_num]**: connects to a target machine at a specific port
+
 ### DNS
 (Remembering Addresses)
 
