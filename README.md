@@ -432,6 +432,15 @@ Some example of IMAP protocol commands include:
 
 The IMAP server listens on TCP port 143 by default.
 
+## Networking Secure Protocols
+### TLS
+<i>Transport Layer Security (TLS)</i> is a cryptographic protocol operating at the transport layer, which allows secure communication between a client and a server over an insecure network. TLS ensures that no one can read or modify the exchanged data. <i>Secure Sockets Layer (SSL)</i> is the precursor to TLS.
+
+TLS revolves around the use of signed TLS certificates. The process is as follows:
+1. Server administrator submits a Certificate Signing Request (CSR) to a Certificate Authority (CA).
+2. The CA verifies the CSR and issues a digital certificate.
+3. Once the signed certificate is received, it can be used to identify the server/client to others, who can confirm the validity of the signature. Certificates of the signing authorities are installed on the host.
+
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
 
