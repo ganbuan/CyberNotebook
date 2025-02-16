@@ -294,7 +294,7 @@ DNS request process:
 
 DNS operates at layer 7, using UDP port 53 by default and TCP port 53 as a default fallback.
 
-## WHOIS
+### WHOIS
 A <i>WHOIS</i> record provides information about the entity that registered a domain name, including their name, phone number, email, and address. Note that privacy services can hide information, if required.
 
 **whois**: looks up the WHOIS records of a registered domain name
@@ -350,6 +350,22 @@ Common response headers include:
 + Content-Encoding - what method has been used to compress the data for smaller data transmission
 
 <i>Cookies</i> are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
+
+### FTP
+<i>File Transfer Protocol (FTP)</i> is designed to transfer files, which it can achieve at higher speeds than HTTP.
+
+Example FTP commands include:
++ USER - used to input the username
++ PASS - used to enter the passwords
++ RETR - used to download a file from the FTP server to the client
++ STOR - used to upload a file from the client to the FTP server
+
+FTP server listens on TCP port 21 by default. Data transfer is conducted via another connection from the client to the server.
+
+**ftp [IP address]**: connects to the remote FTP server using the local ftp client
+
+### SMTP
+
 
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
