@@ -57,8 +57,7 @@ Atomic Red Team is an open-source framework for performing security testing and 
 <i>Atomics</i> - different testing techniques based on the MITRE ATT&CK framework that security analysts can use to emulate a specific technique.
 
 ## Windows Fundamentals
-**NTFS**
-
+### NTFS
 <i>New Technology File System (NTFS)</i> - file system used in modern version of Windows
 
 NTFS addresses many limitations of previous file systems (i.e. FAT16/FAT32, HPFS):
@@ -77,14 +76,12 @@ Permissions include:
 
 <i>Alternate Data Streams (ADS)</i> - file attribute specific to NTFS
 
-**Windows\System32**
-
+### Windows\System32
 C:\Windows traditionally contains the OS. This is where the environmental variables are. The system environment variable for the Windows directory is <i>%windir%</i>.
 
 System32 folder holds all the critical files for the OS.
 
-**User Accounts, Profiles, & Permissions**
-
+### User Accounts, Profiles, & Permissions
 User account type can either be: 
 + <i>administrator</i> - can make changes to the system (e.g. add users, delete users, modify groups, modify system settings, etc)
 + <i>standard user</i> - can only make change to folders/files attributed to the user
@@ -93,7 +90,7 @@ Running <i>lusrmgr.msc</i> will open the <i>Local User and Group Management</i>.
 
 <i>User Account Control (UAC)</i> - prompts confirmation from the admin user when an operation requiring higher-level privileges needs to execute
 
-## MSConfig
+### MSConfig
 The <i>System Configuration</i> utility is for troubleshooting, primarily to help diagnose startup issues.
 
 The utility has five tabs:
@@ -111,7 +108,7 @@ Tools include:
 + <i>Command Prompt (cmd)</i>
 + <i>Registry Editor (regedit)</i> edit Windows Registry, which is the database that stores user profiles, installed applications, property sheet settings for folders/application icons, hardware, used ports
 
-## Windows Security
+### Windows Security
 <i>Windows Update</i> provides security updates, feature enhancements, and patches for the OS, and other products. 
 
 **control /name Microsoft.WindowsUpdate**: access Windows Update
@@ -141,33 +138,33 @@ Devices have two identifiable fingerprints:
 + <i>Internet Protocol (IP) Address</i> - identifies a host on a network; can be public or private; can be IPv4 or IPv6
 + <i>Media Access Control (MAC) Address</i> - unique 12 hexadecimal number that identifies vendor and unique address of the network interface
 
-## Networking Devices
+RFC 1918 defines the following three ranges of private IP addresses:
++ 10.0.0.0 - 10.255.255.255 (10/8)
++ 172.16.0.0 - 172.31.255.255 (172.16/12)
++ 192.168.0.0 - 192.168.255.255 (192.168/16)
 
+### Networking Devices
 A <i>switch</i> is a device that aggregates multiple networking-capable devices using ethernet. 
 
 A <i>router</i> is a device that connects networks and pass data between them. Routing involves creating a path between networks for data to be delivered. 
 
-## Routing Algorithms
+### Routing Algorithms
 Routing algorithms are used by routers to figure out which appropriate links to send packets to. Some algorithms include:
 + <i>Open Shortest Path First (OSPF)</i> - routers hare information about network topology and calculate the most efficient paths; routers exchange updates about the state of their connected links and networks
 + <i>Enhanced Interior Gateway Routing Protocol (EIGRP)</i> - a Cisco proprietary protocol; routers share information about the networks they can reach and the bandwidth/delay costs associated with these routes
 + <i>Border Gateway Protocol (BGP)</i> - the primary protocol used on the Internet; allows different networks (e.g. ISPs) to exchange routing information and establish paths between the networks
 + <i>Routing Information Protocol</i> - often used in small networks; routers share information about networks they can reach and the number of hops required; each router builds a routing table
 
-## Subnets
+### Subnets
 <i>Subnetting</i> is used to split the number of hosts that can fit in a network, represented by a number called the subnet mask (e.g. 255.255.255.0). Subnets use IP addresses in three ways:
 + Identify the network address (i.e. 192.168.1.0)
 + Identify the host address (i.e. 192.168.1.100)
 + Identify the default gateway (i.e. 192.168.1.254)
 
+### VLANs
 A <i>Virtual Local Area Network (VLAN)</i> allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
 
-RFC 1918 defines the following three ranges of private IP addresses:
-+ 10.0.0.0 - 10.255.255.255 (10/8)
-+ 172.16.0.0 - 172.31.255.255 (172.16/12)
-+ 192.168.0.0 - 192.168.255.255 (192.168/16)
-
-## ISO OSI Model
+### ISO OSI Model
 The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictating how all networked devices send, receive, and interpret data. This model consists of seven layers, wherein specific process take place, and pieces of information are added to the data. These layers are the following:
 
 | Layer # | Layer Name | Main Function | Example Protocols & Standards |
@@ -180,7 +177,7 @@ The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictati
 | Layer 2 | Data-Link layer | Reliable data transfer between adjacent nodes | 802.3, 802.11 |
 | Layer 1 | Physical layer | Physical data transmission media | Electrical, optical, and wireless signals |
 
-## TCP/IP Model (RFC 1122)
+### TCP/IP Model (RFC 1122)
 While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet Protocol (TCP/IP) model</i> is implemented. A strength of this model is that it allows a network to continue to function as parts of it become out of service. This is made possible due to the design of routing protocols to adapt as network topologies change. This model is as follows:
 
 | Layer # | OSI Model | TCP/IP Model | Example Protocols & Standards |
@@ -193,20 +190,21 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 | Layer 2 | Data-Link layer | Link layer | 802.3, 802.11 |
 | Layer 1 | Physical layer |  |  |
 
-## Packets
+### Packets
 <i>Packets</i> are small pieces of data that combine together to make a piece of information/message. <i>Frames</i> are slightly different as they are at layer 2, meaning no information such as IP addresses are included. These have a set of headers that include:
 + Time to Live (TTL) - sets an expiry timer for the packet
 + Checksum - provides integrity checking, where changes in data will indicated corrupted packets
 + Source Address - IP address of the device the packet is being sent from
 + Destination Address - IP address the packet is being sent to
 
+### Encapsulation
 <i>Encapsulation</i> is the process of every layer adding a header/trailer to a received unit of data. The process is as follows:
 1. We start with application data.
 2. At the transport layer, a TCP or UDP header is added to create a <i>TCP segment</i> or <i>UDP datagram</i>.
 3. At the network layer, an IP header is added to get an <i>IP packet</i>, which can be router over the Internet.
 4. Lastly, a header and trailer is added to get a <i>WiFi/Ethernet frame</i> at the link layer.
 
-## TCP/UDP
+### TCP
 <i>Transmission Control Protocol (TCP)</i> guarantees that any data sent will be received on the other end. This protocol operates at the transport layer (i.e. layer 4). This is done via a 'three-way handshake':
 1. SYN message is send by the client; initiates a connection and sychronises the two devices.
 2. SYN/ACK packet is sent by the receiving device.
@@ -215,9 +213,10 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 5. FIN packet is used to cleanly close the connection after completion.
 6. *A RST packet is the last resort used to abruptly end all communication, usually done if there is a problem.
 
+### UDP
 <i>User Datagram Protocol (UDP)</i> is a stateless protocol that does not require a constant connection between devices (i.e. three-way handshake not needed). This also means that there are no data integrity safeguards in place. However, UDP communication is much faster than TCP. This protocol operates at the transport layer (i.e. layer 4)
 
-## Ports & Port Forwarding
+### Ports & Port Forwarding
 Networking devices use <i>ports</i> to communicate with each other. There are rules for which protocols apply to which ports. These include the following:
 + 21 for FTP
 + 22 for SSH
@@ -237,7 +236,7 @@ This protocol follows the Discover, Offer, Request, and Acknowledge (DORA) steps
 3. The device then sends a DHCPREQUEST, confirming that it wants the IP address.
 4. Lastly, the DHCP server sends a DHCPACK, acknowledging that the device can start using the IP address.
 
-## ARP
+### ARP
 <i>Address Resolution Protocol (ARP)</i> allows a device to associate its MAC address with an IP address on a network (i.e. translation from layer 3 to layer 2 addressing). Each device on a network will keep logs of the MAC addresses associated with other devices. 
 
 This is done by:
@@ -247,15 +246,15 @@ This is done by:
 
 Note that an ARP Request or ARP reply is not encapsulated within a UDP or IP packet. Rather, it is encapsulated directly within an Ethernet frame.
 
-## ICMP
+### ICMP
 <i>Internet Control Message Protocol (ICMP)</i> is mainly for network diagnotics and error reporting. Two popular commands that rely on ICMP are:
 + **ping**: uses ICMP (i.e. ICMP type 8 - Echo Request, ICMP type 0 - Echo Reply) to test connectivity to a target system and measures rount-trip time (RTT)
 + **tracert/traceroute**: uses ICMP (i.e. ICMP type 11 - Time Exceeded message) to discover the route from your host to target machine
 
-## NAT
+### NAT
 <i>Network Address Translation (NAT)</i> allows the use of one public IP address to provide Internet access to many private IP addresses. This is done by NAT-supporting routers maintaining a table that translates network addresses between internal and external networks. In effect, the internal network would use a private IP address (i.e. intra-network), while the external network (i.e. gateway to the Internet) would use the public IP address.
 
-## Firewalls
+### Firewalls
 A <i>firewall</i> is responsible for determining what traffic is allowed to enter and exit a network. An administrator can permit or deny traffic based on these factors:
 + Source of traffic
 + Destination of traffic
@@ -266,13 +265,13 @@ Firewalls can be cateogrised into:
 + Stateful - determines the behaviour of a device based on the entire connection
 + Stateless - determines whether individual packets are acceptable or not
 
-## VPN
+### VPN
 A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to communicate securely by creating a dedicated path between each other over the Internet using a tunnel. Connected devices form their own private network. Some existing VPN technologies include:
 + PPP - allows for authentication and data encryption by using private keys and public certificates; not capable of leaving a network by itself (i.e. non-routable)
 + PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
 + IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
 
-## DNS
+### DNS
 <i>Domain Name System (DNS)</i> allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
 + A <i>Top-Level Domain (TLD)</i> is the most righthand part of a domain name (e.g. .com in tryhackme.com).
 + A <i>Second-Level Domain</i> includes the domain name (e.g. tryhackme in tryhackme.com)
@@ -292,7 +291,7 @@ DNS request process:
 4. The TLD server holds records for where to find the authoritative server for the DNS request, where DNS records for domain names are kept.
 5. The DNS record is then sent back to the Recursive DNS Server, where a local copy will be cached for future requests. This record will have a TTL value.
 
-## HTTP/S
+### HTTP/S
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
 <i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof.
