@@ -329,3 +329,35 @@ Web servers use <i>virtual hosts</i> to host multiple websites with different do
 <i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
 
 <i>Input sanitation</i> is a means to protect a website secure. 
+
+## Linux Shells
+Linux has different types of shells available, each with their own features.
+
+**echo $SHELL**: displays which shell you are using
+
+**cat /etc/shells**: lists all installed shells on the system
+
+To switch between these shells, simply type the shell name (e.g. **zsh**)
+
+Some common shells include:
+| Feature | Bash | Fish | Zsh |
+| :-----: | :------: | :------: | :------: |
+| Full Name | Bourne Again Shell | Friendly Interactive Shell | Z Shell |
+| Scripting | Offers widely compatible scripting w/ documentation | Limited scripting features | Combines Bash shell scripting with some extra features |
+| Tab Completion | Basic tab completion | Advanced tab completion | Can be extended by using plugins |
+| Customisation | Basic customisation | Offers customisation using interactive tools | Advanced customisation through oh-my-zsh framework |
+| User Friendliness | Less user-friendly | Most user-friendly | Highly user-friendly with proper customisation |
+| Syntax Highlighting | Not available | Built-in | Can be used with some plug-ins |
+
+Script files can be edited using any text editor and has the extension <i>.sh</i>. Every script should also start from shebang: <i>#!</i> followed by the name of the interpreter (e.g. /bin/bash)
+
+Some basic script commands:
++ **read [variable_name]**: asks user input and saves to a variable
++ **for i in {x..y}; do**: for loop
++ **if [ "$variable" = "Text" ]; then**: if statement
+
+To execute scripts, it has to be given execution permissions. 
+
+**chmod +x [variable_script.sh]**: give execution permission to the script
+
+
