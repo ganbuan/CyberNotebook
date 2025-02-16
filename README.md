@@ -160,17 +160,6 @@ A <i>router</i> is a device that connects networks and pass data between them. R
 + Identify the host address (i.e. 192.168.1.100)
 + Identify the default gateway (i.e. 192.168.1.254)
 
-<i>Address Resolution Protocol (ARP)</i> allows a device to associate its MAC address with an IP address on a network. Each device on a network will keep logs of the MAC addresses associated with other devices. This is done by:
-1. ARP request is broadcasted on the network (i.e. asking for the IP address for a particular MAC address).
-2. The owning device will send an ARP reply with its MAC address.
-3. The requesting device maps and stores this in its ARP cache.
-
-<i>Dynamic Host Configuration Protocol (DHCP)</i> automatically assigns IP addresses to devices in a network. This process is done by:
-1. A newly connected device sends out a DHCP Discover request to see if any DHCP servers are on the network.
-2. The DHCP server replies with a DHCP offer, an IP address the device can use.
-3. The device then sends a DHCP Request, confirming that it wants the IP address.
-4. Lastly, the DHCP server sends a DHCP ACK, acknowledging that the device can start using the IP address.
-
 A <i>Virtual Local Area Network (VLAN)</i> allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
 
 RFC 1918 defines the following three ranges of private IP addresses:
@@ -238,6 +227,30 @@ Networking devices use <i>ports</i> to communicate with each other. There are ru
 + 3389 for RDP
 
 <i>Port fowarding</i> allows connection of application and services to the internet by opening specific ports. This can be configured at a network's router.
+
+## DHCP
+<i>Dynamic Host Configuration Protocol (DHCP)</i> automatically assigns IP addresses to devices in a network. This is an application-level protocol that relies on UDP. The server listens on UDP port 67, and the client sends from UDP port 68. 
+
+This protocol follows the Discover, Offer, Request, and Acknowledge (DORA) steps. This process is done by:
+1. A newly connected device sends out a DHCPDISCOVER request to see if any DHCP servers are on the network.
+2. The DHCP server replies with a DHCPOFFER, an IP address the device can use.
+3. The device then sends a DHCPREQUEST, confirming that it wants the IP address.
+4. Lastly, the DHCP server sends a DHCPACK, acknowledging that the device can start using the IP address.
+
+## ARP
+<i>Address Resolution Protocol (ARP)</i> allows a device to associate its MAC address with an IP address on a network (i.e. translation from layer 3 to layer 2 addressing). Each device on a network will keep logs of the MAC addresses associated with other devices. 
+
+This is done by:
+1. ARP Request is broadcasted on the network (i.e. asking for the IP address for a particular MAC address).
+2. The owning device will send an ARP Reply with its MAC address.
+3. The requesting device maps and stores this in its ARP cache.
+
+Note that an ARP Request or ARP reply is not encapsulated within a UDP or IP packet. Rather, it is encapsulated directly within an Ethernet frame.
+
+## ICMP
+<i>Internet Control Message Protocol (ICMP)</i> is mainly for network diagnotics and error reporting. Two popular commands that rely on ICMP are:
++ **ping**: uses ICMP (i.e. ICMP type 8 - Echo Request, ICMP type 0 - Echo Reply) to test connectivity to a target system and measures rount-trip time (RTT)
++ **tracert/traceroute**: uses ICMP (i.e. ICMP type 11 - Time Exceeded message) to discover the route from your host to target machine
 
 ## Firewalls
 A <i>firewall</i> is responsible for determining what traffic is allowed to enter and exit a network. An administrator can permit or deny traffic based on these factors:
