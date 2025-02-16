@@ -443,10 +443,25 @@ A summary of secure versions of protocols:
 
 | Protocol | Default Port # |
 | :------: | :------------: |
+| HTTPS | 22 |
 | HTTPS | 443 |
 | SMTPS | 465/587 |
 | POP3S | 995 |
 | IMAPS | 993 |
+
+### SSH
+<i>Secure Shell (SSH)</i> provides a secure alternative to telnet. Nowadays, SSH clients are based on OpenSSH libraries and source code.
+
+OpenSSH offers several benefits, including:
++ Secure Authentication - supports password-based authentication, public key, and two-factor authentication
++ Confidentiality - provides end-to-end encryption; notifies of new server keys to protect against MitM attacks
++ Integrity - cryptography protects integrity of traffic
++ Tunneling - creates a secure tunnel to route other protocols through (i.e. a VPN-like connection)
++ X11 Forwarding - allows use of graphical application over the network if connecting to a Unix-like system with a GUI
+
+**ssh [username@hostname]**: connects to an SSH server; add **-X** to support running graphical interfaces
+
+The SSH server listens on port 22.
 
 ### HTTPS
 <i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof. Essentially, this is HTTP with TLS.
