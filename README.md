@@ -274,6 +274,7 @@ A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to co
 ## Networking Core Protocols
 ### DNS
 (Remembering Addresses)
+
 <i>Domain Name System (DNS)</i> allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
 + A <i>Top-Level Domain (TLD)</i> is the most righthand part of a domain name (e.g. .com in tryhackme.com).
 + A <i>Second-Level Domain</i> includes the domain name (e.g. tryhackme in tryhackme.com)
@@ -302,6 +303,7 @@ A <i>WHOIS</i> record provides information about the entity that registered a do
 
 ### HTTP/S
 (Accessing the Web)
+
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
 <i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof.
@@ -355,6 +357,7 @@ Common response headers include:
 
 ### FTP
 (Transferring Files)
+
 <i>File Transfer Protocol (FTP)</i> is designed to transfer files, which it can achieve at higher speeds than HTTP.
 
 Example FTP commands include:
@@ -369,6 +372,7 @@ FTP server listens on TCP port 21 by default. Data transfer is conducted via ano
 
 ### SMTP
 (Sending Email)
+
 <i>Simple Mail Transfer Protocol (SMTP)</i> defines how a mail client communicates with a mail server and how a mail server communicates with another.
 
 Example SMTP commands used by the mail client to the SMTP server:
@@ -382,6 +386,7 @@ The SMTP server listens on TCP port 25 by default.
 
 ### POP3
 (Receiving Email)
+
 The <i>Post Office Protocol v3 (POP3)</i> allows the client to communicate with a mail server to retrieve email messages.
 
 Some common POP3 commands include:
