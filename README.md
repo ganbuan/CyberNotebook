@@ -171,6 +171,11 @@ A <i>router</i> is a device that connects networks and pass data between them. R
 3. The device then sends a DHCP Request, confirming that it wants the IP address.
 4. Lastly, the DHCP server sends a DHCP ACK, acknowledging that the device can start using the IP address.
 
+RFC 1918 defines the following three ranges of private IP addresses:
++ 10.0.0.0 - 10.255.255.255 (10/8)
++ 172.16.0.0 - 172.31.255.255 (172.16/12)
++ 192.168.0.0 - 192.168.255.255 (192.168/16)
+
 ## ISO OSI Model
 The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictating how all networked devices send, receive, and interpret data. This model consists of seven layers, wherein specific process take place, and pieces of information are added to the data. These layers are the following:
 
