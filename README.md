@@ -171,7 +171,7 @@ A <i>router</i> is a device that connects networks and pass data between them. R
 3. The device then sends a DHCP Request, confirming that it wants the IP address.
 4. Lastly, the DHCP server sends a DHCP ACK, acknowledging that the device can start using the IP address.
 
-## OSI Model
+## ISO OSI Model
 The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictating how all networked devices send, receive, and interpret data. This model consists of seven layers, wherein specific process take place, and pieces of information are added to the data. These layers are the following:
 
 | Layer # | Layer Name | Main Function | Example Protocols & Standards |
@@ -184,7 +184,7 @@ The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictati
 | Layer 2 | Data-Link layer | Reliable data transfer between adjacent nodes | 802.3, 802.11 |
 | Layer 1 | Physical layer | Physical data transmission media | Electrical, optical, and wireless signals |
 
-## TCP/IP Model
+## TCP/IP Model (RFC 1122)
 While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet Protocol (TCP/IP) model</i> is implemented. A strength of this model is that it allows a network to continue to function as parts of it become out of service. This is made possible due to the design of routing protocols to adapt as network topologies change. This model is as follows:
 
 | Layer # | OSI Model | TCP/IP Model | Example Protocols & Standards |
