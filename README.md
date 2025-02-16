@@ -308,7 +308,7 @@ A <i>Uniform Resource Locator (URL)</i> is used as an instruction on how to acce
 + Scheme - instructs on what protocol to use (e.g. HTTP, HTTPS, FTP)
 + User - some services require authentication to log in
 + Host - domain name or IP address of the server
-+ Port - port you are going to connet to (e.g. 80 for HTTP, 443 for HTTPS)
++ Port - port you are going to connect to (e.g. TCP ports 80/8080 for HTTP, 443/8443 for HTTPS)
 + Path - file name or location of the resource
 + Query String - extra bits of information that can be sent to the requested path
 + Fragment - reference to a location on the actual page requested, commonly used for pages with long content
