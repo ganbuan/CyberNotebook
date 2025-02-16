@@ -400,6 +400,20 @@ Some common POP3 commands include:
 
 The POP3 server listens on TCP port 110 by default.
 
+### IMAP
+(Syncrhonising Email)
+
+The <i>Internet Message Access Protocol (IMAP)</i> allows synchronising read, moved, and deleted messages. This is particularly useful for checking emails via multiple clients. As an effect, IMAP tends to use more storage as emails are kept on the server to be syncrhonised across the email clients.
+
+Some example of IMAP protocol commands include:
++ LOGIN [username] [password] - authenticates the user
++ SELECT [mailbox] - selects the mailbox folder
++ FETCH [mail_number] [data_item] - gets the message number and required data (e.g. fetch 3 body[])
++ COPY [sequence_set] [data_item] - copies the specified messages to another mailbox
++ LOGOUT - logs out
+
+The IMAP server listens on TCP port 143 by default.
+
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
 
