@@ -271,6 +271,7 @@ A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to co
 + PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
 + IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
 
+## Networking Core Protocols
 ### DNS
 <i>Domain Name System (DNS)</i> allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
 + A <i>Top-Level Domain (TLD)</i> is the most righthand part of a domain name (e.g. .com in tryhackme.com).
