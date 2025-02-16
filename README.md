@@ -292,6 +292,8 @@ DNS request process:
 4. The TLD server holds records for where to find the authoritative server for the DNS request, where DNS records for domain names are kept.
 5. The DNS record is then sent back to the Recursive DNS Server, where a local copy will be cached for future requests. This record will have a TTL value.
 
+DNS operates at layer 7, using UDP port 53 by default and TCP port 53 as a default fallback.
+
 ### HTTP/S
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
