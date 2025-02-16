@@ -209,7 +209,7 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 + Source Address - IP address of the device the packet is being sent from
 + Destination Address - IP address the packet is being sent to
 
-<i>Transmission Control Protocol (TCP)</i> guarantees that any data sent will be received on the other end. This is done via a 'three-way handshake':
+<i>Transmission Control Protocol (TCP)</i> guarantees that any data sent will be received on the other end. This protocol operates at the transport layer (i.e. layer 4). This is done via a 'three-way handshake':
 1. SYN message is send by the client; initiates a connection and sychronises the two devices.
 2. SYN/ACK packet is sent by the receiving device.
 3. ACK packet is used to acknowledge that the series of packets have been received.
@@ -217,7 +217,7 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 5. FIN packet is used to cleanly close the connection after completion.
 6. *A RST packet is the last resort used to abruptly end all communication, usually done if there is a problem.
 
-<i>User Datagram Protocol (UDP)</i> is a stateless protocol that does not require a constant connection between devices (i.e. three-way handshake not needed). This also means that there are no data integrity safeguards in place. However, UDP communication is much faster than TCP.
+<i>User Datagram Protocol (UDP)</i> is a stateless protocol that does not require a constant connection between devices (i.e. three-way handshake not needed). This also means that there are no data integrity safeguards in place. However, UDP communication is much faster than TCP. This protocol operates at the transport layer (i.e. layer 4)
 
 Networking devices use <i>ports</i> to communicate with each other. There are rules for which protocols apply to which ports. These include the following:
 + 21 for FTP
