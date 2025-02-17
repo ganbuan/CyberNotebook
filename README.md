@@ -265,12 +265,6 @@ Firewalls can be cateogrised into:
 + Stateful - determines the behaviour of a device based on the entire connection
 + Stateless - determines whether individual packets are acceptable or not
 
-### VPN
-A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to communicate securely by creating a dedicated path between each other over the Internet using a tunnel. Connected devices form their own private network. Some existing VPN technologies include:
-+ PPP - allows for authentication and data encryption by using private keys and public certificates; not capable of leaving a network by itself (i.e. non-routable)
-+ PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
-+ IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
-
 ## Networking Core Protocols
 Summary of default port numbers of the protocols listed below:
 
@@ -319,7 +313,7 @@ A <i>WHOIS</i> record provides information about the entity that registered a do
 
 **whois**: looks up the WHOIS records of a registered domain name
 
-### HTTP/S
+### HTTP
 (Accessing the Web)
 
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
@@ -486,6 +480,12 @@ Note that SFTP is different from FTPS. <i>File Transfer Protocol Secure (FTPS)</
 **get [file_name]**: download files
 
 **put [file_name]**: upload files
+
+### VPN
+A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to communicate securely by creating a dedicated path between each other over the Internet using a tunnel. Connected devices form their own private network. Some existing VPN technologies include:
++ PPP - allows for authentication and data encryption by using private keys and public certificates; not capable of leaving a network by itself (i.e. non-routable)
++ PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
++ IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
 
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
