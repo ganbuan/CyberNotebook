@@ -476,6 +476,17 @@ Opening the contents of HTTPS packets will return encrypted text. An encryption 
 ### SMTPS, POP3S, & IMAPS
 Adding TLS to SMTP, POP3, and IMAP appends an S for "Secure." They work the same way as HTTPS.
 
+### SFTP & FTPS
+<i>SSH File Transfer Protocol (SFTP)</i> allows secure file transfer. It is part of the SSH protocol suite and shares port 22. SFTP commands are Unix-like and can differ from FTP commands.
+
+Note that SFTP is different from FTPS. <i>File Transfer Protocol Secure (FTPS)</i> uses TLS and port 990. FTPS requires certificate setup and can be tricky to allow over firewalls as it uses separate connections for control and data transfer. Meanwhile, SFTP setup is easy as it only requires enabling an option with OpenSSH.
+
+**sftp [username@hostname]**: log in SFTP server
+
+**get [file_name]**: download files
+
+**put [file_name]**: upload files
+
 ## Websites
 When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
 
