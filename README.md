@@ -567,3 +567,35 @@ Wireshark uses OSI layers to break down packets and use these layers for analysi
 + Application Protocol (Layer 5) - shows details specific to the protocol used (e.g. HTTP, FTP, and SMB) at the Application layer
 + Application Data - extension of the fifth layer and can show application-specific data
 
+## tcpdump
+<i>tcpdump</i> is a tool that captures network traffic and taking a closer look at various protocols. This tool and its <i>libpcap</i> library were released for Unix-like systems. <i>winpcap</i> is the ported version to Windows.
+
+**tcpdump**: main command 
+
+Command line options for packet capture:
++ **-i [interface]**: captures packets on a specific network interface
++ **-w [file_name]**: writes captured packets to a file
++ **-r [file_name]**: reads captured packets from a file
++ **-c [count]**: captures a specific number of packets
++ **-n**: do not resolve IP addresses
++ **-nn**: do not resolve IP addresses and protocol numbers
++ **-v**: verbose display; can be **-vv** or **-vvv**
+
+Some filtering options:
++ **host [ip_address]** or **tcpdump host [host_name]**: filters packets by IP or hostname
++ **src host [ip_address]**: filters by a specific source host
++ **dst host [ip_address]**: filters by a specific destination host
++ **port [port_number]**: filters by port number
++ **src port [port_number]**: filters by specified source port number
++ **dst port [port_number]**: filters by specified destination port number
++ **[protocol]**: filters by protocol (e.g. ip, ip6, icmp)
++ **greater [length]** or **tcpdump less [length]**: filters packets that have a length >= or <= than specified length
++ **[proto[expr:size]]**: refer to contents of any byte in the header
++ **[tcp[tcpflags]]**: refer to TCP flags field (e.g. tcp-syn, tcp-ack, tcp-fin, tcp-rst, tcp-push)
+
+Some packet display options:
++ **-q**: quick output (i.e. brief packet info)
++ **-e**: print link-level header (i.e. MAC address)
++ **-A**: show in ASCII
++ **-xx**: show in hexadecimal format (i.e. hex)
++ **-X**: show headers and data in hex and ASCII
