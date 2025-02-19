@@ -127,6 +127,36 @@ Tools include:
 + Configure restore settings
 + Delete restore points
 
+## Linux Shells
+Linux has different types of shells available, each with their own features.
+
+**echo $SHELL**: displays which shell you are using
+
+**cat /etc/shells**: lists all installed shells on the system
+
+To switch between these shells, simply type the shell name (e.g. **zsh**)
+
+Some common shells include:
+| Feature | Bash | Fish | Zsh |
+| :-----: | :------: | :------: | :------: |
+| Full Name | Bourne Again Shell | Friendly Interactive Shell | Z Shell |
+| Scripting | Offers widely compatible scripting w/ documentation | Limited scripting features | Combines Bash shell scripting with some extra features |
+| Tab Completion | Basic tab completion | Advanced tab completion | Can be extended by using plugins |
+| Customisation | Basic customisation | Offers customisation using interactive tools | Advanced customisation through oh-my-zsh framework |
+| User Friendliness | Less user-friendly | Most user-friendly | Highly user-friendly with proper customisation |
+| Syntax Highlighting | Not available | Built-in | Can be used with some plug-ins |
+
+Script files can be edited using any text editor and has the extension <i>.sh</i>. Every script should also start from shebang: <i>#!</i> followed by the name of the interpreter (e.g. /bin/bash)
+
+Some basic script commands:
++ **read [variable_name]**: asks user input and saves to a variable
++ **for i in {x..y}; do**: for loop
++ **if [ "$variable" = "Text" ]; then**: if statement
+
+To execute scripts, it has to be given execution permissions. 
+
+**chmod +x [variable_script.sh]**: give execution permission to the script
+
 ## Networking Basics
 <i>Networks</i> are the connections between technological devices. These can be formed from two devices to billions. A network can be one of two types:
 + Private
@@ -520,34 +550,20 @@ Web servers use <i>virtual hosts</i> to host multiple websites with different do
 
 <i>Input sanitation</i> is a means to protect a website secure. 
 
-## Linux Shells
-Linux has different types of shells available, each with their own features.
+## Wireshark
+<i>Wireshark is an open-source network packet analyser tool. It can sniff and investigate live traffic and inspect packet captures (PCAP). Its use cases include:
++ Detecting and troubleshooting network problems (e.g. network load failure points and congestion)
++ Detecting security anomalies (e.g. rogue hosts, abnormal port usage, and suspicious traffic)
++ Investigating and learning protocol details (e.g. response codes and payload data)
 
-**echo $SHELL**: displays which shell you are using
+Note that Wireshark is not an IDS. It only allows packet discovery and investigation. It does not modify packets.
 
-**cat /etc/shells**: lists all installed shells on the system
-
-To switch between these shells, simply type the shell name (e.g. **zsh**)
-
-Some common shells include:
-| Feature | Bash | Fish | Zsh |
-| :-----: | :------: | :------: | :------: |
-| Full Name | Bourne Again Shell | Friendly Interactive Shell | Z Shell |
-| Scripting | Offers widely compatible scripting w/ documentation | Limited scripting features | Combines Bash shell scripting with some extra features |
-| Tab Completion | Basic tab completion | Advanced tab completion | Can be extended by using plugins |
-| Customisation | Basic customisation | Offers customisation using interactive tools | Advanced customisation through oh-my-zsh framework |
-| User Friendliness | Less user-friendly | Most user-friendly | Highly user-friendly with proper customisation |
-| Syntax Highlighting | Not available | Built-in | Can be used with some plug-ins |
-
-Script files can be edited using any text editor and has the extension <i>.sh</i>. Every script should also start from shebang: <i>#!</i> followed by the name of the interpreter (e.g. /bin/bash)
-
-Some basic script commands:
-+ **read [variable_name]**: asks user input and saves to a variable
-+ **for i in {x..y}; do**: for loop
-+ **if [ "$variable" = "Text" ]; then**: if statement
-
-To execute scripts, it has to be given execution permissions. 
-
-**chmod +x [variable_script.sh]**: give execution permission to the script
-
+Wireshark uses OSI layers to break down packets and use these layers for analysis. Packets details include:
++ The Frame (Layer 1) - shows what frame/packet you are looking at at the Physical layer
++ Source MAC (Layer 2) - shows the source and destination MAC addresses at the Data Link layer
++ Source IP (Layer 3) - shows the source and destination IPv4 addresses at the Network layer
++ Protocol (Layer 4) - shows the protocol used (i.e. UDP/TCP) and source and destination ports at the Transport layer
++ Protocol Errors - a continuation of the fourth layer that shows segments from TCP that need reassembly
++ Application Protocol (Layer 5) - shows details specific to the protocol used (e.g. HTTP, FTP, and SMB) at the Application layer
++ Application Data - extension of the fifth layer and can show application-specific data
 
