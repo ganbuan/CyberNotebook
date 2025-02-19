@@ -551,7 +551,7 @@ Web servers use <i>virtual hosts</i> to host multiple websites with different do
 <i>Input sanitation</i> is a means to protect a website secure. 
 
 ## Wireshark
-<i>Wireshark is an open-source network packet analyser tool. It can sniff and investigate live traffic and inspect packet captures (PCAP). Its use cases include:
+<i>Wireshark</i> is an open-source network packet analyser tool. It can sniff and investigate live traffic and inspect packet captures (PCAP). Its use cases include:
 + Detecting and troubleshooting network problems (e.g. network load failure points and congestion)
 + Detecting security anomalies (e.g. rogue hosts, abnormal port usage, and suspicious traffic)
 + Investigating and learning protocol details (e.g. response codes and payload data)
