@@ -550,7 +550,8 @@ Web servers use <i>virtual hosts</i> to host multiple websites with different do
 
 <i>Input sanitation</i> is a means to protect a website secure. 
 
-## Wireshark
+## Networking Tools
+### Wireshark
 <i>Wireshark</i> is an open-source network packet analyser tool. It can sniff and investigate live traffic and inspect packet captures (PCAP). Its use cases include:
 + Detecting and troubleshooting network problems (e.g. network load failure points and congestion)
 + Detecting security anomalies (e.g. rogue hosts, abnormal port usage, and suspicious traffic)
@@ -567,7 +568,7 @@ Wireshark uses OSI layers to break down packets and use these layers for analysi
 + Application Protocol (Layer 5) - shows details specific to the protocol used (e.g. HTTP, FTP, and SMB) at the Application layer
 + Application Data - extension of the fifth layer and can show application-specific data
 
-## tcpdump
+### tcpdump
 <i>tcpdump</i> is a tool that captures network traffic and taking a closer look at various protocols. This tool and its <i>libpcap</i> library were released for Unix-like systems. <i>winpcap</i> is the ported version to Windows.
 
 **tcpdump**: main command 
@@ -599,3 +600,43 @@ Some packet display options:
 + **-A**: show in ASCII
 + **-xx**: show in hexadecimal format (i.e. hex)
 + **-X**: show headers and data in hex and ASCII
+
+### nmap
+<i>nmap</i> is a network scanner tool that can 1) discover other live devices on this/other network and 2) find out the network services running on these live devices (e.g. SSH, web servers)
+
+**nmap**: main command to initiate nmap tasks; add **sudo** or be logged in as root
+for full features
+
+For listing targets:
++ **-sL [ip_address/subnet]**: lists the targets to scan without actually scanning them
+  
+For host discovery:
++ **-sn [ip_address/subnet]**: discover online hosts on a network
+
+For port scanning:
++ **-sT [ip_address/subnet]**: attempt to complete TCP three-way handshake with every target TCP port (i.e. Connect Scan)
++ **-sS [ip_address/subnet]**: instead of a full three-way handshake, only the TCP SYN packet is sent (i.e. SYN Scan/Stealth)
++ **-sU [ip_address/subnet]**: scan for UDP services
++ **-F**: fast mode that scans the 100 most common ports
++ **-p[range]**: specifies a range of port numbers to scan; **-p-** scans all ports
++ **-Pn**: initiate a force scan (i.e. scan hosts that appear to be down)
+  
+For version detection:
++ **-O**: enable OS detection
++ **-sV**: enables version detection
++ **-A**: enables OS detection, version scanning, traceroute, and others
+
+For timing control:
++ **-T[0-5]**: timing template; can be: 0-paranoid, 1-sneaky, 2-polite, 3-normal, 4-aggressive, 5-insane
++ **--min-parallelism [num_probes]** / **--max-rate [num_probes]**: minimum/maximum number of parallel probes
++ **--host-timeout [seconds]**: max amount of time to wait for a target host
+
+For controlling real-time output:
++ **-v**: verbose output; can be **-vv**, **-vvvv**, **-v2**, **v4**
++ **-d**: debugging-level output; same with v, can add more d (i.e. up to **-d9**)
+
+For controlling report output:
++ **-oN [file_name]**: normal output save
++ **-oX [file_name]**: XML output save
++ **-oG [file_name]**: grep-able output (i.e. for **grep** and **awk**)
++ **-oA [base_name]**: output in all major formats
