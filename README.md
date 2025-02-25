@@ -652,6 +652,19 @@ Key terminologies include:
 + <i>Encryption</i> - process of converting plaintext into ciphertext using a cipher and a key
 + <i>Decryption</i> - reverse process of encryption, converting ciphertext back into plaintext using a cipher and a key
 
+### RSA
+<i>RSA</i> is a public-key encryption algorithm. It is based on factoring large numbers. 
+
+The main variables to know include:
++ <i>p</i> and <i>q</i> are large prime numbers
++ <i>n</i> is the product of p and q
++ The public key is n and <i>e</i>
++ The private key is n and <i>d</i>
++ <i>m</i> is used to represent the original message (i.e. plaintext)
++ <i>c</i> represents the encrypted text (i.e. ciphertext)
+
+
+
 The two main categories of encryption:
 1. <i>Symmetric</i> - uses the same key to encrypt and decrypt data; also known as <i>private key cryptography</i> (e.g. DES, 3DES, AES)
 2. <i>Asymmetric</i> - uses a pair of keys, one to encrypt (i.e. the public key) and the other to decrypt (i.e. the private key)
