@@ -640,3 +640,19 @@ For controlling report output:
 + **-oX [file_name]**: XML output save
 + **-oG [file_name]**: grep-able output (i.e. for **grep** and **awk**)
 + **-oA [base_name]**: output in all major formats
+
+## Cryptography
+Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
+
+Key terminologies include:
++ <i>Plaintext</i> - original, readable message or data before encryption (e.g. document, image, multimedia file, any other binary data)
++ <i>Ciphertext</i> - scrambled, unreadable version of the message after encryption
++ <i>Cipher</i> - algorithm or method to convert plaintext into ciphertext and back again
++ <i>Key</i> - string of bits the cipher uses to encrypt or decrypt data
++ <i>Encryption</i> - process of converting plaintext into ciphertext using a cipher and a key
++ <i>Decryption</i> - reverse process of encryption, converting ciphertext back into plaintext using a cipher and a key
+
+The two main categories of encryption:
+1. <i>Symmetric</i> - uses the same key to encrypt and decrypt data; also known as <i>private key cryptography</i> (e.g. DES, 3DES, AES)
+2. <i>Asymmetric</i> - uses a pair of keys, one to encrypt (i.e. the public key) and the other to decrypt (i.e. the private key)
+
