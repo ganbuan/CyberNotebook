@@ -695,4 +695,15 @@ The simplest form of digital signature is encrypting the document with your priv
 
 <i>Certificates</i> are linked to digital signatures. These certify that the website you are visiting is legitimate. This is commonly used in HTTPS.
 
+### PGP & GPG
+<i>Pretty Good Privacy (PGP)</i> is software that that can encrypt files. 
+
+<i>GnuPG (GPG)</i> is an open-source implementation of the OpenPGP standard. 
+
+GPG is commonly used in email to protect confidentiality of email messages. It can be used to sign an email and confirm its integrity. Additionally, GPG can be used to decrypt files.
+
+**gpg --import [key_file.key]**: import key 
+
+**gpg --decrypt [message.gpg]**: decrypt messages
+
 
