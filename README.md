@@ -678,3 +678,14 @@ Steps of this process is as follows:
 3. Each party calculates their public key <i>A = g^a mod p</i> and <i>B = g^b mod p</i>
 4. Each party sends the keys to each other (i.e. the key exchange)
 5. Calculate shared secret using the received public key using their own private key
+
+### SSH Keys
+SSH key authentication uses public and private keys to prove the client is valid and an authorised user on the server. By default, these are RSA keys. However, you can choose which algorithm to generate and add a passphrase to encrypt the SSH key.
+
+**ssh-keygen**: program to generate key pairs
+
+The <i>~/.ssh folder<i> is the default place to store these keys for OpenSSH. The <i>authorized_keys</i> file holds the public eys that are allowed to access to the server if key authentication is enabled.
+
+SSH keys are an excellent way to upgrade a reverse shell. Leaving an SSH key in the authorized keys file on a machine can be a useful backdoor for CTFs, penetration testing, and red teaming.
+
+
