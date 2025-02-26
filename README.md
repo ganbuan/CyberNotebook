@@ -652,8 +652,12 @@ Key terminologies include:
 + <i>Encryption</i> - process of converting plaintext into ciphertext using a cipher and a key
 + <i>Decryption</i> - reverse process of encryption, converting ciphertext back into plaintext using a cipher and a key
 
+The two main categories of encryption:
+1. <i>Symmetric</i> - uses the same key to encrypt and decrypt data; also known as <i>private key cryptography</i> (e.g. DES, 3DES, AES)
+2. <i>Asymmetric</i> - uses a pair of keys, one to encrypt (i.e. the public key) and the other to decrypt (i.e. the private key)
+
 ### RSA
-<i>RSA</i> is a public-key encryption algorithm. It is based on factoring large numbers. 
+<i>RSA</i> is a public-key encryption algorithm. It is based on factoring large numbers. RSA is used for digital signtaures, key transport, and authentication (i.e. proves the identity of the person you are talking to via digital signing)
 
 The main variables to know include:
 + <i>p</i> and <i>q</i> are large prime numbers
@@ -663,9 +667,14 @@ The main variables to know include:
 + <i>m</i> is used to represent the original message (i.e. plaintext)
 + <i>c</i> represents the encrypted text (i.e. ciphertext)
 
+Useful tools include [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) and [rsatool](https://github.com/ius/rsatool).
 
+### Diffie-Hellman Key Exchange
+<i>Diffie-Hellman</i> is often used with RSA for key agreement. This can provide the means to establish a shared key for symmetric cryptography for the key exchange.
 
-The two main categories of encryption:
-1. <i>Symmetric</i> - uses the same key to encrypt and decrypt data; also known as <i>private key cryptography</i> (e.g. DES, 3DES, AES)
-2. <i>Asymmetric</i> - uses a pair of keys, one to encrypt (i.e. the public key) and the other to decrypt (i.e. the private key)
-
+Steps of this process is as follows:
+1. Agree on public variables <i>p</i> and <i>g</i>
+2. Each party chooses a private integer <i>a</i> and <i>b</i>
+3. Each party calculates their public key <i>A = g^a mod p</i> and <i>B = g^b mod p</i>
+4. Each party sends the keys to each other (i.e. the key exchange)
+5. Calculate shared secret using the received public key using their own private key
