@@ -688,4 +688,11 @@ The <i>~/.ssh folder<i> is the default place to store these keys for OpenSSH. Th
 
 SSH keys are an excellent way to upgrade a reverse shell. Leaving an SSH key in the authorized keys file on a machine can be a useful backdoor for CTFs, penetration testing, and red teaming.
 
+### Digital Signatures & Certificates
+<i>Digital signatures</i> provide a way to verify the authenticity and integrity of a digital message or document. This means we know who created or modified these files. 
+
+The simplest form of digital signature is encrypting the document with your private key. To verify this signature, they would encrypt it with your public key and check if the files match.
+
+<i>Certificates</i> are linked to digital signatures. These certify that the website you are visiting is legitimate. This is commonly used in HTTPS.
+
 
