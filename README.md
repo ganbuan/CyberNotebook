@@ -780,12 +780,23 @@ John uses the following basic syntax:
 
 **john [options] [file_path]**
 
-**john --wordlist=[path_to_wordlist] [path_to_file]**: automatic cracking
++ **john --wordlist=[path_to_wordlist] [path_to_file]**: automatic cracking
 
-**john --format=[format] --wordlist=[path_to_wordlist] [path_to_file]**: format-specific cracking
++ **john --format=[format] --wordlist=[path_to_wordlist] [path_to_file]**: format-specific cracking
 
 Note: tools such as [hash-id.py](https://gitlab.com/kalilinux/packages/hash-identifier/-/tree/kali/master) is a useful hash-identifier tool to determine formats.
 
 **john --list=formats**: list all formats
 
-For Windows, you can acquire NTHash/NTLM hashes by dumping the SAM database using tools such as Mimikatz or using the Active Directory database NTDS.dit. Using John, use **--format=nt**.
+For Windows authentication cracking:
+
+You can acquire NTHash/NTLM hashes by dumping the SAM database using tools such as Mimikatz or using the Active Directory database NTDS.dit. Using John, use **--format=nt**.
+
+
+For /etc/shadow cracking:
+
+To crack /etc/shadow passwords, you must combine it with the /etc/passwd file. You can do this using the <i>unshadow</i> tool.
+
+**unshadow [path_to_passwd_file] [path_to_shadow_file]**: invokes shadow tool
+
+Note: you can use the entire files or just the relevant line from each
