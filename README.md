@@ -721,7 +721,7 @@ When it comes to passwords, these are three insecure practices:
 + Storing passwords using a deprecated encryption
 + Storing passwords using an insecure hashing algorithm
 
-Instead of storing passwords in plaintext, storing hash values is more secure. However, these are still vulnerable by using <i>rainbow tables</i>, which are lookup tables of hashes to plaintext (e.g. (CrackStation)[https://crackstation.net/], (Hashes.com)[https://hashes.com/en/decrypt/hash]).
+Instead of storing passwords in plaintext, storing hash values is more secure. However, these are still vulnerable by using <i>rainbow tables</i>, which are lookup tables of hashes to plaintext (e.g. [CrackStation](https://crackstation.net/), [Hashes.com](https://hashes.com/en/decrypt/hash]).
 
 <i>Salting</i> is a means to protect against rainbow tables. The salt is a randomly generated value stored in the database and should be unique to each user. These are added to either the start or the end of the password before it is hashed.
 
@@ -744,14 +744,15 @@ Some of the most common Unix-style password prefixes you might encounter include
 | $6$ | sha512crypt |
 | $md5 | SunMD5 |
 | $1$ | md5crypt |
+
 More details can be found using **man 5 crypt**.
 
-A usefule resource for hash formats and password prefixes can be found in (Hashcat Hashes)[https://hashcat.net/wiki/doku.php?id=example_hashes] page.
+A usefule resource for hash formats and password prefixes can be found in [Hashcat Hashes](https://hashcat.net/wiki/doku.php?id=example_hashes) page.
 
 MS Windows passwords are hashed using NTLM, a variant of MD4. They are visually identical to MD4 and MD5 hashes. Password hashes are stored in the <i>Security Accounts Manager (SAM)</i>. 
 
 #### Cracking Password Hashes
-Online tools such as (Hashcat)[https://hashcat.net/hashcat/] and (John the Ripper)[https://www.openwall.com/john/] can be used to crack hashes.
+Online tools such as [Hashcat](https://hashcat.net/hashcat/) and [John the Ripper](https://www.openwall.com/john/) can be used to crack hashes.
 
 Hashcat uses the following basic syntax:
 
