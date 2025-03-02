@@ -751,13 +751,6 @@ A usefule resource for hash formats and password prefixes can be found in [Hashc
 
 MS Windows passwords are hashed using NTLM, a variant of MD4. They are visually identical to MD4 and MD5 hashes. Password hashes are stored in the <i>Security Accounts Manager (SAM)</i>. 
 
-#### Cracking Password Hashes
-Online tools such as [Hashcat](https://hashcat.net/hashcat/) and [John the Ripper](https://www.openwall.com/john/) can be used to crack hashes.
-
-Hashcat uses the following basic syntax:
-
-**hashcat -m <hash_type> -a <attack_mode> hashfile wordlist**
-
 #### Data Integrity Checking
 Hashing can be used to check that files have not been altered. Even if a single bit changes, the hash will change significantly. You can use them to ensure that files have not been modified or to ensure that a downloaded file is identical to the file on the web server. 
 
@@ -770,6 +763,29 @@ Hashing can be used to check that files have not been altered. Even if a single 
 
 Technically, the HMAC function is calculated using the following expression:
 
-HMAC(K,M) = H((K⊕opad)||H((K⊕ipad)||M))
+<i>HMAC(K,M) = H((K⊕opad)||H((K⊕ipad)||M))</i>
 
-Note: that M and K are the message and key
+Note: <i>M</i> and <i>K</i> are the message and key
+
+### Cracking Password Hashes
+Online tools such as [Hashcat](https://hashcat.net/hashcat/) and [John the Ripper](https://www.openwall.com/john/) can be used to crack hashes.
+
+#### Hashcat
+Hashcat uses the following basic syntax:
+
+**hashcat -m <hash_type> -a <attack_mode> hashfile wordlist**
+
+#### John the Ripper
+John uses the following basic syntax:
+
+**john [options] [file_path]**
+
+**john --wordlist=[path_to_wordlist] [path_to_file]**: automatic cracking
+
+**john --format=[format] --wordlist=[path_to_wordlist] [path_to_file]**: format-specific cracking
+
+Note: tools such as [hash-id.py](https://gitlab.com/kalilinux/packages/hash-identifier/-/tree/kali/master) is a useful hash-identifier tool to determine formats.
+
+**john --list=formats**: list all formats
+
+For Windows, you can acquire NTHash/NTLM hashes by dumping the SAM database using tools such as Mimikatz or using the Active Directory database NTDS.dit. Using John, use **--format=nt**.
