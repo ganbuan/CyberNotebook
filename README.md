@@ -684,7 +684,7 @@ SSH key authentication uses public and private keys to prove the client is valid
 
 **ssh-keygen**: program to generate key pairs
 
-The <i>~/.ssh folder<i> is the default place to store these keys for OpenSSH. The <i>authorized_keys</i> file holds the public eys that are allowed to access to the server if key authentication is enabled.
+The <i>~/.ssh folder</i> is the default place to store these keys for OpenSSH. The <i>authorized_keys</i> file holds the public eys that are allowed to access to the server if key authentication is enabled.
 
 SSH keys are an excellent way to upgrade a reverse shell. Leaving an SSH key in the authorized keys file on a machine can be a useful backdoor for CTFs, penetration testing, and red teaming.
 
@@ -725,7 +725,50 @@ Instead of storing passwords in plaintext, storing hash values is more secure. H
 
 <i>Salting</i> is a means to protect against rainbow tables. The salt is a randomly generated value stored in the database and should be unique to each user. These are added to either the start or the end of the password before it is hashed.
 
+#### Recognising Password Hashes
+On Linux, password hashes are stored in <i>/etc/shadow</i>, which is only readable by root. The file contains password information, where each line contains nine fields separated by colons. More information can be found using **man 5 shadow**.
+
+The encrypted password field contains the hashed passphrase with four components(e.g. $prefix$options$salt$hash):
+1. prefix (i.e. algorithm id)
+2. options (i.e. parameters)
+3. salt
+4. hash
+
+Some of the most common Unix-style password prefixes you might encounter include:
+| Prefix | Algorithm |
+| :------: | :-----: |
+| $y$ | yescrpyt |
+| $gy$ | gost-yescrypt |
+| $7$ | scrypt |
+| $2b$, $2y$, $2a$, $2x$ | bcrypt |
+| $6$ | sha512crypt |
+| $md5 | SunMD5 |
+| $1$ | md5crypt |
+More details can be found using **man 5 crypt**.
+
+A usefule resource for hash formats and password prefixes can be found in (Hashcat Hashes)[https://hashcat.net/wiki/doku.php?id=example_hashes] page.
+
+MS Windows passwords are hashed using NTLM, a variant of MD4. They are visually identical to MD4 and MD5 hashes. Password hashes are stored in the <i>Security Accounts Manager (SAM)</i>. 
+
 #### Cracking Password Hashes
+Online tools such as (Hashcat)[https://hashcat.net/hashcat/] and (John the Ripper)[https://www.openwall.com/john/] can be used to crack hashes.
 
+Hashcat uses the following basic syntax:
 
+**hashcat -m <hash_type> -a <attack_mode> hashfile wordlist**
 
+#### Data Integrity Checking
+Hashing can be used to check that files have not been altered. Even if a single bit changes, the hash will change significantly. You can use them to ensure that files have not been modified or to ensure that a downloaded file is identical to the file on the web server. 
+
+<i>Keyed-Hash Message Authentication Code (HMAC)</i> is a type of message authentication code (MAC) that uses a cryptographic hash function in combination with a secret key to verify the authenticity of data. These can be used to ensure that the person who created the HMAC is who they say they are (i.e. authenticity) by using a secret key. This is done in with the following steps:
+1. A secret key is padded to the block size of the hash function.
+2. A padded key is XORed with a constant (i.e. block fo zeroes or ones).
+3. Message is hashed using the hash function with the XORed key.
+4. Result from step 3 is then hashed again with the same hash function but using the padded key XORed with another constant.
+5. The final ouput is the HMAC value, typically a fixed-size string.
+
+Technically, the HMAC function is calculated using the following expression:
+
+HMAC(K,M) = H((K⊕opad)||H((K⊕ipad)||M))
+
+Note: that M and K are the message and key
