@@ -706,4 +706,26 @@ GPG is commonly used in email to protect confidentiality of email messages. It c
 
 **gpg --decrypt [message.gpg]**: decrypt messages
 
+### Hashing
+A <i>hash value</i> is a fixed-size string that is computed by a hash function. 
+
+A <i>hash function</i> takes an input of an arbitrary size and returns an output of fixed length (i.e. the hash value). Good hashing algorithms will be relatively fast to compute and slow to reverse. Any slight change in the input data should cause a significant change in the output.
+
+<i>Hashing</i> helps protect data's integrity and ensure password confidentiality. For instance, two main use cases for hashing include:
+1. Password storage (i.e. authentication)
+2. Data integrity
+
+#### Password Storage
+When it comes to passwords, these are three insecure practices:
++ Storing passwords in plaintext
++ Storing passwords using a deprecated encryption
++ Storing passwords using an insecure hashing algorithm
+
+Instead of storing passwords in plaintext, storing hash values is more secure. However, these are still vulnerable by using <i>rainbow tables</i>, which are lookup tables of hashes to plaintext (e.g. (CrackStation)[https://crackstation.net/], (Hashes.com)[https://hashes.com/en/decrypt/hash]).
+
+<i>Salting</i> is a means to protect against rainbow tables. The salt is a randomly generated value stored in the database and should be unique to each user. These are added to either the start or the end of the password before it is hashed.
+
+#### Cracking Password Hashes
+
+
 
