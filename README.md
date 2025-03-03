@@ -800,3 +800,11 @@ To crack /etc/shadow passwords, you must combine it with the /etc/passwd file. Y
 **unshadow [path_to_passwd_file] [path_to_shadow_file]**: invokes shadow tool
 
 Note: you can use the entire files or just the relevant line from each
+
+For single crack mode:
+
+Single crack mode uses word mangling, which mutates a starting word (e.g. a username) to generate a wordlist based on relevant factors for the target you're trying to crack. John's word mangling is also compatible with the GECOS field, which contains general information about a user found in /etc/shadow.
+
+**john --single --format=[format] [path_to_file]**: use single crack mode
+
+Note: prepending the hash with the user name is needed (e.g. adding mike to 1efee03cdcb96d90ad48ccc7b8666033 -> mike:1efee03cdcb96d90ad48ccc7b8666033)
