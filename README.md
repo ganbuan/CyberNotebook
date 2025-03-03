@@ -840,5 +840,11 @@ Note: [options] allows you to pass specific checksum options, which is often not
 
 The output from zip2john can now be cracked using regular wordlists.
 
+### Cracking Password Protected RAR Files
+Similar to zip files, the <i>rar2john</i> tool can be used to convert the rar file into a hash format.
 
+The basic syntax is as follows:
 
+**rar2john [rar_file] > [output_file]**
+
+Once again, the output from rar2john can be directly cracked.
