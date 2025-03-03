@@ -827,6 +827,8 @@ Common modifier patterns include:
 + [A-Z] - will include only uppercase letters
 + [a-z] - will include only lowercase letters
 
+Note: you can read more about custom rules in [Openwall](https://www.openwall.com/john/doc/RULES.shtml).
+
 **john --wordlist=[path_to_wordlist] --rule=[rule_name] [path_to_file]**: invoke custom rule exploitation
 
 ### Cracking Password Protected Zip Files
@@ -848,3 +850,14 @@ The basic syntax is as follows:
 **rar2john [rar_file] > [output_file]**
 
 Once again, the output from rar2john can be directly cracked.
+
+### Cracking SSH Keys
+John can be used to crack SSH private key passwords of id_rsa files. This can be done using the <i>ssh2john</i> tool. 
+
+The basic syntax is as follows:
+
+**ssh2john [id_rsa_private_key_file] > [output_file]**
+
+Note: if you do not have ssh2john installed, it can be found python <i>/usr/share/john/ssh2john.py</i> on Kali
+
+Once again, the ouput from ssh2john can be directly cracked.
