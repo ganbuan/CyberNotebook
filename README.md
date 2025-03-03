@@ -861,3 +861,24 @@ The basic syntax is as follows:
 Note: if you do not have ssh2john installed, it can be found python <i>/usr/share/john/ssh2john.py</i> on Kali
 
 Once again, the ouput from ssh2john can be directly cracked.
+
+## Metasploit
+<i>Metasploit</i> is a powerful tool that can support all phases of a penetration testing engagement. It comprises of a set of tools that allow information gathering, scanning, exploitation, exploit development, post-exploitation, etc.
+
+**msfconsole**: launch Metasploit
+
+Some basic commands:
++ **use [module]**: set context/module
++ **show options**: print options related to the module (i.e. variables)
++ **back**: exit a context
++ **info [module]**: print additional information (i.e. extra details)
++ **search [parameter]**: search database for relevant modules; parameters can be CVE numbers, names, type, target systems, etc
++ **exploit**: run a exploit/module; add **-z** to background the session as it opens
++ **background**: background a session and go back to the msfconsole prompt
++ **sessions**: see existing sessions; add **-i [session_number]** to interact with a session
+
+Some basic commands for setting variables:
++ **set [variable] [value]**: set parameter
++ **unset [variable]**: reset parameter; can use **unset all** to reset all parameters
++ **setg [variable] [value]**: set a global parameter
++ **unset [variable]**: reset a global parameter
