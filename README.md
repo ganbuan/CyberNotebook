@@ -805,3 +805,40 @@ Single crack mode uses word mangling, which mutates a starting word (e.g. a user
 **john --single --format=[format] [path_to_file]**: use single crack mode
 
 Note: prepending the hash with the user name is needed (e.g. adding mike to 1efee03cdcb96d90ad48ccc7b8666033 -> mike:1efee03cdcb96d90ad48ccc7b8666033)
+
+### Custom Rules
+John can create passwords dynamically by defining password rules. This is beneficial when you know more information about the password structure of a target (e.g. password complexity requirements).
+
+Custom rules are defined in <i>/etc/john/john.conf</i>. A rule entry will look like the following:
+
+[List.Rules:RuleName] -> used to define the name of your rule; this is what you will use to call your custom rule a John argument
+
+cAz"[0-9] [!$%#@]" -> rules and character append/prepend 
+
+The most common modifiers include:
++ Az - takes the word and appends it with the characters you define
++ A0 - takes the word and prepends it with the characters you define
++ c - capitalises the character positionally
+
+Common modifier patterns include:
++ [0-9] - will include numbers 0 to 9
++ [0] - will include only the number 0
++ [A-z] - will include both upper and lowercase
++ [A-Z] - will include only uppercase letters
++ [a-z] - will include only lowercase letters
+
+**john --wordlist=[path_to_wordlist] --rule=[rule_name] [path_to_file]**: invoke custom rule exploitation
+
+### Cracking Password Protected Zip Files
+The <i>zip2john</i>  tool can be used to convert the zip file into a hash format that John can understand and crack.
+
+The basic syntax is as follows:
+
+**zip2john [options] [zip_file] > [output_file]**
+
+Note: [options] allows you to pass specific checksum options, which is often not necessary; e.g. zip2john zipfile.zip > zip_hash.txt
+
+The output from zip2john can now be cracked using regular wordlists.
+
+
+
