@@ -706,7 +706,7 @@ GPG is commonly used in email to protect confidentiality of email messages. It c
 
 **gpg --decrypt [message.gpg]**: decrypt messages
 
-### Hashing
+## Hashing
 A <i>hash value</i> is a fixed-size string that is computed by a hash function. 
 
 A <i>hash function</i> takes an input of an arbitrary size and returns an output of fixed length (i.e. the hash value). Good hashing algorithms will be relatively fast to compute and slow to reverse. Any slight change in the input data should cause a significant change in the output.
@@ -715,7 +715,7 @@ A <i>hash function</i> takes an input of an arbitrary size and returns an output
 1. Password storage (i.e. authentication)
 2. Data integrity
 
-#### Password Storage
+### Password Storage
 When it comes to passwords, these are three insecure practices:
 + Storing passwords in plaintext
 + Storing passwords using a deprecated encryption
@@ -725,7 +725,7 @@ Instead of storing passwords in plaintext, storing hash values is more secure. H
 
 <i>Salting</i> is a means to protect against rainbow tables. The salt is a randomly generated value stored in the database and should be unique to each user. These are added to either the start or the end of the password before it is hashed.
 
-#### Recognising Password Hashes
+### Recognising Password Hashes
 On Linux, password hashes are stored in <i>/etc/shadow</i>, which is only readable by root. The file contains password information, where each line contains nine fields separated by colons. More information can be found using **man 5 shadow**.
 
 The encrypted password field contains the hashed passphrase with four components(e.g. $prefix$options$salt$hash):
@@ -751,7 +751,7 @@ A usefule resource for hash formats and password prefixes can be found in [Hashc
 
 MS Windows passwords are hashed using NTLM, a variant of MD4. They are visually identical to MD4 and MD5 hashes. Password hashes are stored in the <i>Security Accounts Manager (SAM)</i>. 
 
-#### Data Integrity Checking
+### Data Integrity Checking
 Hashing can be used to check that files have not been altered. Even if a single bit changes, the hash will change significantly. You can use them to ensure that files have not been modified or to ensure that a downloaded file is identical to the file on the web server. 
 
 <i>Keyed-Hash Message Authentication Code (HMAC)</i> is a type of message authentication code (MAC) that uses a cryptographic hash function in combination with a secret key to verify the authenticity of data. These can be used to ensure that the person who created the HMAC is who they say they are (i.e. authenticity) by using a secret key. This is done in with the following steps:
@@ -767,15 +767,15 @@ Technically, the HMAC function is calculated using the following expression:
 
 Note: <i>M</i> and <i>K</i> are the message and key
 
-### Cracking Password Hashes
+## Cracking Password Hashes
 Online tools such as [Hashcat](https://hashcat.net/hashcat/) and [John the Ripper](https://www.openwall.com/john/) can be used to crack hashes.
 
-#### Hashcat
+### Hashcat
 Hashcat uses the following basic syntax:
 
 **hashcat -m <hash_type> -a <attack_mode> hashfile wordlist**
 
-#### John the Ripper
+### John the Ripper
 John uses the following basic syntax:
 
 **john [options] [file_path]**
@@ -788,21 +788,18 @@ Note: tools such as [hash-id.py](https://gitlab.com/kalilinux/packages/hash-iden
 
 **john --list=formats**: list all formats
 
-For Windows authentication cracking:
-
+### Windows Authentication Cracking
 You can acquire NTHash/NTLM hashes by dumping the SAM database using tools such as Mimikatz or using the Active Directory database NTDS.dit. Using John, use **--format=nt**.
 
 
-For /etc/shadow cracking:
-
+### /etc/shadow Cracking:
 To crack /etc/shadow passwords, you must combine it with the /etc/passwd file. You can do this using the <i>unshadow</i> tool.
 
 **unshadow [path_to_passwd_file] [path_to_shadow_file]**: invokes shadow tool
 
 Note: you can use the entire files or just the relevant line from each
 
-For single crack mode:
-
+### Single Crack Mode:
 Single crack mode uses word mangling, which mutates a starting word (e.g. a username) to generate a wordlist based on relevant factors for the target you're trying to crack. John's word mangling is also compatible with the GECOS field, which contains general information about a user found in /etc/shadow.
 
 **john --single --format=[format] [path_to_file]**: use single crack mode
