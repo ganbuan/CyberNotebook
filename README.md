@@ -883,10 +883,33 @@ Some basic commands for setting variables:
 + **setg [variable] [value]**: set a global parameter
 + **unset [variable]**: reset a global parameter
 
-### Scanning
+### Port Scanning
 Metasploit has a number of modules to scan open ports on the target system and network (e.g. search portscan). Note: you can also use nmap commands using the msfconsole prompt. 
 
 For speedier scanning, Metasploit is not the first choice. However, it does provide useful modules for the following:
 + UDP service identification -> the <i>scanner/discover/udp_sweep</i> module allows to quickly identify services running over UDP (i.e. quick way to identify DNS/NetBIOS)
 + SMB scans -> auxiliary modules such as <i>smb_enumshares</i> and <i>smb_version</i> are especially useful in corporate networks
+
+### Metasploit Database
+Using the database function can simplify project management when working with several targets.
+
+To initialise:
++ run **systemctl start postgresql** to start the PostgreSQL database
++ run **msfdb init** to initialise the Metasploit database
++ run **msfconsole** as normal; check database status using **db_status**
+
+**help**: shows database backends commands menu
+
+**workspace**: access workspaces; **-a** to add a workspace, **-d** to delete a workspace; **-h** to list available options
+
+Useful commands:
++ **db_nmap** -> run Nmap scan that will be saved to the database
++ **hosts** -> lists all scanned hosts; add **-R** to set RHOSTS to saved hosts
++ **services** -> list all scanned services; add **-S [service]** to search for specific services; useful to search for http, ftp, smb, ssh, rdp
+
+### Vulnerability Scanning
+Finding vulnerabilities will rely heavily on your ability to scan and fingerprint the target. 
+
+Use the **info** command for any module to have a better understanding of its use and purpose.
+
 
