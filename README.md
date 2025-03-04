@@ -882,3 +882,11 @@ Some basic commands for setting variables:
 + **unset [variable]**: reset parameter; can use **unset all** to reset all parameters
 + **setg [variable] [value]**: set a global parameter
 + **unset [variable]**: reset a global parameter
+
+### Scanning
+Metasploit has a number of modules to scan open ports on the target system and network (e.g. search portscan). Note: you can also use nmap commands using the msfconsole prompt. 
+
+For speedier scanning, Metasploit is not the first choice. However, it does provide useful modules for the following:
++ UDP service identification -> the <i>scanner/discover/udp_sweep</i> module allows to quickly identify services running over UDP (i.e. quick way to identify DNS/NetBIOS)
++ SMB scans -> auxiliary modules such as <i>smb_enumshares</i> and <i>smb_version</i> are especially useful in corporate networks
+
