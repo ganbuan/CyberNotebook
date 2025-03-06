@@ -348,51 +348,6 @@ A <i>WHOIS</i> record provides information about the entity that registered a do
 
 <i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
-A <i>Uniform Resource Locator (URL)</i> is used as an instruction on how to access a resource on the net. URLs have multiple parts. Take for example http://user:password@tryhackme.com:80/view-room?id=1#task3
-+ Scheme - instructs on what protocol to use (e.g. HTTP, HTTPS, FTP)
-+ User - some services require authentication to log in
-+ Host - domain name or IP address of the server
-+ Port - port you are going to connect to (e.g. TCP ports 80/8080 for HTTP, 443/8443 for HTTPS)
-+ Path - file name or location of the resource
-+ Query String - extra bits of information that can be sent to the requested path
-+ Fragment - reference to a location on the actual page requested, commonly used for pages with long content
-
-HTTP methods show the client's intended action when making HTTP requests. The most common include:
-+ GET - used for getting information from a web server
-+ POST - used for submitting data to the web server and potentially creating new records
-+ PUT - used for submitting data to a web server to update information
-+ DELETE - used for deleting information/records from a web server
-
-Common HTTP status codes:
-| Code | Description |
-| :-----: | :--------: |
-| 200 - OK | Request completed successfully |
-| 201 - Created | Resources has been created |
-| 301 - Moved Permanently | Redirects to a new webpage or tells search engines to look elsewhere |
-| 302 - Found | Similar to 302 but only a temporary change |
-| 400 - Bad Request | Something is wrong or missing in the request |
-| 401 - Not Authorised | Not currently allowed to view resource |
-| 403 - Forbidden | No permission to view the resource |
-| 405 - Method Not Allowed | Resource does not allow the method request |
-| 404 - Page Not Found | Requested resource does not exist |
-| 500 - Internal Service Error | Server has encountered some error |
-| 503 - Service Unavailable | Server is either overloaded or down for maintenance |
-
-<i>Headers</i> are additional bits of data you can send to the web server when making requests. 
-
-Common request headers include:
-+ Host - specify which website you require
-+ User-Agent - your browser software and version number; aids in formatting website to your browser needs
-+ Content-Length - tells web server how much data to expect in the web request
-+ Accept-Encoding - tells web server what types of compression methods your browser supports for smaller data transmission
-+ Cookie - data sent to server to help remember your information
-
-Common response headers include:
-+ Set-Cookie - information to store, which gets sent back to the web server on each request
-+ Cache-Control - how long to store the content of the response in the browser's cache before requesting again
-+ Content-Type - tells the client what type of data is being returned (e.g. HTML, CSS, JavaScript, images, etc)
-+ Content-Encoding - what method has been used to compress the data for smaller data transmission
-
 <i>Cookies</i> are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
 
 ### FTP
@@ -516,39 +471,6 @@ A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to co
 + PPP - allows for authentication and data encryption by using private keys and public certificates; not capable of leaving a network by itself (i.e. non-routable)
 + PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
 + IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
-
-## Websites
-When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
-
-There are two major components that make up a website:
-1. Front End (Client-Side) - the way your browser renders a website
-2. Back End (Server-Side) - server that processes your request and returns a response
-
-Websites are primarily created using:
-+ HyperText Markup Language (HTML) - to build websites and define their structure
-+ CSS - to add styling options
-+ JavaScript - to implement complex features on pages using interactivity
-
-In a browser, you can view <i>Page Source</i> to see website elements. Note that sometimes, sensitive information can be left here (e.g. login credentials)
-
-Other website components include:
-+ <i>Load Balancers</i> - provides two main features: 1) ensure high traffic websites can handle the load, and 2) provide a failover if a server becomes unresponsive
-+ <i>Content Delivery Networks (CDN)</i> - cuts down traffic to a busy website by allowing hosting of static files from your website to other servers; the nearest server is physically located and sends the request there for efficiency
-+ <i>Databases</i> - communicates with webservers to store and recall data; examples include MySQL, MSSQL, MongoDB, Postgred, etc
-+ <i>Web Application Firewall (WAF)</i> - protects the web servers from hacking or DoS attacks (e.g. bot detection, rate limiting)
-
-A <i>web server</i> is a software that listens for incoming connections and uses the HTTP protocol to deliver web content to clients. Common web server software include Apache, Nginx, IIS, and NodeJS. Web servers delivers files from the root directory (e.g. /var/www/html for Linux OS, C:\inetpub\wwwroot for Windows OS).
-
-Web servers use <i>virtual hosts</i> to host multiple websites with different domain names. They do this using text-based configuration files. There is no limit to the number of different websites you can host on a web server.
-
-<i>Static content</i> is content that never changes. Common examples are pictures, JavaScript, CSS, HTML, etc. 
-
-<i>Dynamic content</i> is content that could change with different requests. Examples include searching in a website. These changes are done in the backend using programming and scripting languages. Some examples of the languages include PHP, Python, Ruby, NodeJS, Perl, etc. 
-
-## HTML Injection
-<i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
-
-<i>Input sanitation</i> is a means to protect a website secure. 
 
 ## Networking Tools
 ### Wireshark
@@ -1014,5 +936,159 @@ Other commands
 
 Note: these commands may not all work due to various factors (e.g. target system does not have web cam or is running on a VM)
 
+## Web Applications
+When you visit a website, your browser makes a request to a web server asking for information about the page you are trying to visit. It will then respond with data that your browser uses to show you the page. 
+
+There are two major components that make up a website:
+1. Front End (Client-Side) - the way your browser renders a website
+2. Back End (Server-Side) - server that processes your request and returns a response
+
+Websites are primarily created using:
++ HyperText Markup Language (HTML) - to build websites and define their structure
++ CSS - to add styling options
++ JavaScript - to implement complex features on pages using interactivity
+
+In a browser, you can view <i>Page Source</i> to see website elements. Note that sometimes, sensitive information can be left here (e.g. login credentials)
+
+Other website components include:
++ <i>Load Balancers</i> - provides two main features: 1) ensure high traffic websites can handle the load, and 2) provide a failover if a server becomes unresponsive
++ <i>Content Delivery Networks (CDN)</i> - cuts down traffic to a busy website by allowing hosting of static files from your website to other servers; the nearest server is physically located and sends the request there for efficiency
++ <i>Databases</i> - communicates with webservers to store and recall data; examples include MySQL, MSSQL, MongoDB, Postgred, etc
++ <i>Web Application Firewall (WAF)</i> - protects the web servers from hacking or DoS attacks (e.g. bot detection, rate limiting)
+
+A <i>web server</i> is a software that listens for incoming connections and uses the HTTP protocol to deliver web content to clients. Common web server software include Apache, Nginx, IIS, and NodeJS. Web servers delivers files from the root directory (e.g. /var/www/html for Linux OS, C:\inetpub\wwwroot for Windows OS).
+
+Web servers use <i>virtual hosts</i> to host multiple websites with different domain names. They do this using text-based configuration files. There is no limit to the number of different websites you can host on a web server.
+
+<i>Static content</i> is content that never changes. Common examples are pictures, JavaScript, CSS, HTML, etc. 
+
+<i>Dynamic content</i> is content that could change with different requests. Examples include searching in a website. These changes are done in the backend using programming and scripting languages. Some examples of the languages include PHP, Python, Ruby, NodeJS, Perl, etc. 
+
+### Uniform Resource Locator (URL)
+A <i>Uniform Resource Locator (URL)</i> is used as an instruction on how to access a resource on the net. URLs have multiple parts. Take for example http://user:password@tryhackme.com:80/view-room?id=1#task3
++ Scheme - instructs on what protocol to use (e.g. HTTP, HTTPS, FTP)
++ User - some services require authentication to log in
++ Host - domain name or IP address of the server
++ Port - port you are going to connect to (e.g. TCP ports 80/8080 for HTTP, 443/8443 for HTTPS)
++ Path - file name or location of the resource
++ Query String - extra bits of information that can be sent to the requested path
++ Fragment - reference to a location on the actual page requested, commonly used for pages with long content
+
+### HTTP Messages
+HTTP messages are packets of data exchanged between a user (i.e. the client) and the web server. There are two types of HTTP messages:
++ HTTP Requests - sent by the user to trigger actions on the web application
++ HTTP Responses - sent by the server in response to the user's request
+
+Each message follows a specific format that helps both the user and the server communicate smoothly:
++ Start Line - like an introduction; tells what kind of message is being sent (i.e. whether a request or a response) and gives details about how the message should be handled
++ Headers - key-value pairs that provide extra information; gives instructions to both client and server for handling the request/response; can cover security, content types, etc
++ Empty Line - divider that separates the header from the body
++ Body - where actual data is stored; might include data user wants to send or where the server puts the content that the user requested
+
+### HTTP Requests: Request Line & Methods
+The <i>request line</i> or start line is the first part of an HTTP request and has three main parts:
++ HTTP method
++ URL path
++ HTTP version
+
+E.g. METHOD /path HTTP/version
+
+HTTP methods show the client's intended action when making HTTP requests. The most common include:
++ GET - used for getting information from a web server; Note: avoid putting sensitive info like tokens or passwords
++ POST - used for submitting data to the web server and potentially creating new records; Note: always validate and clean input to avoid attacks (e.g. SQL injection or XSS)
++ PUT - used for submitting data to a web server to update information; Note: ensure user is authorised to make changes
++ DELETE - used for deleting information/records from a web server; Note: ensure user is authorised to delete resources
++ PATCH - updates part of a resource; Note: always validate data to avoid inconsistencies
++ HEAD - works like GET but only retrieves headers (i.e. for matadata)
++ OPTIONS - tells you what methods are available; Note: many servers disable this for security reasons
++ TRACE - shows which methods are allowed; Note: many servers disable this for security reasons
++ CONNECT - used to create a secure connection; Note: it is not as common but is critical for encrypted communication
+
+The <i>URL path</i> tells the server where to find the resource the user is asking for. 
+
+E.g. URL - https://tryhackme.com/api/users/123, path - /api/users/123
+
+It is crucial to follow these secure practices to avoid common attacks:
++ Validate the URL path to prevent unauthorised access
++ Santisise the path to avoid injection attacks
++ Protect sensitive data by conducting privacy and risk assessments
+
+The <i>HTTP version</i> shows the protocol version used to communicate between the client and server. Here are the most common ones:
++ HTTP/0.9 - the first version; only supported GET requests
++ HTTP/1.0 - added headers and better support for different types of content; improved caching
++ HTTP/1.1 - brought persistent connections, chunked transfer coding, and better caching; it is still widely used today
++ HTTP/2 - introduced multiplexing, header compression, and prioritisation for faster performance
++ HTTP/3 - built on HTTP/2 but uses QUIC for quicker and more secure connections
+
+### HTTP Request: Headers & Body
+<i>Headers</i> are additional bits of data you can send to the web server when making requests. Common headers include:
++ Host - specifies the name of the web server the request is for (e.g. tryhackme.com)
++ User-Agent - information about the web browser the request is coming from (e.g. Mozilla/5.0)
++ Referer - indicates the URL from which the request came from (e.g. https://www.google.com/)
++ Cookie - information the web server previously asked the web browser to store (e.g. user_type=student, room=introtowebapplication, room_status=in_progress)
++ Content-Type - describes what type or format of data is in the request (e.g. application/json)
+
+For POST and PUT, where data is sent to the web server, data is located inside the <i>Request Body</i>. The formatting of the data can take many forms. Some common ones include:
++ URL Encoded (i.e. application/x-www-form-urlencoded) - data is structured in key-value pairs, each separated by & (e.g. key1=value1&key2=value2); special characters are percent-encoded
++ Form Data (i.e. multipart/form-data) - allows multiple data blocks to be sent where each block is separated by a boundary string, which is defined in the header (e.g. boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW)
++ JSON (i.e. application/json) - data sent using the JSON structure; formatted in pairs of name:value; multiple pairs are separated by comas and all contained within { } braces
++ XML (i.e. application/xml) - data is structured inside labels called tags, which can be nested within each other (e.g. <user><name>Aleksandra</name></user> 
+
+Common request headers include:
++ Host - specify which website you require
++ User-Agent - your browser software and version number; aids in formatting website to your browser needs
++ Content-Length - tells web server how much data to expect in the web request
++ Accept-Encoding - tells web server what types of compression methods your browser supports for smaller data transmission
++ Cookie - data sent to server to help remember your information
+
+Common response headers include:
++ Set-Cookie - information to store, which gets sent back to the web server on each request
++ Cache-Control - how long to store the content of the response in the browser's cache before requesting again
++ Content-Type - tells the client what type of data is being returned (e.g. HTML, CSS, JavaScript, images, etc)
++ Content-Encoding - what method has been used to compress the data for smaller data transmission
+
+### HTTP Response: Status Line & Status Codes
+The first line in every HTTP response is the <i>Status Line</i>. This includes three parts:
++ HTTP version - details which version of HTTP is used
++ Status Code - three-digit number showing the outcome of the request
++ Reason Phrase - short message explaining the status code in human-readable terms
+
+Common HTTP status codes:
+| Code | Description |
+| :-----: | :--------: |
+| 200 - OK | Request completed successfully |
+| 201 - Created | Resources has been created |
+| 301 - Moved Permanently | Redirects to a new webpage or tells search engines to look elsewhere |
+| 302 - Found | Similar to 302 but only a temporary change |
+| 400 - Bad Request | Something is wrong or missing in the request |
+| 401 - Not Authorised | Not currently allowed to view resource |
+| 403 - Forbidden | No permission to view the resource |
+| 405 - Method Not Allowed | Resource does not allow the method request |
+| 404 - Page Not Found | Requested resource does not exist |
+| 500 - Internal Service Error | Server has encountered some error |
+| 503 - Service Unavailable | Server is either overloaded or down for maintenance |
+
+### HTTP Response: Headers & Body
+<i>Response headers</i> provide essential information that the client and server need to process everything correctly. These include:
++ Date - shows exact data and time when the response was generated (e.g. Date: Fri, 23 Aug 2024 10:43:21 GMT)
++ Content-Type - tells the client what kind of content it is getting (i.e. HTML, JSON); includes the character set to help the browser display it correctly (e.g. Content-Type: text/html; charset=utf-8)
++ Server - shows the kind of server software is handling the request (e.g. Server: nginx); Note: revealing server information might be useful for attackers, so consider removing/obscuring this
++ Set-Cookie - sends cookies from the server to the client (e.g. sessionId=38af1337es7a8); can use the HttpOnly flag (i.e. cannot be accessed by JavaScript) and the Secure flag (i.e. only sent over HTTPS)
++ Cache-Control - tells the client how long it can cache the response before checking in again (e.g. Cache-Control: max-age=600); use no-cache to prevent sensitive info from being cached
++ Location - used in redirection responses (i.e. 3XX status codes); tells the client where to go next if the resource has moved
+
+The <i>response body</i> is where the actual data lives. These can be HTML, JSON, images, etc. Note: to prevent injection attacks (e.g. XSS), always sanitise and escape any data (i.e. user-generated content) before including them in the response
+
+### Security Headers
+HTTP <i>Security Headers</i> help improve overall security of a web application to provide mitigations against attacks such as XSS, clickjacking, etc. These headers include:
++ Content-Security-Policy (CSP) - additional security layer that can help mitigate against common attacks; provides a way for administrators to say what domains or sources are considered safe (i.e. default-src, script-src, style-src); e.g. Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.tryhackme.com; style-src 'self'
++ Strict-Transport-Security (HSTS) - ensures that web browsers will always connect over HTTPS; e.g. Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
++ X-Content-Type-Options - used to instruct browsers not to guess the MIME time of a resource but only use the Content-Type header; e.g. X-Content-Type-Options: nosniff
++ Referrer-Policy - controls the amount of information sent to the destination web server when a user is redirected from a source web server (e.g. through hyperlink); e.g. Referrer-Policy: no-referrer, Referrer-Policy: same-origin, Referrer-Policy: strict-origin, Referrer-Policy: strict-origin-when-cross-origin
+
+## HTML Injection
+<i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
+
+<i>Input sanitation</i> is a means to protect a website secure. 
 
 
