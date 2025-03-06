@@ -1086,6 +1086,8 @@ HTTP <i>Security Headers</i> help improve overall security of a web application 
 + X-Content-Type-Options - used to instruct browsers not to guess the MIME time of a resource but only use the Content-Type header; e.g. X-Content-Type-Options: nosniff
 + Referrer-Policy - controls the amount of information sent to the destination web server when a user is redirected from a source web server (e.g. through hyperlink); e.g. Referrer-Policy: no-referrer, Referrer-Policy: same-origin, Referrer-Policy: strict-origin, Referrer-Policy: strict-origin-when-cross-origin
 
+Note: you can use [securityheaders.com](https://securityheaders.io/) to analyse the security headers of any website
+
 ## HTML Injection
 <i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
 
