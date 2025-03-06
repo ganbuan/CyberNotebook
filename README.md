@@ -942,5 +942,77 @@ Based on the target's configuration (i.e. OS, webserver, interpreter, etc), msfv
 
 Note: for the above examples, a handler will be needed as these are reverse payloads
 
+### Meterpreter
+<i>Meterpreter</i> is a Metasploit payload that runs on a target system and acts as an agent within a command and control architecture. Interaction with the target OS and files is possible using Meterpreter's commands.
+
+Meterpreter runs on the target system in memory (i.e. RAM) and does not write itself to the disk (i.e. not installed). This feature is added to avoid detection by AVs, which scans new files on disk. Meterpreter also avoids detection by network-based IPS/IDS by using encrypted communication with the server where Metasploit runs (i.e. your attacking machine using TLS). Note: this feature only provides some degree of stealth as Meterpreter is recognised by major AVs.
+
+Your decision on which version of Meterpreter to use will be decided by three factors:
+1. The target's OS (i.e. Linux, Windows, Mac, Android)
+2. Components available on the target system (e.g. Python, PHP website)
+3. Network connection types you can have with the target system (e.g. TCP, HTTPS reverse connection, IPv6 or IPV4)
+
+**help** on any Meterpreter session will list all available commands. These commands include:
+
+Core commands
++ **background**: backgrounds the current session
++ **exit**: terminate the session
++ **guid**: get the session GUID
++ **help**: display the help menu
++ **info**: displays information about a Post module
++ **irb**: opens an interactive Ruby shell on the current session
++ **load**: loads one or more Meterpreter extensions
++ **migrate**: migrate Meterpreter to another process
++ **run**: executes a Meterpreter script or Post module
++ **sessions**: quickly switch to another session
+
+File system commands
++ **cd**: change directory
++ **ls**: list files in the current directory; **dir** works the same way
++ **pwd**: print current working directory
++ **edit**: edit a file
++ **cat**: show contents of a file to the screen
++ **rm**: delete the specified file
++ **search**: search for files
++ **upload**: upload a file or directory
++ **download**: download a file or directory
+
+Networking commands
++ **arp**: display the host ARP cache
++ **ifconfig**: displays the network interfaces available on the target system
++ **netstat**: displays the network connections
++ **portfwd**: forwards a local port to a remote service
++ **route**: view and modify the routing table
+
+System commands
++ **clearev**: clear the event logs
++ **execute**: execute a command
++ **getpid**: show the current process identifier
++ **getuid**: show the user that Meterpreter is running as
++ **kill**: terminates a process
++ **pkill** terminates processes by name
++ **ps**: list running processes
++ **reboot**: reboots the remote computer
++ **shell**: drops into a system command shell
++ **shutdown**: shuts down the remote computer
++ **sysinfo**: gets information about the remote system (e.g. OS)
+
+Other commands
++ **idletime**: returns the number of seconds the remote user has been idle
++ **keyscan_dump**: dumps the keystroke buffer
++ **keyscan_start**: starts capturing keystrokes
++ **keyscan_stop**: stops capturing keystrokes
++ **screenshare**: allows you to watch the remote user's desktop in real time
++ **screenshot**: grabs a screenshot of the interactive desktop
++ **record_mic**: records audio from the default microphone for X seconds
++ **webcam_chat**: starts a  video chat
++ **webcam_list**: lists webcams
++ **webcam_snap**: takes a snapshot from the specified webcam
++ **webcam_stream**: plays a video stream from the specified webcam
++ **getsystem**: attempts to elevate your privilege to that of local system
++ **hashdump**: dumps the contents of the SAM database
+
+Note: these commands may not all work due to various factors (e.g. target system does not have web cam or is running on a VM)
+
 
 
