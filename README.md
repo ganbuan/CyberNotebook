@@ -1224,21 +1224,173 @@ Note: you can use [Code Beautify](https://codebeautify.org/javascript-obfuscator
 <i>Structured Query Language (SQL)</i> is a programming language that can be used to query, define, and manipulate data stored in a relational database. We use these in popular Database Management Systems (DBMS) such as MySQL, MongoDB, Oracle DB, and Maria DB.
 
 ### Database Statements
-**Create Database**
+Create Database
 ```
 CREATE DATABASE database_name;
 ```
-**Show Database**
+Show Database
 ```
 + SHOW DATABASES;
 ```
-**Use Database**
+Use Database
 ```
 USE database_name;
 ```
-**Drop Database**
+Drop Database
 ```
 DROP DATABASE database_name;
 ```
 
 ### Table Statements
+Create Table
+```
+CREATE TABLE example_table_name (
+    example_column1 data_type,
+    example_column2 data_type,
+    example_column3 data_type
+);
+```
+Show Tables
+```
+SHOW TABLES;
+```
+Describe Table
+```
+Describe table_name;
+```
+Alter Table
+```
+ALTER TABLE table_name
+ADD example_column data_type;
+```
+Drop Table
+```
+DROP TABLE table_name;
+```
+
+### CRUD Operations
+Create (INSERT) - adds new record to the table
+```
+INSERT INTO books (id, name, published_date, description)
+    VALUES (1, "Android Security Internals", "2014-10-14", "An In-Depth Guide to Android's Security Architecture");
+```
+Read (SELECT) - retrieves record from the table
+```
+SELECT * FROM books;
+```
+Update (UPDATE) - modifies existing data in the table
+```
+UPDATE books
+    SET description = "An In-Depth Guide to Android's Security Architecture."
+    WHERE id = 1;
+```
+Delete (DELETE) - removes record from the table
+```
+DELETE FROM books WHERE id = 1;
+```
+
+### Clauses
+Distinct
+```
+SELECT DISTINCT name FROM books;
+```
+Group by
+```
+SELECT name, COUNT(*)
+    FROM books
+    GROUP BY name;
+```
+Order by
+```
+SELECT *
+    FROM books
+    ORDER BY published_date ASC;
+```
+```
+SELECT *
+    FROM books
+    ORDER BY published_date DESC;
+```
+Having
+```
+SELECT name, COUNT(*)
+    FROM books
+    GROUP BY name
+    HAVING name LIKE '%Hack%';
+```
+### Logical Operators
+Like
+```
+SELECT *
+    FROM books
+    WHERE description LIKE "%guide%";
+```
+And
+```
+SELECT *
+    FROM books
+    WHERE category = "Offensive Security" AND name = "Bug Bounty Bootcamp";
+```
+Or
+```
+SELECT *
+    FROM books
+    WHERE name LIKE "%Android%" OR name LIKE "%iOS%";
+```
+Not
+```
+SELECT *
+    FROM books
+    WHERE NOT description LIKE "%guide%";
+```
+Between
+```
+SELECT *
+    FROM books
+    WHERE id BETWEEN 2 AND 4;
+```
+### Comparison Operators
++ Equal-to (=)
++ Not-equal-to (!=)
++ Less-than (<)
++ Greater-than (>)
++ Less-than-equal-to (<=)
++ Greater-than-equal-to (>=)
+
+### String Functions
+CONCAT()
+```
+SELECT CONCAT(name, " is a type of ", category, " book.") AS book_info FROM books;
+```
+GROUP_CONCAT()
+```
+SELECT category, GROUP_CONCAT(name SEPARATOR ", ") AS books
+    FROM books
+    GROUP BY category;
+```
+SUBSTRING()
+```
+SELECT SUBSTRING(published_date, 1, 4) AS published_year FROM books;
+```
+LENGTH()
+```
+SELECT LENGTH(name) AS name_length FROM books;
+```
+
+### Aggregate Functions
+COUNT()
+```
+SELECT COUNT(*) AS total_books FROM books;
+```
+SUM()
+```
+SELECT SUM(price) AS total_price FROM books;
+```
+MAX()
+```
+SELECT MAX(published_date) AS latest_book FROM books;
+```
+MIN()
+```
+SELECT MIN(published_date) AS earliest_book FROM books;
+```
