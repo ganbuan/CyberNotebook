@@ -1230,7 +1230,7 @@ CREATE DATABASE database_name;
 ```
 Show Database
 ```
-+ SHOW DATABASES;
+SHOW DATABASES;
 ```
 Use Database
 ```
