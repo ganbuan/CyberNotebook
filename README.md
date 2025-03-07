@@ -1219,3 +1219,26 @@ Note: you can use [Code Beautify](https://codebeautify.org/javascript-obfuscator
 + Refrain from adding untrusted libraries (e.g. src attribute in <script>)
 + Avoid hardcoded secrets into your JS code; these include API keys, access tokens, or credentials
 + Minify and obfuscate your JS code; this reduces size, improve load times, and make it harder for attackers to understand code
+
+## SQL
+<i>Structured Query Language (SQL)</i> is a programming language that can be used to query, define, and manipulate data stored in a relational database. We use these in popular Database Management Systems (DBMS) such as MySQL, MongoDB, Oracle DB, and Maria DB.
+
+### Database Statements
+**Create Database**
+```
+CREATE DATABASE database_name;
+```
+**Show Database**
+```
++ SHOW DATABASES;
+```
+**Use Database**
+```
+USE database_name;
+```
+**Drop Database**
+```
+DROP DATABASE database_name;
+```
+
+### Table Statements
