@@ -1088,9 +1088,134 @@ HTTP <i>Security Headers</i> help improve overall security of a web application 
 
 Note: you can use [securityheaders.com](https://securityheaders.io/) to analyse the security headers of any website
 
-## HTML Injection
+### HTML Injection
 <i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
 
 <i>Input sanitation</i> is a means to protect a website secure. 
 
+## JavaScript
+<i>JavaScript (JS)</i> is a scripting language that adds interactive features to websites containing HTML and CSS (e.g. validation, onClick actions, animations, etc). 
 
+JS is an interpreted language, which means the code is executed directly in a browser without prior compilation.
+
+### Variables
+There are three ways to declare variables in JS:
++ **var** - function-scoped
++ **let** - block-scoped
++ **const** - block-scoped
+
+### Data Types
+Data types include **string**, **number**, **boolean**, **null**, and **object** (i.e. complex data).
+
+### Functions
+Functions are designed to perform a specific task. This allows reuse of code, rather than rewriting them.
+
+```
+function PrintResult(rollNum) {
+            alert("Username with roll number " + rollNum + " has passed the exam");
+            // any other logic to display the result
+        }
+```
+
+### Loops
+Loops allow execution of a code block multiple times as long as a condition is true. These include **for**, **while**, and **do..while**. 
+
+```
+for (let i = 0; i < 100; i++) {
+            PrintResult(rollNumbers[i]); // this will be called 100 times 
+        }
+```
+
+### Conditional Statements
+Control flow basically means deciding the order in which code blocks are executed based on certain conditions. Structures such as **if-else** and **switch** can be used.
+
+```
+age = prompt("What is your age")
+        if (age >= 18) {
+            document.getElementById("message").innerHTML = "You are an adult.";
+        } else {
+            document.getElementById("message").innerHTML = "You are a minor.";
+        }
+```
+
+### Internal JS
+Internal JS means embedding the JS code directly within an HTML document. The script is inserted between **<script** tags. These can be placed inside the <head> section for scripts that need to be loaded before page content is rendered or inside the <body> section for scripts that interact with elements as they are loaded.
+
+```
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Internal JS</title>
+</head>
+<body>
+    <h1>Addition of Two Numbers</h1>
+    <p id="result"></p>
+
+    <script>
+        let x = 5;
+        let y = 10;
+        let result = x + y;
+        document.getElementById("result").innerHTML = "The result is: " + result;
+    </script>
+</body>
+</html>
+```
+
+### External JS
+External JS uses JS code found in a separate .js file. This helps keep HTML document clean and organised. The .js file can be stored or hosted on the same web server (i.e. same as the HTML doc) or stored on an external web server (i.e. the cloud).
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External JS</title>
+</head>
+<body>
+    <h1>Addition of Two Numbers</h1>
+    <p id="result"></p>
+
+    <!-- Link to the external JS file -->
+    <script src="script.js"></script>
+</body>
+</html>
+```
+Note: when pen-testing a web application, it is important to check whether internal or external JS is used; this can be done by using View Page Source
+
+### Dialogue Functions
+Dialogue boxes can be used to provide interaction with users and dynamically update content on web pages. Note: if not implemented securely, attackers may exploit these features to execute attacks (e.g. XSS).
+
+Some build-in functions include: 
+
+**alert** - displays a message in a dialogue box with an "OK" button; often used for information or warnings
+
+```
+alert("HelloTHM");
+```
+
+**prompt** - displays a dialogue box that asks users for input
+
+```
+name = prompt("What is your name?");
+    alert("Hello " + name);
+```
+
+**confirm** - displays a dialogue box with a message and "OK" and "Cancel" buttons; this returns true or false based on the response
+**prompt**, and **confirm**.
+
+```
+confirm("Do you want to proceed?")
+```
+### Minification & Obfuscation
+Minification is the process of compressing JS files by removing spaces, line breaks, comments, and shortening variable names. This reduces the file size and improves web page loading times.
+
+Obfuscation is used to make JS code harder to understand. This renamed variables and functions and even inserts dummy code.
+
+Note: you can use [Code Beautify](https://codebeautify.org/javascript-obfuscator#) to obfuscate code; you can use [Deobfuscator](https://obf-io.deobfuscate.io/) to deobfuscate
+
+### Best Practices
++ Avoid relying on client side validation only, as users can disable/manipulate JS; perform validation on the server side is essential
++ Refrain from adding untrusted libraries (e.g. src attribute in <script>)
++ Avoid hardcoded secrets into your JS code; these include API keys, access tokens, or credentials
++ Minify and obfuscate your JS code; this reduces size, improve load times, and make it harder for attackers to understand code
