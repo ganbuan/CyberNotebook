@@ -1394,3 +1394,16 @@ MIN()
 ```
 SELECT MIN(published_date) AS earliest_book FROM books;
 ```
+
+## Burp Suite
+<i>Burp Suite</i> is a Java-based framework that provides solutions for web application testing. These days, it is an industry standard tool for hands-on security assessments of web and mobile applications (i.e. those that rely on APIs). In a nutshell, Burp Suite captures and enables manipulation of HTTP/HTTPS traffic between a browser and a web server. 
+
+Note: Burp Suite Professional is the unrestricted version, while Burp Suite Community comes free; Burp Suite Enterprise is primarily used for continuous scanning
+
+Though limited, Burp Suite Community provides key features such as:
++ Proxy - enables interception and modification of requests and responses with web applications
++ Repeater - allows capturing, modifying, and resending the same request multiple times; this is particularly useful when crafting payloads through trial and error (e.g. SQLi) or testing functionality of endpoints for vulnerabilities
++ Intruder - allows spraying endpoints with requests; commonly used for brute-force attacks or fuzzing endpoints
++ Decoder - offers data transformation; this can decode captured information or encode payloads before sending
++ Comparer - enables comparison of two pieces of data at either the word or byte level
++ Sequencer - employed for assessing the randomness of tokens (e.g. session cookie values, randomly generated data)
