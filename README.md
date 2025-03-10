@@ -1482,3 +1482,37 @@ SSRF can be used further to:
 + Enumerate internal networks (i.e. IP addresses and ports)
 + Abuse trust relationships between servers and gain unrestricted access to services
 + Interact with non-HTTP services (i.e. to get RCE)
+
+## Hydra
+<i>Hydra</i> is a brute force password cracking program tool. This can be used to run through a password list and crack some authentication services (e.g. SSH, web app form, FTP, SNMP). 
+
+### Commands
+Hydra commands follow the following syntax:
+
+**hydra -l [user] -P [passlist.txt] [MACHINE_IP]**
+
+Example SSH
+
+**hydra -l [user] -P [wordlist] [IP_address] -t [x] ssh**
+
+| Option | Description |
+| :------: | :-----: |
+| -l | specifies the username for login |
+| -P | indicates a list of passwords |
+| -t | sets the number of threads to spawn |
+
+Example Post Web Form
+
+**hydra -l [username] -P [wordlist] [IP_address] http-post-form "[path]:[login_credentials]:[invalid_response]"**
+
+| Option | Description |
+| :------: | :-----: |
+| -l | specifies the username for login |
+| -P | indicates a list of passwords |
+| http-post-form | type of the form |
+| [path] | login page of the URL (e.g. login.php) |
+| [login_credentials] | username and password to use (e.g. username=^USER^&password=^PASS^) |
+| [invalid_response] | part of the response when login fails |
+| -V | verbose output for each attempt |
+
+E.g. hydra -l [username] -P [wordlist] [IP_address] http-post-form "/login:username=^USER^&password=^PASS^:F=incorrect" -V
