@@ -1516,3 +1516,63 @@ Example Post Web Form
 | -V | verbose output for each attempt |
 
 E.g. hydra -l [username] -P [wordlist] [IP_address] http-post-form "/login:username=^USER^&password=^PASS^:F=incorrect" -V
+
+## Gobuster
+<i>Gobuster</i> is a reconaissance tool that can be used to enumerate web directories, DNS subdomains, virtual hosts, S3 buckets, and Google Cloud Storage. This utilises brute force using specific wordlists. 
+
+Basic syntax: **gobuster [command] [flags]**
+
+Some commonly used flags include:
+| Short Flag | Long Flag | Description |
+| :------: | :-----: | :-----: |
+| -t | --threads | configures number of threads used |
+| -w | --wordlist | configures wordlist to be used |
+|  | --delay | defines waiting time between sent requests |
+|  | --debug | used for troubleshooting errors |
+| -o | --output | writes results to a file |
+
+E.g. gobuster dir -u "http://www.example.thm/" -w /usr/share/wordlists/dirb/small.txt -t 64
+
+### Directory & File Enumeration
+Basic syntax: **gobuster dir -d "[http://url]" -w [path_to_wordlist] [flags]**
+
+Some commonly used flags include:
+| Short Flag | Long Flag | Description |
+| :------: | :-----: | :-----: |
+| -c | --cookies | configures a cookie to pass (e.g. session ID) |
+| -x | --extensions | specifies a file extension (e.g. .php, .js) |
+| -H | --headers | configures an entire header to pass |
+| -k | --no-tls-validation | skips certificate checking (i.e. used in CTF events only) |
+| -n | --no-status | do not display status codes |
+| -P | --password | set with --username for authentication |
+| -U | --username | set with --password for authentication |
+| -r | --followredirect | follow redirect to a different URL (i.e. 301, 302) |
+
+E.g. gobuster dir -u "http://www.example.thm" -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .php,.js
+
+Note: notice that " " are used when using the -u flag
+
+### Subdomain Enumeration
+Basic syntax: **gobuster dns -d [domain] -w [path_to_wordlist] [flags]**
+
+Some commonly used flags include:
+| Short Flag | Long Flag | Description |
+| :------: | :-----: | :-----: |
+| -c | --show-cname | display CNAME records |
+| -i | --show-ips | displys IP addresses |
+| -r | --resolver | configures a custom DNS to use |
+| -d | --domain | configures the domain to be enumerated |
+
+### Vhost Enumeration
+Basic syntax: **gobuster vhost -u "[http://url] -w [path_to_wordlist] [flags]**
+
+Note: vhost commands are much more complex as more configured flags are used to reflect realistic tests
+
+Some commonly used flags include:
+| Short Flag | Long Flag | Description |
+| :------: | :-----: | :-----: |
+|  | --domain | sets top and second-level domains |
+|  | --append-domain | appends the configured domain to each wordlist entry |
+|  | --exclude-length | filters responses by size |
+
+E.g. gobuster vhost -u "http://10.10.31.174" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320 
