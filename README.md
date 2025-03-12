@@ -1774,3 +1774,13 @@ Main SQLi flags include:
 + **--dump** - extract all records
 
 E.g. sqlmap -u 'http://sqlmaptesting.thmsearch/cat=1' -D users -T thomas --dump
+
+## SOC
+A <i>Security Operations Center (SOC)</i> is a specialised security facility that monitors an organisation's network and resources and identify suspicious activity. Their main focus is to keep detection and response robust
+
+Detection can be in relation to: vulnerabilities, unauthorised activity, policy violations, intrusions. Support often occurs in conjunction with incident response once an incident is detected.
+
+The three pillars of a SOC include: 
++ People (i.e. the SOC team)
++ Process (i.e. alert triage - the 5 Ws, reporting, incident response and forensics)
++ Technology (SIEM, EDR, firewalls, etc)
