@@ -1784,3 +1784,45 @@ The three pillars of a SOC include:
 + People (i.e. the SOC team)
 + Process (i.e. alert triage - the 5 Ws, reporting, incident response and forensics)
 + Technology (SIEM, EDR, firewalls, etc)
+
+## Digital Forensics
+<i>Digital forensics</i> primarily involve the use of tools and techniques to investigate digital devices to find and analyse evidence for necessary legal action.
+
+### Methodology
+The National Institute of Standards and Technology (NIST) introduced four phases for the process of digital forensics. These are:
+
+Collection -> Examination -> Analysis -> Reporting
+
+Note: there are different types of forensics that each have their own collection and analysis methodologies. These include:
++ Computer forensics - primarily investigating computers
++ Mobile forensics - involves investigating mobile devices (i.e. call records, text messages, GPS locations, etc)
++ Network forensics - covers investigation that includes the whole network (i.e. network traffic logs)
++ Database forensics - investigates intrusions into databases (i.e. data modification/exfiltration)
++ Cloud forensics - involve investigating data stored in cloud infrastructure
++ Email forensics - involve investigating this communication method (i.e. phishing, fraud campaigns)
+
+### Notes on Acquiring Evidence
+Some general practices to follow while acquiring evidence include:
++ Proper Authorisation - evidence collected without prior approval may be deemed inadmissible in court; the forensics team should obtain authorisation from relevant authorities before collecting any data
++ Chain of Custody - this formal document contains all details of the evidence; this document can be used to prove the integrity and reliability of th evidence in court
++ Write Blockers - using these tools can block any evidence alteration actions
+
+### Notes on Windows Forensics
+As part of the data collection phase, forensic images of Windows OS are taken. There are two categories:
++ Disk image - contains all data present on the storage device (i.e. HDD, SSD, etc); data is non-volatile (i.e. remains after restart)
++ Memory image - contains data in RAM; data is volatile (i.e. lost after restart)
+
+Some tools for disk and memory image acquisition and analysis include:
++ FTK Imager - widely used for creating disk images
++ [Autopsy](https://www.autopsy.com/) - imported disk images can be analysed; features include keyword search, deleted file recovery, file metadata, extension mismatch detection, etc
++ [Dumpit](https://www.toolwar.com/2014/01/dumpit-memory-dump-tools.html) - creates memory images using CLI
++ [Volatility](https://volatilityfoundation.org/) - open-source tool for analysing memory images; this supports Windows, Linux, macOS, and Android
+
+### Notes on File Metadata
+Text files contain metadata. These include exported pdf files. To read the metadata, **pdfinfo** can be used. The extracted metadata include title, subject, author, creator, and creation date.
+
+Basic syntax: **pdfinfo [document.pdf]**
+
+Image files have Exchangeable Image File Format (EXIF) metadata. These can include data on camera/smartphone model, date and time of capture, GPS coordinates (i.e. for smartphones) photo settings such as focal length, aperture, shutter speed, and ISO. The program **exiftool** can be used to read and write metadata in images.
+
+Basic syntax: **exiftool [image.jpg]**
