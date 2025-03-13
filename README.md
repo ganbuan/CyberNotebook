@@ -1867,3 +1867,51 @@ Multiple security solutions can aid in the various phases of the IR process (i.e
 After identification, certain procedures must be followed. The following can be used for different kinds of incidents:
 + <i>Playbooks</i> - guidelines for a comprehensive incident response
 + <i>Runbooks</i> - detailed step-by-step methodology during incidents
+
+## Logs
+<i>Logs</i> are digital footprints left behind by activities, whether they are intended or malicious. These play an important role in the following areas:
++ Security Events Monitoring - detecting anomalous behaviour in real-time
++ Incident Investigation and Forensics - offers detailed information and traces to the root cause of incidents
++ Troubleshooting - documents errors in systems/applications for diagnosis and fixing
++ Performance Monitoring - provide insights into application performance
++ Auditing and Compliance - establishes a trail for activities
+
+Logs can be grouped into multiple categories, depending on their information. These include:
+| Log Type | Usage | Examples |
+| :------: | :-----: | :-----: |
+| System Logs | used in troubleshooting OS issues | System Startup, Driver Loading, System Error, Hardware events |
+| Security Logs | detect and investigate security-related activities | Authentication, Authorisation, Security Policy changes, User Account changes events |
+| Application Logs | records application-specific events | User Interaction, Application Changes, Application Update, Application Error events |
+| Audit Logs | provides information on system changes and user events | Data Access, System Change, User Activity, Policy Enforcement events |
+| Network Logs | details outgoing and incoming network traffic | Incoming/Outgoing Network Traffic, Firewall logs |
+| Access Logs | details information about access to different resources | Webserver Access, Database Access, Application Access, API Access logs |
+
+### E.g. Windows Event Logs
+In Windows systems, <i>Event Viewer</i> provides a GUI tool to view and search for logs. These logs typically include these fields:
++ Description
++ Log Name
++ Logged
++ Event ID
+
+Event IDs can be used to search for a specific activity. Refer to the table below for some important IDs:
+| Event ID | Description |
+| :------: | :-----: |
+| 4624 | Sucessful log in byuser |
+| 4625 | Failed login by user |
+| 4634 | Sucessful logout by user |
+| 4720 | User account created |
+| 4724 | Attempted password reset |
+| 4722 | User account enabled |
+| 4725 | User account disabled |
+| 4726 | User account deleted |
+
+Note: these event IDs can be used for filtering logs
+
+### E.g. Linux Webserver Access Logs
+These kinds of logs contain all requests made to the website. Information such as timeframe, IP requested, type, and URL are included. These can be found in the directory: <i>/var/log/apache2/access.log</i>
+
+Some manual analysis commands:
++ **cat [file.log]**
++ **cat [file1.log] [file2.log] > [combined.log]**
++ **grep "[search_keyword]" [file.log]**
++ **less [file.log]** - separates log file into chunks (i.e. page at a time); use spacebar to move to next page, b to previous page; type / then pattern to search; use n to navigate to next occurence of search, N to navigate to the previous occurrence
