@@ -1915,3 +1915,55 @@ Some manual analysis commands:
 + **cat [file1.log] [file2.log] > [combined.log]**
 + **grep "[search_keyword]" [file.log]**
 + **less [file.log]** - separates log file into chunks (i.e. page at a time); use spacebar to move to next page, b to previous page; type / then pattern to search; use n to navigate to next occurence of search, N to navigate to the previous occurrence
+
+## SIEM
+<i>Security Information and Event Management System (SIEM)</i> is a tool that collects data from various endpoints across the network to a centralised location and performs correlation.
+
+SIEMs have the advantage of taking these logs from various sources but also provides an abilityo to correlate between events, search through logs, investigate incidents, and respond appropriately. Some key features include:
++ Real-time log ingestion
++ Alerting on anomalous activities
++ 24/7 monitoring and visibility
++ Threat protection through early detection
++ Data insights and visualisation
++ Investigate past incidents
+
+### Log Sources
+Remember that there are different types of log sources
++ Host-Centric Log Sources - capture events that occurred within or related to a host (e.g. Windows Event logs, Sysmon, Osquery, etc)
++ Network-Centric Log Sources - generated when hosts communicate with each other or through the internet (e.g. SSH, VPN, HTTP/s, FTP, etc)
+
+For Windows, <i>Event Viewer</i> is the main tool where different logs are stored and viewed. These logs are forwarded to the SIEM for better monitoring and visibility.
+
+For Linux, common locations for log storage include:
++ <i>/var/log/httpd</i> - contains HTTP request/reponse and error logs
++ <i>/var/log/apache</i> - contains apache related logs
++ <i>/var/log/cron</i> - stores cron jobs events
++ <i>/var/log/auth.log</i> and <i>/var/log/secure</i> - stores authentication logs
++ <i>/var/log/kern</i> - stores kernel related events
+
+### Log Ingestion
+Each SIEM has its own way of ingesting logs. Common methods include:
++ Agent/Forwader - a tool by Splunk that is installed in the endpoint that configures them to capture all important logs and send them to the SIEM server
++ Syslog - protocol to collect data from various systems (e.g. webservers, databases) and sent in real-time to a centralised destination
++ Manual Upload - some solutions (i.e. Splunk, ELK) allow offline data ingestion
++ Port-Forwarding - listens on a certain port, and endpoints forward the data to the SIEM on the listening port
+
+### Log & Alert Analysis
+Dashboards are the most important components of the SIEM as they present data for analysis after normalisation and ingestion. Some information that are summarised include:
++ Alert highlights
++ System notifications
++ Health alerts
++ List of failed login attempts
++ Events ingested count
++ Rules triggered
++ Top domains visited
+
+Correlation rules are logical expressions that are set to be triggered if met. These allow timely detection of threats. Some examples include:
++ If the Log source is WinEventLog AND EventID is 104 - Trigger an alert Event Log Cleared
++ If Log Source is WinEventLog AND EventCode is 4688, and NewProcessName contains whoami, then Trigger an ALERT WHOAMI command Execution DETECTED
+
+Analysts spend most of their time on the dashboards, watching for triggers. Once an alert is triggered, the events/flows associated are examined, while the rule is checked to see which conditions are met. This process can be broken down as follows:
+1. If alert is a False Alarm, which may required tuning of the rule; if alert is a True Positive, perform further investigation.
+2. Contact asset owner to inquire about the activity.
+3. If suspicious activity is confirmed, isolate the infected host.
+4. Block the suspicious IP.
