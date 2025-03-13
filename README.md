@@ -1826,3 +1826,44 @@ Basic syntax: **pdfinfo [document.pdf]**
 Image files have Exchangeable Image File Format (EXIF) metadata. These can include data on camera/smartphone model, date and time of capture, GPS coordinates (i.e. for smartphones) photo settings such as focal length, aperture, shutter speed, and ISO. The program **exiftool** can be used to read and write metadata in images.
 
 Basic syntax: **exiftool [image.jpg]**
+
+## Incident Response
+<i>Incident response (IR)</i> handles incidents from start to end. Incidents are true positive alerts, which are given a severity level. These can be categorised into different types:
++ Malware infections
++ Security breaches (i.e. unauthorised access)
++ Data leaks
++ Insider attacks
++ DoS attacks
+
+### IR Process
+Two widely used incident response frameworks are used: SANS and NIST.
+
+The SANS framework has six phases, known as PICERL:
+1. Preparation
+2. Identification
+3. Containment
+4. Eradication
+5. Recovery
+6. Lessons Learned
+
+The NIST framework has four phases:
+1. Preparation
+2. Detection and Analysis
+3. Containment, Eradication, and Recovery
+4. Post-Incident Activity
+
+Each of these process has a formal document listing all relevant organisational procedures called an <i>incident response plan</i>. Key components of this plan include:
++ Roles and responsibilities
++ Incident response methodology
++ Communication plan with stakeholders
++ Escalation path to be followed
+
+### IR Techniques
+Multiple security solutions can aid in the various phases of the IR process (i.e. identification, containment, detection and analysis). These include:
++ SIEM - collects all important logs in one centralised location and correlates them to identify incidents
++ AV - detects known malicious programs in a system and scans the system for them
++ EDR - deployed on every system to contain and eradicate advanced-level threats
+
+After identification, certain procedures must be followed. The following can be used for different kinds of incidents:
++ <i>Playbooks</i> - guidelines for a comprehensive incident response
++ <i>Runbooks</i> - detailed step-by-step methodology during incidents
