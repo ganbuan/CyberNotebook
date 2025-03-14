@@ -284,16 +284,55 @@ Note that an ARP Request or ARP reply is not encapsulated within a UDP or IP pac
 ### NAT
 <i>Network Address Translation (NAT)</i> allows the use of one public IP address to provide Internet access to many private IP addresses. This is done by NAT-supporting routers maintaining a table that translates network addresses between internal and external networks. In effect, the internal network would use a private IP address (i.e. intra-network), while the external network (i.e. gateway to the Internet) would use the public IP address.
 
-### Firewalls
-A <i>firewall</i> is responsible for determining what traffic is allowed to enter and exit a network. An administrator can permit or deny traffic based on these factors:
+## Firewalls
+A <i>firewall</i> inspects a network/device's incoming and outgoing traffic, which then allows or denies based on specific rules. 
+
+Firewalls can be cateogrised into different types:
++ Stateful - determines the behaviour of a device based on the entire connection; filters the data based on predetermined rules, without considering the state of previous connections; operates at OSI layer 3 and 4
++ Stateless - determines whether individual packets are acceptable or not; keeps track of previous connections and stores them in a state table; operates at OSI layer 3 and 4
++ Proxy - act as intermediaries between private networks and the Internate; inspects the content of packets and apply content filtering; operates at the OSI layer 7
++ Next-Generation (NGFW) - offers deep packet inspection, IPS, heuristic analysis, SSL/TLS decryption; operates at OSI layer 3 to 7
+
+An administrator can permit or deny traffic based on these factors:
 + Source of traffic
 + Destination of traffic
 + Destination port
 + Protocol being used
++ Direction
 
-Firewalls can be cateogrised into:
-+ Stateful - determines the behaviour of a device based on the entire connection
-+ Stateless - determines whether individual packets are acceptable or not
+Three actions can be applied to firewall rules:
++ Allow - permit traffic
++ Deny - block traffic
++ Forward - redirects traffic to a different network segment
+
+Rules can be categorised by direction:
++ Inbound - incoming traffic
++ Outbound - outgoing traffic
++ Forward - forward traffic inside a network
+
+### E.g. Windows Defender Firewall
+<i>Windows Defender Firewall</i> can create rules that can restrict incoming and outgoing network traffic. 
+
+There are two available network profiles:
++ Private networks - includes configurations to apply when connected to home networks
++ Guest or public networks - includes configurations to apply when connected to public or untrusted networks (e.g. coffee shops, free Wi-Fi)
+
+Custom rules can be created in Advanced Settings.
+
+### E.g. Linux iptables Firewall
+For Linux, there are multiple fire wall options available.
+
+<i>Netfilter</i> is the framework within Linux OS with core firewall functionalities (i.e. packet filtering, NAT, connection tracking). Some common firewall utilities include:
++ iptables - most widely used utility
++ nftables - successor to iptables with enhanced packet filtering and NAT capabilities
++ firewalld - has predefined rule sets
+
+<i>Uncomplicated Firewall (ufw)</i> provides an easier interface (i.e. easier commands). Common commands include:
++ **sudo uft status** - check firewall status; add **numbered** to list down all active rules
++ **sudo ufw enable** - enable firewall; use **disable** to disable
++ **sudo ufw default allow outgoing** - allow outgoing connections as a default policy; use **incoming** for inbound connections
++ **sudo ufw deny 22/tcp** - block tcp port 22; switch port and transport protocol as needed
++ **sudo ufw delete 2** - delete a specific rule (i.e. based from numbers from sudo uft status numbered)
 
 ## Networking Core Protocols
 Summary of default port numbers of the protocols listed below:
