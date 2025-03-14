@@ -284,56 +284,6 @@ Note that an ARP Request or ARP reply is not encapsulated within a UDP or IP pac
 ### NAT
 <i>Network Address Translation (NAT)</i> allows the use of one public IP address to provide Internet access to many private IP addresses. This is done by NAT-supporting routers maintaining a table that translates network addresses between internal and external networks. In effect, the internal network would use a private IP address (i.e. intra-network), while the external network (i.e. gateway to the Internet) would use the public IP address.
 
-## Firewalls
-A <i>firewall</i> inspects a network/device's incoming and outgoing traffic, which then allows or denies based on specific rules. 
-
-Firewalls can be cateogrised into different types:
-+ Stateful - determines the behaviour of a device based on the entire connection; filters the data based on predetermined rules, without considering the state of previous connections; operates at OSI layer 3 and 4
-+ Stateless - determines whether individual packets are acceptable or not; keeps track of previous connections and stores them in a state table; operates at OSI layer 3 and 4
-+ Proxy - act as intermediaries between private networks and the Internate; inspects the content of packets and apply content filtering; operates at the OSI layer 7
-+ Next-Generation (NGFW) - offers deep packet inspection, IPS, heuristic analysis, SSL/TLS decryption; operates at OSI layer 3 to 7
-
-An administrator can permit or deny traffic based on these factors:
-+ Source of traffic
-+ Destination of traffic
-+ Destination port
-+ Protocol being used
-+ Direction
-
-Three actions can be applied to firewall rules:
-+ Allow - permit traffic
-+ Deny - block traffic
-+ Forward - redirects traffic to a different network segment
-
-Rules can be categorised by direction:
-+ Inbound - incoming traffic
-+ Outbound - outgoing traffic
-+ Forward - forward traffic inside a network
-
-### E.g. Windows Defender Firewall
-<i>Windows Defender Firewall</i> can create rules that can restrict incoming and outgoing network traffic. 
-
-There are two available network profiles:
-+ Private networks - includes configurations to apply when connected to home networks
-+ Guest or public networks - includes configurations to apply when connected to public or untrusted networks (e.g. coffee shops, free Wi-Fi)
-
-Custom rules can be created in Advanced Settings.
-
-### E.g. Linux iptables Firewall
-For Linux, there are multiple fire wall options available.
-
-<i>Netfilter</i> is the framework within Linux OS with core firewall functionalities (i.e. packet filtering, NAT, connection tracking). Some common firewall utilities include:
-+ iptables - most widely used utility
-+ nftables - successor to iptables with enhanced packet filtering and NAT capabilities
-+ firewalld - has predefined rule sets
-
-<i>Uncomplicated Firewall (ufw)</i> provides an easier interface (i.e. easier commands). Common commands include:
-+ **sudo uft status** - check firewall status; add **numbered** to list down all active rules
-+ **sudo ufw enable** - enable firewall; use **disable** to disable
-+ **sudo ufw default allow outgoing** - allow outgoing connections as a default policy; use **incoming** for inbound connections
-+ **sudo ufw deny 22/tcp** - block tcp port 22; switch port and transport protocol as needed
-+ **sudo ufw delete 2** - delete a specific rule (i.e. based from numbers from sudo uft status numbered)
-
 ## Networking Core Protocols
 Summary of default port numbers of the protocols listed below:
 
@@ -2006,3 +1956,98 @@ Analysts spend most of their time on the dashboards, watching for triggers. Once
 2. Contact asset owner to inquire about the activity.
 3. If suspicious activity is confirmed, isolate the infected host.
 4. Block the suspicious IP.
+
+## Firewalls
+A <i>firewall</i> inspects a network/device's incoming and outgoing traffic, which then allows or denies based on specific rules. 
+
+Firewalls can be cateogrised into different types:
++ Stateful - determines the behaviour of a device based on the entire connection; filters the data based on predetermined rules, without considering the state of previous connections; operates at OSI layer 3 and 4
++ Stateless - determines whether individual packets are acceptable or not; keeps track of previous connections and stores them in a state table; operates at OSI layer 3 and 4
++ Proxy - act as intermediaries between private networks and the Internate; inspects the content of packets and apply content filtering; operates at the OSI layer 7
++ Next-Generation (NGFW) - offers deep packet inspection, IPS, heuristic analysis, SSL/TLS decryption; operates at OSI layer 3 to 7
+
+An administrator can permit or deny traffic based on these factors:
++ Source of traffic
++ Destination of traffic
++ Destination port
++ Protocol being used
++ Direction
+
+Three actions can be applied to firewall rules:
++ Allow - permit traffic
++ Deny - block traffic
++ Forward - redirects traffic to a different network segment
+
+Rules can be categorised by direction:
++ Inbound - incoming traffic
++ Outbound - outgoing traffic
++ Forward - forward traffic inside a network
+
+### E.g. Windows Defender Firewall
+<i>Windows Defender Firewall</i> can create rules that can restrict incoming and outgoing network traffic. 
+
+There are two available network profiles:
++ Private networks - includes configurations to apply when connected to home networks
++ Guest or public networks - includes configurations to apply when connected to public or untrusted networks (e.g. coffee shops, free Wi-Fi)
+
+Custom rules can be created in Advanced Settings.
+
+### E.g. Linux iptables Firewall
+For Linux, there are multiple fire wall options available.
+
+<i>Netfilter</i> is the framework within Linux OS with core firewall functionalities (i.e. packet filtering, NAT, connection tracking). Some common firewall utilities include:
++ iptables - most widely used utility
++ nftables - successor to iptables with enhanced packet filtering and NAT capabilities
++ firewalld - has predefined rule sets
+
+<i>Uncomplicated Firewall (ufw)</i> provides an easier interface (i.e. easier commands). Common commands include:
++ **sudo uft status** - check firewall status; add **numbered** to list down all active rules
++ **sudo ufw enable** - enable firewall; use **disable** to disable
++ **sudo ufw default allow outgoing** - allow outgoing connections as a default policy; use **incoming** for inbound connections
++ **sudo ufw deny 22/tcp** - block tcp port 22; switch port and transport protocol as needed
++ **sudo ufw delete 2** - delete a specific rule (i.e. based from numbers from sudo uft status numbered)
+
+## IDS
+<i>Intrustion Detection Systems (IDS)</i> monitors for abnormal traffic and notifies security administrators. 
+
+These can be deployed in two ways:
++ Host Intrusion Detection System (HIDS) - installed individually and detects threats on a particular host; provide visibility on host's activities
++ Network Intrusion Detection System (NIDS) - detecting threats within the whole network; provides a centralised view of all network detections
+
+IDS can classified into different detection modes:
++ Signature-based - attacks are detected by their signature/pattern, which are saved in the IDS database; not particularly useful for zero-day attacks
++ Anomaly-based - compares abnormal activity from a normal/baseline behaviour of a network or system; can detect zero-day attacks; prone to generate false positives
++ Hybrid - combines the detection methods (i.e. signature and anomly-based)
+
+### E.g. Snort
+<i>Snort</i> is an open-source IDS that uses signature- and anomaly-based threat detection. Several built-in tools come pre-installed with the tool. Custom rules can also be made depending on requirements. 
+
+Snort has several modes:
++ Packet sniffer mode - reads and displays network packets without performing analysis; can be helpful in network monitoring and troubleshooting (i.e. diagnosing issues)
++ Packet logging mode - detects real-time network traffic and displays them as alerts for security administrators; also allows packet logging as PCAP files for offline analysis
++ Network Intrusion Detection System mode - primary mode that monitors network traffic in real-time and applies rule files to identify and match traffic to known attack patterns; successful matches will generate alerts
+
+Snort built-in rules, configuration, and other files can be found in /<i>etc/snort</i> directory. The <i>snort.conf</i> file is particularly useful for rule enabling and network range configuration settings. The <i>rules</i> folder contains the rule files.
+
+#### Rule Creation
+Rules follow a specific format: [action] [protocol] [source_ip] [source_port] -> [destination_ip] [destination port] rule_metadata([msg; sid, rev])
++ action - specifies which action to take (e.g. alert)
++ protocol - refers to the protocol that matches the rule (e.g. ICMP)
++ source ip/port - determine the IP/port from which the traffic originates (e.g. any)
++ destination ip/port - specifies the destination IP/port to which the traffic goes to
++ rule metadata - defined with the following components:
+  + msg - describes message to be displayed when rule is triggered (e.g. "Ping detected")
+  + sid - unique identifier
+  + rev - revision number of the rule
+
+E.g. alert icmp any any -> 127.0.0.1 any (msg:"Loopback Ping Detected"; sid:10003; rev:1;)
+
+#### Rule Testing
+The following example command tests alerting for ICMP packets to the loopback address:
+```
+sudo snort -q -l /var/log/snort -i lo -A console -c /etc/snort/snort.conf
+```
+Commands such as these can also be used for PCAP files:
+```
+sudo snort -q -l /var/log/snort -r Task.pcap -A console -c /etc/snort/snort.conf
+```
