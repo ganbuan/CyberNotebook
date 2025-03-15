@@ -2051,3 +2051,59 @@ Commands such as these can also be used for PCAP files:
 ```
 sudo snort -q -l /var/log/snort -r Task.pcap -A console -c /etc/snort/snort.conf
 ```
+
+## Vulnerability Scanning
+<i>Vulnerabilities</i> are weaknesses in software programs or hardware that can be leveraged by attackers. <i>Patching</i> is the process of fixing these vulnerabilities.
+
+However, these vulnerabilities must be scanned for. These scans can be categorised into the following:
++ Authenticated vs Unauthenticated Scans
+| Authenticated | Unauthenticated |
+| :------: | :-----: |
+| Credentials must be provided to the scanner | Only IP address is needed |
+| Exploited by attackers that have access to the host | Exploited by attackers that have no access to the host |
+| Provides deeper visibility to the target system by scanning configurations and installed applications | Less resource-intensive and easy to configure |
+| E.g. providing internal database credentials to scanner | E.g. scanning a public-facing website for vulnerabilities |
++ Internal vs External Scans
+| Internal | External |
+| :------: | :-----: |
+| Conducted from inside the network | Conducted from the outside of the network |
+| Focuses on vulnerabilities to be exploited inside the network | Focuses on vulnerabilities to be exploited from outside the network |
+| Identifies vulnerabilities once an attacker gets inside a network | Identifies vulnerabilities for attackers outside the network |
+
+Some vulnerability tools include:
++ [Nessus](https://www.tenable.com/products/nessus) - provides extensive vulnerability scanning options for large enterprises; has both free and paid versions
++ [Qualys](https://www.qualys.com/) - provides compliance checks and asset management along with continuous scanning; cloud-based
++ [Nexpose](https://www.rapid7.com/products/nexpose/) - continuously discovers new network assets, scans them, and provides a vulnerability risk score; also provides compliance checks; offers on-premises and hybrid (i.e. cloud + on-premises) deployment
++ [OpenVAS](https://www.openvas.org/) - offers basic features with known vulnerabilities scanned through its database; less extensive but is beneficial for small organisations and invidivudal systems
+
+### CVE
+<i>Common Vulnerabilities and Exposures (CVE)</i> is a unique identifier given to software vulnerabilities. Developed by the MITRE Corporation, these CVE numbers are published online in a database. 
+
+E.g. CVE-2024-9374
++ CVE prefix - each CVE has "CVE" in the beginning
++ Year - contains the year it was discovered
++ Arbitrary digits - contains four or more arbitrary digits
+
+### CVSS
+<i>Common Vulnerability Scoring System (CVSS)</i> is a score that provide the severity of a vulnerability. It is calculated by factoring its impact, easy of exploitability, etc.
+
+A summary of scores is as follows:
+| CVSS Range | Severity Level |
+| :------: | :-----: |
+| 0.0 to 3.9 | Low |
+| 4.0 to 6.9 | Medium |
+| 7.0 to 8.9 | High |
+| 9.0 to 10 | Critical |
+
+### E.g. Scanning w/ OpenVAS
+Install OpenVAS using Docker.
+```
+sudo apt install docker.io
+```
+```
+sudo docker run -d -p 443:443 --name openvas mikesplain/openvas
+Accessing OpenVAS
+```
+Access OpenVAS through the browser at <i>https://127.0.0.1</i>
+
+
