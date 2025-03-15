@@ -2105,7 +2105,6 @@ sudo apt install docker.io
 ```
 ```
 sudo docker run -d -p 443:443 --name openvas mikesplain/openvas
-Accessing OpenVAS
 ```
 Access OpenVAS through the browser at <i>https://127.0.0.1</i>
 
