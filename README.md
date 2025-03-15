@@ -2057,6 +2057,7 @@ sudo snort -q -l /var/log/snort -r Task.pcap -A console -c /etc/snort/snort.conf
 
 However, these vulnerabilities must be scanned for. These scans can be categorised into the following:
 + Authenticated vs Unauthenticated Scans
+
 | Authenticated | Unauthenticated |
 | :------: | :-----: |
 | Credentials must be provided to the scanner | Only IP address is needed |
@@ -2064,6 +2065,7 @@ However, these vulnerabilities must be scanned for. These scans can be categoris
 | Provides deeper visibility to the target system by scanning configurations and installed applications | Less resource-intensive and easy to configure |
 | E.g. providing internal database credentials to scanner | E.g. scanning a public-facing website for vulnerabilities |
 + Internal vs External Scans
+
 | Internal | External |
 | :------: | :-----: |
 | Conducted from inside the network | Conducted from the outside of the network |
@@ -2088,6 +2090,7 @@ E.g. CVE-2024-9374
 <i>Common Vulnerability Scoring System (CVSS)</i> is a score that provide the severity of a vulnerability. It is calculated by factoring its impact, easy of exploitability, etc.
 
 A summary of scores is as follows:
+
 | CVSS Range | Severity Level |
 | :------: | :-----: |
 | 0.0 to 3.9 | Low |
