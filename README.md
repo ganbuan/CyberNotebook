@@ -2151,3 +2151,69 @@ Refer to these commonly used operation categories:
 | From Base85 | More efficient than Base64, using preset/alphabet of your choosing | BOu!rD]j7BEbo7 becomes hello world |
 | From Base58 | Differs from Base64 by removing misread characters (i.e. I and l, 0 and O) | AXLU7qR becomes Thm58 |
 | To Base58 | Encodes using restricted set of symbols | Thm62 becomes 6NiRkOY |
+
+## CAPA
+<i>Common Analysis Platform for Artifacts (CAPA)</i> is a tool that can identify the capabilities present in executable files (e.g. PE executables, ELF binaries, .NET modules, shellcodes, sandbox reports). It is capable of conducting static analysis by applying rules to describe common behaviours, which can determine a program's capability (e.g. network communication, file manipulation, process injection, etc)
+
+Main command: **capa ./[executable_file]**
+
+Some useful commands include:
++ **-h** - shows help message
++ **-v** - shows verbose results; use **-vv** for more verbose output
+
+Results from running CAPA can be divided into the parts below.
+
+### General Information
+The first block contains basic information, including:
++ Cryptographic algorithms (i.e. md5, sha1, sha256)
++ analysis (i.e. static)
++ os
++ arch (i.e. determine whether binary related to x86 architecture)
++ path
+
+### MITRE ATT&CK
+References to the MITRE framework, which can aid in mapping a file's behaviour. 
+
+| Format | Example |
+| :------: | :-----: |
+| ATT&CK Tactic::ATT&CK Technique::Technique Identifier | Defense Evasion::Obfuscated Files or Information::T1027 |
+| ATT&CK Tactic::ATT&CK Technique::ATT&CK Sub-Technique::Technique Identifier[.]Sub-technique Identifier | Defense Evasion::Obfuscated Files or Information::Indicator Removal from Tools T1027.005 |
+
+### MAEC
+Malware Attribute Enumeration and Characterisation (MAEC) is a specialised language used to encode and communicate complex details concerning malware. 
+
+The two most commonly used MAEC values are:
+
+| MAEC Value | Behaviour |
+| :------: | :-----: |
+| Launcher | Dropping additional payloads, activating persistence, connecting to C2C, executing specific functions |
+| Downloader | Fetching additional payloads, pulling updates, executing secondary stages, retrieving configuration files |
+
+### MBC
+The Malware Behaviour Catalogue (MBC) serves as a catalogue for malware objectives and bheaviours. 
+
+| Format | Example |
+| :------: | :-----: |
+| OBJECTIVE::Behavior::Method[Identifier] | ANTI-STATIC ANALYSIS::Executable Code Obfuscation::Argument Obfuscation [B0032.020] |
+| OBJECTIVE::Behavior::[Identifier] | COMMUNICATION::HTTP Communication:: [C0002] |
+
+The parts can be broken down into the following:
++ Objective - characterises malware based from the ATT&CK tactics (e.g. Anti-Behavioral Analysis, Anti-Static Analysis, Collection, Command and Control, etc)
++ Micro-Objective - refer to action/s that may not be necessarily malicious (e.g. PROCESS, MEMORY, COMMUNICATION, DATA)
++ Behaviors - contains behaviors and micro-behaviors with or without methods and identifiers (e.g. Virtual Machine Detection, Executable Code Obfuscation, File and Directory Discovery)
++ Micro-Behavior - similar to micro-objectives relating to behaviours (e.g. Allocate Memory, Create Process, HTTP)
++ Methods - tied to behaviors (e.g. Argument Obfuscation, Stack Strings, Read Header, Base64, XOR)
+
+### Namespaces & Capabilities
+CAPA uses namespaces to group items with the same purpose. Capabilities are simply the name of the associated rule.
+
+| Format | Example |
+| :------: | :-----: |
+| Capability(Rule Name)::TLN(Top-Level Namespace)/Namespace | reference anti-VM strings::Anti-Analysis/anti-vm/vm-detection |
+
+For the example above is broken down as follows:
++ Anti-Analysis is the TLN.
++ anti-vm/vm-detection and obfuscation are grouped namespaces, each having their own collection of rules
++ reference-anti-vm-strings-targeting-virtualbox.yml and reference-anti-vm-strings-targeting-virtualpc.yml contain the rules
+
+
