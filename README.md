@@ -2,7 +2,7 @@
 Collection of notes regarding Cybersecurity vocabulary for my personal reference.
 
 # Table of Contents
-+ [Windows Fundamentals](#windowsfundamentals)
++ [Windows Fundamentals](#windows-fundamentals)
 
 ## OPSEC
 <b>Step 1: Identify critical information</b>
@@ -59,7 +59,6 @@ Atomic Red Team is an open-source framework for performing security testing and 
 
 <i>Atomics</i> - different testing techniques based on the MITRE ATT&CK framework that security analysts can use to emulate a specific technique.
 
-<a id="windowsfundamentals"></a>
 ## Windows Fundamentals
 ### NTFS
 <i>New Technology File System (NTFS)</i> - file system used in modern version of Windows
