@@ -2298,3 +2298,71 @@ strings -e l wcry.mem > wcry.strings.unicode_little_endian.txt
 strings -e b  wcry.mem > wcry.strings.unicode_big_endian.txt
 ```
 
+## FlareVM
+<i>Forensice, Logic Analysis, and Reverse Engineering</i> is a set of specialised tools used in reverse engineering, malware analysis, incident response, forensic investigation, and penetration testing. 
+
+### Use Cases and Tool Kit
+Tools are grouped into various categories below:
+
+#### Reverse Engineering & Debugging
+Reverse engineering takes a finished software apart and understand how it works. Debugging identifies errors, understand why they happen, and corrects the code.
++ Ghidra - open-source reverse engineering suite
++ x64dbg - open-source debugger for binaries in x64 and x32
++ OllyDbg - debugger for reverse engineering at the assembly level
++ Radare2 - open-source platform for reverse engineering
++ Binary Ninja - disassembler and decompiler for binaries
++ PEiD - packer, cryptor, and compiler detection tool
+
+#### Disassembler & Decompilers
+Disassemblers and decompilers aid in understanding malware behaviour by breaking it into understandable formats.
++ CFF Explorer - PE editor designed to analyse PE files
++ Hopper Disassembler - debugger, disassembler, and decompiler
++ RetDec - open-source decompiler for machine code
+
+#### Static & Dynamic Analysis
+Static analysis is code inspection without executing it. Dynamic analysis observes code behaviour as it runs.
++ Process Hacker - memory editor and process watcher
++ PEview - PE file viewer for analysis
++ Dependencer Walker - tool for displaying an executable's DLL dependencies
++ Detect It Easy (DIE) - packer, compiler, and cryptor detection tool
+
+#### Forensice & Incident Response
+Digital forensics involve collection, analysis, and preservation of digital evidence from various sources. Incident response focuses on detection, containment, eradication, and recovery from cyberattacks.
++ Volatility - RAM dump analysis framework for memory forensics
++ Rekall - framework for memory forensics in incident response
++ FTK Imager - disc image acquisition and analysis tools for forensic use
+
+#### Network Analysis
+Network analysis involves uncovering patterns, optimise performance, and understand underlying structure and behaviour of a network.
++ Wireshark - network protocol analyser for traffic recording and examination
++ Nmap - vulnerability detection and network mapping tool
++ Netcat - read and write data across network connections
+
+#### File Analysis
+File analysis examines files for potential security threats and ensure proper file permissions.
++ FileInsight - looks through and edits binary files
++ Hex Fiend - Hex editor that is light and quick
++ HxD - binary file viewer and hex editor
+
+#### Scripting & AUtomation
+Scripting and automation involves the use of scripts (e.g. PowerShell, Python) to automate tasks and processes.
++ Python - automation-focused on Python modules and tools
++ PowerShell Empire - framework for PowerShell post-exploitation
+
+### Sysinternals Suite
+The Sysinternals Suite is a collection of system utitlities for managing, troubleshooting, and diagnosing Windows systems.
++ Autoruns - shows executables that are configured to run during boot-up
++ Process Explorer - provides information about running processes
++ Process Monitor - monitors and logs real-time process/thread activities
+
+### Tools for Investigation
+These tools are usued for initial investigations:
+| Tool | Investigative Use |
+| :------: | :-----: |
+| Procmon | Tracks system activity, particularly regarding malware research, troubleshooting, and forensic investigations |
+| Process Explorer | Shows Process of the Parent-child relationship, DLLs loaded |
+| HxD | Examine/alter malicious files via hex editing |
+| Wireshark | Observes and investigates network traffic for unusual activity |
+| CFF Explorer | Generates file hashes for integrity verification, authenticate source of system files, and check for validaty |
+| PEStudio | Static analysis of executable file properties |
+| FLOSS | Extracts and de-obfuscates all strings from malware programs using static analysis techniques |
