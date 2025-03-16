@@ -2072,7 +2072,7 @@ However, these vulnerabilities must be scanned for. These scans can be categoris
 | Focuses on vulnerabilities to be exploited inside the network | Focuses on vulnerabilities to be exploited from outside the network |
 | Identifies vulnerabilities once an attacker gets inside a network | Identifies vulnerabilities for attackers outside the network |
 
-Some vulnerability tools include:
+Some vulnerability scanning tools include:
 + [Nessus](https://www.tenable.com/products/nessus) - provides extensive vulnerability scanning options for large enterprises; has both free and paid versions
 + [Qualys](https://www.qualys.com/) - provides compliance checks and asset management along with continuous scanning; cloud-based
 + [Nexpose](https://www.rapid7.com/products/nexpose/) - continuously discovers new network assets, scans them, and provides a vulnerability risk score; also provides compliance checks; offers on-premises and hybrid (i.e. cloud + on-premises) deployment
@@ -2108,4 +2108,46 @@ sudo docker run -d -p 443:443 --name openvas mikesplain/openvas
 ```
 Access OpenVAS through the browser at <i>https://127.0.0.1</i>
 
+## CyberChef
+<i>CyberChef</i> is a web-based application tool that can do encoding and decoding. It is often referred to as a "Swiss Army Knife" for data. This tool can be accessed [online](https://gchq.github.io/CyberChef/) or [downloaded locally](https://github.com/gchq/CyberChef/releases).
 
+### Navigating the Interface
+CyberChef has four areas:
++ Operations - repository of operations that can be performed (e.g. From Morse Code, URL Encode, To Base64, etc)
++ Recipe - where operations can be selected, arranged, and fine-tuned
++ Input - where input text or files can be placed (i.e. by typing, pasting, uploading)
++ Output - displays the data processing results
+
+### Process
+To use CyberChef effectively, follow these four steps:
+1. Set a clear objective
+2. Enter data into the input area
+3. Select the operations to use
+4. Verify the output to check for intended results; repeat step one to three otherwise
+
+### Common Tools
+Refer to these commonly used operation categories:
++ Extractors
+
+| Specific | Description |
+| :------: | :-----: |
+| Extract IP addresses | Extract all IPv4 and IPv6 addresses from input |
+| Extract URLs | Extract URL from input; Note: the protocol (i.e. HTTP, FTP) is required |
+| Extract email addresses | Extract all email addresses from input |
+
++ Date and Time
+
+| Specific | Description |
+| :------: | :-----: |
+| From UNIX timestamp | Converts UNIX timestamp to datetime string |
+| To UNIX timestamp | Parses a datetime string in UTC and returns a UNIX timestamp |
+
++ Data Format
+
+| Specific | Description | Example |
+| :------: | :---------: | :-----: |
+| From Base64 | Decodes data from ASCII Base64 to raw format | V2VsY29tZSB0byB0cnloYWNrbWUh becomes Welcome to tryhackme! |
+| URL Decode | Converts URL percent-encoded characters to raw value | https%3A%2F%2Fgchq%2Egithub%2Eio%2FCyberChef%2F becomes https://gchq.github.io/CyberChef/ |
+| From Base85 | More efficient than Base64, using preset/alphabet of your choosing | BOu!rD]j7BEbo7 becomes hello world |
+| From Base58 | Differs from Base64 by removing misread characters (i.e. I and l, 0 and O) | AXLU7qR becomes Thm58 |
+| To Base58 | Encodes using restricted set of symbols | Thm62 becomes 6NiRkOY |
