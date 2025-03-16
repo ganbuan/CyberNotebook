@@ -2216,4 +2216,85 @@ For the example above is broken down as follows:
 + anti-vm/vm-detection and obfuscation are grouped namespaces, each having their own collection of rules
 + reference-anti-vm-strings-targeting-virtualbox.yml and reference-anti-vm-strings-targeting-virtualpc.yml contain the rules
 
+## REMnux
+The <i>REMnux VM</i> is a Linux distro specifically designed to provide a sandbox-like environment for analysing malware. It includes tools like Volatility, YARA, Wireshark, oledump, and INETSim.
+
+### Use Case: File Analysis
+<i>oledump.py</i> can be used to conduct static analysis on potentially malicious Object Linking and Embedding (OLE2) files, which is proprietary technology of Microsoft. These files are used to store multiple data types (e.g. documents, spreadsheets, presentations) into a single file.
+
+Command syntax: **oledump.py [file]**
+
+Common extensions:
++ **-s [number]** - select a specific data stream
++ **--vbadecompress** - automatically decompress VBA macros into a readable format
+
+Note: macros are listed with the presence of a 'M' in the datastream
+
+### Use Case: Fake Network to Aid Analysis
+<i>Internet Services Simulation Suite (INETSim)</i> can be used to simulate a real network attack by malware. 
+
+Note: configuring the <i>/etc/inetsim/inetsim.conf</i> is required, particularly changing the <i>#dns_default_ip</i> value
+
+Command syntax: **sudo inetsim**
+
+Once done, accessing the IP address through the browser will redirect to the INETSim's homepage. 
+
+From here, usual malware behaviour can be executed (e.g. downloading a binary/script)
+```
+sudo wget https://MACHINE_IP/second_payload.zip --no-check-certificate
+```
+When INETSim is stopped, it will create a report on its captured connections. This can be found in the <i>/var/log/inetsim/report/</i> directory.
+
+### Use Case: Evidence Preprocessing
+<i>Volatility</i> can be used to identify and extract artefacts from memory images, which results in output that can be saved to text files (e.g. text or JSON) for further analysis.
+
+Command syntax: **vol3 -f [mem_file] [plugin]**
+
+Note: for the examples, a wcry.mem image file will be used
+
+Some parameters/plugins for Windows that can be used include:
++ PsTree
+```
+vol3 -f wcry.mem windows.pstree.PsTree
+```
++ PsList
+```
+vol3 -f wcry.mem windows.pslist.PsList
+```
++ CmdLine
+```
+vol3 -f wcry.mem windows.cmdline.CmdLine
+```
++ FileScan
+```
+vol3 -f wcry.mem windows.filescan.FileScan
+```
++ DllList
+```
+vol3 -f wcry.mem windows.dlllist.DllList
+```
++ Malfind
+```
+vol3 -f wcry.mem windows.malfind.Malfind
+```
++ PsScan
+```
+vol3 -f wcry.mem windows.psscan.PsScan
+```
+
+Note: processing these in bulk using loops is helpful. E.g. 
+```
+for plugin in windows.malfind.Malfind windows.psscan.PsScan windows.pstree.PsTree windows.pslist.PsList windows.cmdline.CmdLine windows.filescan.FileScan windows.dlllist.DllList; do vol3 -q -f wcry.mem $plugin > wcry.$plugin.txt; done
+```
+
+The <i>strings</i> utility can be used to extract ASCII, 16-bit little-endian, and 16-bit big-endian strings. 
+```
+strings wcry.strings.ascii.txt
+```
+```
+strings -e l wcry.mem > wcry.strings.unicode_little_endian.txt
+```
+```
+strings -e b  wcry.mem > wcry.strings.unicode_big_endian.txt
+```
 
