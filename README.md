@@ -1,8 +1,44 @@
 # CyberNotebook
 Collection of notes regarding Cybersecurity vocabulary for my personal reference.
 
-# Table of Contents
+## Table of Contents
+### OS Fundamentals
 + [Windows Fundamentals](#windows-fundamentals)
++ [Linux Shells](#linux-shells)
+### Networking Fundamentals
++ [Networking Basics](#networking-basics)
++ [Networking Core Protocols](#networking-core-protocols)
++ [Networking Secure Protocols](#networking-secure-protocols)
++ [Networking Tools](#networking-tools)
+### Cryptography/Hashing Fundamentals
++ [Cryptography](#cryptography)
++ [Hashing](#hashing)
++ [Cracking Hashes](#cracking-password-hashes)
+### Languages
++ [JavaScript](#javascript)
++ [SQL](#sql)
+### Offensive Tools
++ [Metasploit](#metasploit)
++ [Web Applications](#web-applications)
++ [Burp Suite](#burp-suite)
++ [OWASP Top 10 (2021)](#owasp-top-10-2021)
++ [Hydra](#hydra)
++ [Gobuster](#gobuster)
++ [Shells](#shells)
++ [SQLMap](#sqlmap)
+### Defensive Concepts
++ [Digital Forensics](#digital-forensics)
++ [Incident Response](#incident-response)
++ [Logs](#logs)
++ [SIEM](#siem)
++ [Firewalls](#firewalls)
++ [IDS](#ids)
++ [Vulnerability Scanning](#vulnerability-scanning-1)
+### Defensive Tools
++ [CyberChef](#cyberchef)
++ [CAPA](#capa)
++ [REMnux](#remnux)
++ [FlareVM](#flarevm)
 
 ## OPSEC
 <b>Step 1: Identify critical information</b>
