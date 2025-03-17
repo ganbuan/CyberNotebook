@@ -2506,3 +2506,21 @@ There are three primary scopes when testing an application or service:
 | Black-Box testing | High-level process where the tester is not given any information about the inner workings of the application/service |
 | Grey-Box testing | Testers have some limited knowledge of the internal components of the application/service |
 | White-Box testing | Low-level process usually done by software developer who knows programming and application logic; tester will have full knowledge of the application and its expected behaviour |
+
+## Walking an Application
+Manual review of a web application for security issues can be useful. Automated security tools and scripts often miss potential vulnerabilities and useful information. 
+
+One way to do this is using the in-built tools of your browser. Some tools include:
++ View Source
++ Inspector
++ Debugger
++ Network
+
+### View Page Source
+The page source displays human-readable code returned to the browser each time a request is made to the web server. The code is comprised of HTML, CSS, and JavaScript.
+
+Some notable things to watch for:
++ Comments - messages left by the website developer
++ Links - anchor tags provide links to other pages
++ External files - CSS, JavaScript, images can be included in the HTML code
++ Framework - which framework is used and version
