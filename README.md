@@ -2524,3 +2524,127 @@ Some notable things to watch for:
 + Links - anchor tags provide links to other pages
 + External files - CSS, JavaScript, images can be included in the HTML code
 + Framework - which framework is used and version
+
+### Inspector
+Element inspector provides a representation of what is being currently displayed in a browser. Editing and interacting with the page elements is also possible.
+
+### Debugger
+This is known as Debugger in Firefox and Safari and as Sources in Chrome. Originally used for web developers, this feature allows closer inspection of JavaScript code.
+
+### Network
+The network feature keeps track of external requests a webpage makes. 
+
+## Content Discovery
+Content discovery refers to finding things that are not immediately presented (i.e. not intended for public access). For example, these could be pages or portals for staff, older versions of the site, backup files, configuration files, administration panels, etc.
+
+There are three ways for discovering content in websites:
+1. Manually
+2. Automated
+3. OSINT
+
+### Manual Discovery
+There are multiple places in a website that can be manually checked.
+
+#### Robots.txt
+The *robots.txt* file is a document that tells search engines what they can and can not show in their results. It is common to restrict certain website areas so they are not displayed in search engine results (e.g. administration portals, private files). This file can be found in **[url]/robots.txt**.
+
+#### Favicon
+A favicon is the small icon displayed next to the URL or tab in a browser. This is used for branding a website. 
+
+When frameworks are used to build a website, a custom favicon is used. This can give clues on what framework is used. Common framework icons can be checked in this [OWASP database](https://wiki.owasp.org/index.php/OWASP_favicon_database).
+
+Use this command to download the favicon and get its md5 hash value: **curl [favicon_image_url] | md5sum**
+
+#### Sitemap.xml
+The *sitemap.xml* file provides a list of every file that is to be listed on search engines. These can sometimes contain areas of the website that are more difficult to navigate to and even some older pages that are still working behind the scenes. This file can be found in **[url]/sitemap.xml**.
+
+#### HTTP Headers
+These headers can contain useful information such as webserver software and even programming/scripting language used. 
+
+Use this command: **curl [url] -v**
+
+#### Framework Stack
+As mentioned, frameworks can be determined either by matching its favicon or by clues in page source (e.g. comments, copyright notices, credits). Once determined, you can learn more about the software and other information, potentially leading to more content to discover.
+
+### OSINT Discovery
+There are external resources that are freely available. 
+
+#### Google Hacking/Dorking
+By utilising Google's advanced search engine features, you can pick out custom content. For instance, you can:
++ Pick out results from certain domain name (i.e. using the site: filter)
++ Match this with certain search terms (i.e. site:google.com admin)
+
+Here are more examples of filters:
+
+| Filter | Example | Description |
+| :------: | :-----: | :-----: |
+| site | site:google.com | returns results only from the specified website address |
+| inurl | inurl:admin | returns results that have the specified word in the URL |
+| filetype | filetype:pdf | returns results of a particular file extension |
+| intitle | intitle:admin | returns results that contain the specified word in the title |
+
+Note: multiple filters can be combined
+
+#### Wappalyzer
+[Wappalyzer](https://www.wappalyzer.com/) is an online tool and browser extension that identifies what technologies a website uses (i.e. frameworks, Content Management Systems, payment processors, etc) as well as their version numbers.
+
+#### Wayback Machine
+The [Wayback Machine](https://archive.org/web/) is an archive of websites that date back to the late 90s. This service can help uncover old pages that may still be active on the current website.
+
+#### Github
+Github can be used to look for company or website names and try to locate repositories belonging to them. Once discovered, you may have access to source code, passwords, and other content.
+
+#### S3 Buckets
+S3 Buckets allows people to save files and even static website content in the cloud, which can be accessed over HTTP and HTTPS. Owners of these files can set access permissions (i.e. public, private, writeable), which are sometimes set incorrectly. S3 buckets format is as follows: **http(s)://{name}.s3.amazonaws.com**, where {name} is decided by the owner. 
+
+Note: a common automation method uses a company name followed by common terms. E.g. {name}-assets, {name}-wwww, {name}-public, etc
+
+### Automated Discovery
+This process is automated, usually containing large amounts of requests to a webserver. These requests check whether a file or directory exists on a website, potentially giving access to resources previously unknown. These processes utilise wordlists.
+
+Three examples of automated discovery tools:
++ ffuf
+```
+ffuf -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -u http://MACHINE_IP/FUZZ
+```
++ dirb
+```
+dirb http://MACHINE_IP/ /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+```
++ Gobuster
+```
+gobuster dir --url http://MACHINE_IP/ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+```
+
+## Subdomain Enumeration
+This is the process of finding subdomains for a domain. This is done to expand attack surfaces to discover more potential points of vulnerabilities.
+
+Three methods can be utilised:
++ Brute Force
++ OSINT
++ Virtual Host
+
+### OSINT
+#### SSL/TLS Certificates
+When SSL/TLS certificates are created for a domain by the CA, *Certificate Transparency (CT)* logs are created. These are publicly accessible and can be searched in databases such as [crt.sh](https://crt.sh/).
+
+#### Search Engines
+Using advanced search methods (e.g. site:*.domain.com -site:www.domain.com) can narrow search results and lead to identifying subdomains.
+
+#### Sublist3r
+Abov emethods can be automated using tools such as [Sublist3r](https://github.com/aboul3la/Sublist3r).
+
+### DNS Bruteforce
+Bruteforce DNS enumeration is a method of trying multiple different possible subdomains from a pre-defined list (i.e. commonly used subdomains). 
+
+### Virtual Hosts
+Some subdomains are not always hosted in publically accessible DNS results (e.g. development versions, administration portals). These could be kept on a private DNS server or recorded on the developer's machines in either */etc/hosts* or *c:\windows\system32\drivers\etc\hosts*, which map domain names to IP addresses.
+
+Note: since webservers can host multiple websites from one server, the host header is used to know which website a client wants
+
+```
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://MACHINE_IP
+```
+```
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://MACHINE_IP -fs {size}
+```
