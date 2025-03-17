@@ -10,31 +10,40 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 + [Networking Core Protocols](#networking-core-protocols)
 + [Networking Secure Protocols](#networking-secure-protocols)
 + [Networking Tools](#networking-tools)
+  + [Wireshark](#wireshark)
+  + [tcpdump](#tcpdump)
+  + [nmap](#nmap)
 ### Cryptography/Hashing Fundamentals
 + [Cryptography](#cryptography)
 + [Hashing](#hashing)
 + [Cracking Hashes](#cracking-password-hashes)
+  + [Hashcat](#hashcat)
+  + [John the Ripper](#john-the-ripper)
 ### Languages
 + [JavaScript](#javascript)
 + [SQL](#sql)
-### Offensive Tools
-+ [Metasploit](#metasploit)
+### Offensive Security Concepts
 + [Web Applications](#web-applications)
-+ [Burp Suite](#burp-suite)
 + [OWASP Top 10 (2021)](#owasp-top-10-2021)
+### Offensive Security Tools
++ [Metasploit](#metasploit)
++ [Burp Suite](#burp-suite)
 + [Hydra](#hydra)
 + [Gobuster](#gobuster)
 + [Shells](#shells)
 + [SQLMap](#sqlmap)
-### Defensive Concepts
+### Defensive Security Concepts
++ [SOC](#soc)
 + [Digital Forensics](#digital-forensics)
 + [Incident Response](#incident-response)
++ [Vulnerability Scanning](#vulnerability-scanning-1)
+  + [OpenVAS](#eg-scanning-w-openvas)
 + [Logs](#logs)
 + [SIEM](#siem)
 + [Firewalls](#firewalls)
 + [IDS](#ids)
-+ [Vulnerability Scanning](#vulnerability-scanning-1)
-### Defensive Tools
+  + [Snort](#eg-snort)
+### Defensive Security Tools
 + [CyberChef](#cyberchef)
 + [CAPA](#capa)
 + [REMnux](#remnux)
