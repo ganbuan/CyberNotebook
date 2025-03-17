@@ -2433,3 +2433,76 @@ The ROE is a document used in the initial stages of a pentest, primarily to deci
 3. Rules - define techniques that are permitted (e.g. no phshing, allow MITM)
 
 ### Methodologies
+Though no two penetration tests are the same, there is a general stages that tend to show up.
+
+| Category | Description |
+| :------: | :-----: |
+| Information Gathering | Collecting public information about a target (i.e. OSINT, research) |
+| Enumeration/Scanning | Discovering applications and services running on systems (e.g. finding a potentially vulnerable web server) | 
+| Exploitation | Leveraging vulnerabilities discovered on a system (e.g. using public exploits, exploiting application logic) |
+| Privilege Escalation | Attempt to expand access to the system; Can be either horizontally (i.e. another account with same permission group) or vertically (i.e. another permission group)
+| Post Exploitation | Involves pivoting (i.e. finding other targets), gathering additional information, covering tracks, reporting |
+
+#### OSSTMM
+The *Open Source Security Testing Methodology Manual (OSSTMM)* is a methodology primarily focusing on how systems communicate. This is particularly useful for:
++ Telecommunications (i.e. phones, VoIP)
++ Wired Networks
++ Wireless communications
+
+Advantages:
++ Covers various testing strategies in-depth
++ Include testing strategies for specific targets (i.e. telecommunications, networking)
++ Flexible
+
+Disadvantages:
++ Difficult to understand, very detailed, and uses unique definitions
+
+#### OWASP
+The *Open Web Application Security Project (OWASP)* is used to test the security of web applications and services.
+
+Advantages:
++ Easy to understand
++ Actively maintained and updated
++ Covers all stages of an engagement (i.e. from testing to reporting/remediation)
++ Specialises in web applications and services
+
+Disadvantages:
++ May not be clear on what type of vulnerability is present
++ Does not make suggestions to specific software development life cycles
++ Does not hold any accredditation (e.g. CHECK)
+
+#### NIST Cybersecurity Framework 1.1
+The *NIST Cybersecurity Framework* provides guidelines on security controls and benchmarks for organisations. Note: there is a limited section on standard guideline for penetration testers.
+
+Advantages:
++ Around 50% of Americans use this framework
++ Extremely detailed in setting standards for organisations in mitgating cyber threats
++ Frequently updated
++ Provides accredidation
++ Designed to be implemented with other frameworks
+
+Disadvantages:
++ Many iterations, which makes it difficult to decide which should apply
++ Has weak auditing policies, which makes it difficult to determine causes of breaches
++ Does not consider cloud computing
+
+#### NCSC CAF
+The *Cyber Assessment Framework (CAF)* uses 14 principles to assess the risk of various cyber threats and an organisation's defences. This applies to critical infrastructure, banking, and other vitally important services. 
+
+Advantages:
++ Backed by a government cybersecurity agency
++ Provides accreditation
++ Covers 14 principles, ranging from security to response
+
+Disadvantages:
++ Still new to the industry
++ Based on principles and ideas and is not as direct as having rules
+
+### Types of Testing
+There are three primary scopes when testing an application or service:
+
+| Type of Test | Description |
+| :------: | :-----: |
+| Black-Box testing | High-level process where the tester is not given any information about the inner workings of the application/service |
+| Grey-Box testing | Testers have some limited knowledge of the internal components of the application/service |
+| White-Box testing | Low-level process usually done by software developer who knows programming and application logic; tester will have full knowledge of the application and its expected behaviour |
