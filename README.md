@@ -2686,3 +2686,18 @@ Cookies are sometimes hashed. Common hashing methods used include md5, sha-256, 
 #### Encoded Cookies
 Encoded text is reversible. Common encoding types include base32 and base64. E.g. Set-Cookie: session=eyJpZCI6MSwiYWRtaW4iOmZhbHNlfQ==; Max-Age=3600; Path=/.
 
+## IDOR
+*Insecure Direct Object Referencing (IDOR)* is an access control vulnerability, where user-suppied input to retrieve objects (e.g. files, data, documents) are not validated on the server side to confirm that the object belongs to the requesting user. E.g. http://online-service.thm/profile?user_id=1000, where changing id={n} provides access to other profiles.
+
+Web developers often manipulate raw data by:
++ Encoding - from binary to ASCII (e.g. base64)
++ Hashing - hashed version of an integer value (e.g. md5)
+
+Note: for unpredictable IDs, a common technique is creating two accounts and swapping the Id numbers; if the other account content can be viewed, an IDOR vulnerability is present
+
+IDORs can be found beyond the browser URL address bar. Some other locations include:
++ AJAX request
++ JavaScript file reference
++ Unreferenced parameter (e.g. /user/details -> user/details?user_id=123)
++ API calls using Network developer tools
+
