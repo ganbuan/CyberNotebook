@@ -2701,3 +2701,67 @@ IDORs can be found beyond the browser URL address bar. Some other locations incl
 + Unreferenced parameter (e.g. /user/details -> user/details?user_id=123)
 + API calls using Network developer tools
 
+## File Inclusion
+*File inclusion* vulnerabilities are often found in web applications that do not sanitise or validate user inputs. Attackers leverage this to access sensitive data through manipulating URL query strings (e.g. http://webapp.thm/get.php?file=userCV.pdf).
+
+### Path/Directory Traversal
+This vulnerability allows attackers to read local files or directories on a server. This is done by manipulating input in the URL, which gets passed to functions (e.g file_get_contents in PHP). One way to do this is through the use of **../** to move up directories to reach the root.
+
+Some common OS files to explore when pentesting:
+
+| Location | Description |
+| :------: | :-----: |
+| /etc/issue | shows a message or system identification before the login prompt |
+| /etc/profile | controls system-wide default variables (e.g. Export variables, file creation mask, terminal types, mail messages) | 
+| /proc/version | indicates the Linux kernel version | 
+| /etc/passwd | shows all registered users in a system |
+| /etc/shadow | shows information about the users' passwords | 
+| /root/.bash_history | shows history commands for the root user |
+| /var/log/dmessage | shows global system messages |
+| /var/mail/root | shows all emails for the root user |
+| /root/.ssh/id_rsa | shows private SSH keys for the root/valid user | 
+| /var/log/apache2/access.log | shows accessed requests for Apache server |
+| C:\boot.ini | contains the boot options for systems with BIOS firmware | 
+
+### Local File Inclusion (LFI)
+LFI attacks occur due to insecure code. For example, the *include*, *require*, *include_once*, and *require_once* in PHP lead are common culprits. These also occur in other languages such as ASP, JSP, Node.js. 
+
+Some scenarions include:
++ No specified directory in the include; no input validation. E.g.
+```
+http://webapp.thm/get.php?file=/etc/passwd
+```
++ Specified directory; no input validation. E.g.
+```
+http://webapp.thm/index.php?lang=../../../../etc/passwd
+```
++ Use of Null Byte; file type specified in the include function; blackbox testing. E.g.
+```
+http://webapp.thm/index.php?lang=../../../../etc/passwd%00
+```
+Note: this is fixed with PHP 5.3.4 and above
++ Bypassing filters; filters specific characters; blackbox testing. E.g.
+```
+....//....//....//....//....//etc/passwd
+```
++ Forces include to read from a defined directory. E.g.
+```
+?lang=languages/../../../../../etc/passwd
+```
+
+### Remote File Inclusion (RFI)
+This technique includes remote files by injecting external URL. This occurs when the *allow_url_fopen* option is turned on in web applications. This often leads to RCE, sensitive information disclosure, XSS, and DoS attacks.
+
+RFI steps include:
+1. Host a PHP file on a server
+2. Inject malicious URL (i.e. to the attacking server)
+3. Web app includes the file and executes
+
+### Prevention Methods
+1. Keep system, services, frameworks updated
+2. Turn of PHP errors to avoid revealing paths and other information
+3. A Web Application Firewall (WAF) is useful
+4. Disable PHP features that cause file inclusion vulnerabilities (e.g. allow_url_fopen, allow_url_include)
+5. Allow only protocols and PHP wrappers when needed
+6. Never trust user input; implement proper input validation
+7. Implement whitelisting for file names and locations; the same for blacklisting
