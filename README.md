@@ -2853,3 +2853,56 @@ Example: website's contact form allows messaging, which does not check for malic
 How to test:
 + Add a call back (e.g. HTTP request) to the payload
 + Use tools such as [XSS Hunter Express](https://github.com/mandatoryprogrammer/xsshunter-express); alternaitively, make your own tool
+
+## Command Injection / RCE
+*Command injections* abuses an application to execute commands on the OS. These are often the most lucrative attacks as attackers can directly interact with the system.
+
+This vulnerability is caused by an application's use of programming language functions that pass data and make system calls on a machine's OS. Applications that use user input to populate system commands can be combined with unintended behaviour (e.g. shell operators ;, &, && to combine more commands).
+
+Command injections can be detected in two ways:
+1. Blind command injection - no direct output from the application when testing payloads; observing an application's behaviour is needed to determine success
+2. Verbose command injection - direct feedback from the application is provided when testing payloads
+
+### Detecting Blind Command Injections
+As the application outputs no message, two methods can be used:
++ Use payloads that cause some time delay (e.g. ping, sleep)
++ Force some output (e.g. > shell operator)
++ curl command to deliver data to and from an application (e.g. curl http://vulnerable.app/process.php%3Fsearch%3DThe%20Beatles%3B%20whoami)
+
+### Detecting Verbose Command Injections
+Output of commands will be directly displayed on the web application, making this easy.
+
+### Useful payloads
+For Linux:
++ whoami - see user
++ ls - lists contents of current directory
++ ping - invoke application to hang
++ sleep - useful where the machine does not have ping
++ nc - spawn a reverse shell
+
+For Windows:
++ whoami - see user
++ dir - lists contents of current directory
++ ping - invoke application to hang
++ timeout - useful where the machine does not have ping
+
+More commands can be found in this [repository](https://github.com/payloadbox/command-injection-payload-list).
+
+### Remediating Command Injections
+These attacks can be prevented in a variety of ways.
+
+#### Vulnerable Functions
+There are PHP functions that interact with the OS to execute commands via shell, including:
++ Exec
++ Passthru
++ System
+
+Implement proper checks when using these functions to avoid command injections.
+
+#### Input Sanitisation
+Sanitising is a process of specifying formats or data types that a user can submit (e.g. only numerical data, remove > & and /). 
+
+Note: it is still possible to abuse the logic behind these filter (e.g. using hexadecimal value of quotation marks)
+
+## SQLi
+*SQL injections (SQLi)* is an attack against an application's database server, which causes malicious queries to be executed. 
