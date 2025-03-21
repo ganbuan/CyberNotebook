@@ -26,6 +26,18 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 + [Web Applications](#web-applications)
 + [OWASP Top 10 (2021)](#owasp-top-10-2021)
 + [Penetration Testing](#penetration-testing)
++ Web Hacking
+    + [Walking an Application](#walking-an-application)
+    + [Content Discovery](#content-discovery)
+    + [Subdomain Enumeration](#subdomain-enumeration-1)
+    + [Authentication Bypass](#authentication-bypass)
+    + Vulnerabilities
+        + [IDOR](#idor)
+        + [File Inclusion](#file-inclusion)
+        + [SSRF](#ssrf)
+        + [XSS](#xss)
+        + [Command Injection/RCE](#command-injection--rce)
+        + [SQLi](#sqli)
 ### Offensive Security Tools
 + [Metasploit](#metasploit)
 + [Burp Suite](#burp-suite)
