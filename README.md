@@ -2918,3 +2918,78 @@ Note: it is still possible to abuse the logic behind these filter (e.g. using he
 
 ## SQLi
 *SQL injections (SQLi)* is an attack against an application's database server, which causes malicious queries to be executed. 
+
+### In-Band SQLi
+In-Band means that the same method of communication used to exploit the vulnerability also receives the result (e.g. discovering an injection and extracting data from the same page). These injections are easier to detect and exploit.
+
+#### Error-Based SQLi
+Useful for obtaining information about a database structure. Error messages are printed directly to the browser screen, which can be used to enumerate a whole database.
+
+The key to discovering these is to break the SQL query by adding certain characters until an error message is produced (e.g. ' or ")
+
+#### Union-Based SQLi
+Utilises UNION with SELECT to return additional results. This can be used to extract large amounts of data.
+
+### Blind SQLi
+These injections do not show results of the attack on the screen (i.e. little to no feedback). 
+
+#### Authentication Bypass
+This entails just getting past the login page (i.e. not retrieving data from database). Login forms usually just check whether a username and password match, which then returns a true/false reply.
+
+E.g. Forcing a query to return true using 1=1
+```
+select * from users where username='' and password='' OR 1=1;
+```
+
+#### Boolean-Based
+These injections refer to boolean responses received from injection attempts. Outcomes confirm whether the SQLi is successful. 
+
+Example process using:
+```
+select * from users where username = '%username%' LIMIT 1;
+```
+1. Add arbitrary parameter then attempt a force true
+```
+admin123' UNION SELECT 1;--
+```
+2. Try another value for columns
+```
+admin123' UNION SELECT 1,2,3;--
+```
+3. Trial and error to enumerate databases
+```
+admin123' UNION SELECT 1,2,3 where database() like 's%';--
+```
+4. Trial and error to enumerate tables
+```
+admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name like 'a%';--
+```
+5. Trial and error to enumerate columns
+```
+admin123' UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='sqli_three' and TABLE_NAME='users' and COLUMN_NAME like 'a%';
+```
+6. Trial and error to enumerate usernames
+```
+admin123' UNION SELECT 1,2,3 from users where username like 'a%
+```
+7. Trial and error to enumerate passwords
+```
+admin123' UNION SELECT 1,2,3 from users where username='admin' and password like 'a%
+```
+
+#### Time-Based
+These are similar to boolean-based injections but only provides feedback based on the time the query takes to complete. This is done using the SLEEP method, which is only executed upon a successful query.
+
+E.g. Database enumeration attempt; 5 second wait if successful
+```
+admin123' UNION SELECT SLEEP(5),2 where database() like 'u%';--
+```
+
+### Out-of-Band SQLi
+These attacks are classified by having two different communication channels: first to launch the attack, second to gather results (e.g. attack using web request, data gathered by HTTP/DNS request monitoring).
+
+### Remediation
+There are ways to protect against SQLis:
++ Prepared Statements w/ Parameterised Queries - this is done by writing SQL queries then adding user inputs to parameters afterwards; ensures SQL code structure does not change
++ Input Validation - employing an allow list can restrict input to certain strings; string replacement methods can filter allowed/disallowed characters
++ Escaping User Input - method of prepending a backslash (i.e. \) to input, which causes them to be parsed as regular strings and not as special characters
