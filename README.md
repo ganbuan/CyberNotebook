@@ -1473,6 +1473,19 @@ Note: the Community Edition is rate limited, which makes other fuzzing and brute
 + Pitchfork - utilises one payload set per position and itereates through them simultaneously (i.e. multiple Sniper attacks); useful for conducting credential-stuffing attacks or for multiple positions requiring separate payload sets
 + Cluster Bomb - iterates through multiple payload sets individually, allowing for testing every possible combination; useful for credential brute-forcing when mapping between usernames and passwords is unknown
 
+### Decoder Module
+This module allows encoding and decoding functions, as well as create hashsums of data (i.e. similar to CyberChef).
+
+Note: for hashing, it is customary to convert the hashed output into ASCII hex
+
+### Comparer Module
+This module compares two pieces of data, either by ASCII or by bytes. This is useful for situations where comparing two large pieces of data is needed (e.g. HTTP responses when brute-forcing credentials).
+
+### Sequencer Module
+This module evaluates for entropy (i.e. randomness) of tokens. These tokens can be session cookies or CSRF tokens used in form submissions. 
+
+### Organiser Module
+This module aids in storing and annotiating copies of HTTP requests. This is useful for organising penetration test workflows. Requests are stored in table format.
 
 ## OWASP Top 10 (2021)
 ### 1. Broken Access Control
