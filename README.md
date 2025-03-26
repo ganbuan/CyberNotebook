@@ -616,7 +616,7 @@ For controlling report output:
 + **-oG [file_name]**: grep-able output (i.e. for **grep** and **awk**)
 + **-oA [base_name]**: output in all major formats
 
-## Network Security
+## Networking Security
 ## Passive Reconnaissance
 Passive reconnaissance refers to the use of publicly available resources to gain knowledge about a target. This is done without direct engagement.
 
