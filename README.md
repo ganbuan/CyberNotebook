@@ -613,6 +613,65 @@ For controlling report output:
 + **-oG [file_name]**: grep-able output (i.e. for **grep** and **awk**)
 + **-oA [base_name]**: output in all major formats
 
+## Network Security
+## Passive Reconnaissance
+Passive reconnaissance refers to the use of publicly available resources to gain knowledge about a target. This is done without direct engagement.
+
+Examples of passive recon activities include:
++ Looking up DNS records of a domain from a public DNS server
++ Checking job ads related to the target website
++ Reading news articles about a target company
+
+### E.g. WHOIS
+A WHOIS server listens on TCP port 43 for incoming requests. It replies with various information related to the domain requested, such as:
++ Which registrar was the domain name registered
++ Contact information of registrant
++ Creation, update, and expiration date
++ Which server to ask to resolve the domain name
+
+**whois [domain_name]**: lookup a domain's WHOIS record
+
+Note: information collected can lead to new attack surfaces (e.g. social engineering, technical attacks)
+
+### E.g. nslookup
+This protocol can be used to retrieve IP addresses and related information.
+
+**nslookup [type] [domain_name]**: query a domain name 
+
+The following query types can be retrieved:
+
+| Query | Result |
+| :------: | :-----: |
+| A | IPv4 addresses |
+| AAAA | IPv6 addresses |
+| CNAME | Canonical name |
+| MX | Mail servers |
+| SOA | Start of authority |
+| TXT | TXT records |
+
+e.g. 
+```
+nslookup -type=A tryhackme.com 1.1.1.1
+```
+
+### E.g. dig
+Similar to nslookup, the Domain Information Groper (dig) command allows for more advanced DNS queries.
+
+**dig [domain_name] [type]**: query a domain name
+
+e.g. 
+```
+dig @1.1.1.1 tryhackme.com MX
+```
+
+## Active Reconnaissance
+Active reconnaissance requires direct engagement with a target.
+
+Examples of active recon activities include:
++ Connecting to company servers (e.g. HTTP, FTP, SMTP)
++ Calling the company in an attempt to gain information (i.e. social engineering)
++ Entering company premises pretending to be an employee
+
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
 
