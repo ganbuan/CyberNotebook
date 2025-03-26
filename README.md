@@ -1458,6 +1458,22 @@ Though limited, Burp Suite Community provides key features such as:
 + Comparer - enables comparison of two pieces of data at either the word or byte level
 + Sequencer - employed for assessing the randomness of tokens (e.g. session cookie values, randomly generated data)
 
+### Repeater Module
+This module allows manipulation and repeated sending of captured requests. Manual creation of request from scratch (i.e. like cURL command) is also possible.
+
+
+### Intruder Module
+This module is a built-in fuzzing tool used for automated request modification and repeated testing with variations in input values. It is useful for brute-forcing login forms using wordlists or to test subdirectories, endpoints, and virtual hosts. It is similar to Wfuzz or ffuf.
+
+Note: the Community Edition is rate limited, which makes other fuzzing and brute-forcing tools more viable
+
+#### Attack Types
++ Sniper - effective for single-position attacks (e.g. password brute-force, fuzzing API endpoints); allows for precise testing and analysis of different payloads
++ Battering Ram - places the same payload in every position simultaneously; useful for testing same payloads against multiple positions without sequential substitution
++ Pitchfork - utilises one payload set per position and itereates through them simultaneously (i.e. multiple Sniper attacks); useful for conducting credential-stuffing attacks or for multiple positions requiring separate payload sets
++ Cluster Bomb - iterates through multiple payload sets individually, allowing for testing every possible combination; useful for credential brute-forcing when mapping between usernames and passwords is unknown
+
+
 ## OWASP Top 10 (2021)
 ### 1. Broken Access Control
 Broken access control allows attackers to bypass authorisation, which gives them access to sensitive data or perform tasks they should not be able to. 
