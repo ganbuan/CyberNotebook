@@ -667,6 +667,9 @@ e.g.
 dig @1.1.1.1 tryhackme.com MX
 ```
 
+### E.g. DNSDumpster
+[DNS Dumpster](https://dnsdumpster.com/) is a free online tool that can discover subdomains as well as other detailed DNS queries. This tool presents the information in easy to read tables. A single query can return IP addresses, geolocation, MX records, TXT records, and listening servers
+
 ## Active Reconnaissance
 Active reconnaissance requires direct engagement with a target.
 
