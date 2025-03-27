@@ -680,12 +680,59 @@ Information provided include:
 + Server type and version
 
 ## Active Reconnaissance
-Active reconnaissance requires direct engagement with a target.
+Active reconnaissance requires direct engagement with a target. 
 
 Examples of active recon activities include:
 + Connecting to company servers (e.g. HTTP, FTP, SMTP)
 + Calling the company in an attempt to gain information (i.e. social engineering)
 + Entering company premises pretending to be an employee
+
+### E.g. Web Browser
+By default, TCP port 80 and 443 are used by browsers to connect to a web server. 
+
+Developer tools are useful to inspect web assets such as JS files, cookies, and directory structure of a site. Additionally, addons can aid in pentesting. These include:
++ [FoxyProxy](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/) - allows changing proxy servers used; useful when using Burp Suite
++ [User-Agent Switcher & Manager](https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher) - allows webpage access while pretending to be a different OS/browser
++ [Wappalyzer](https://addons.mozilla.org/en-US/firefox/addon/wappalyzer) - provides information about technologies used by a website
+
+### E.g. Ping
+Ping can be used to check whether a remote system is online. 
+```
+ping [MACHINE_IP/Hostname]
+```
+
+Failed pings may indicate the following:
++ Destination machine is unresponsive (i.e. turned off, booting up)
++ Destination machine is unplugged from network
++ Firewall is blocking packets
++ Attacking machine is unplugged from network
+
+### E.g. Traceroute
+This command follows the route taken by packets from a source system to another host. 
+```
+traceroute [MACHINE_IP] or tracert [MACHINE_IP]
+```
+
+### E.g. Telnet
+This command can be used to connect to any service and grab its banner. 
+```
+telnet [MACHINE_IP PORT]
+```
+
+### E.g. Netcat
+Netcat can be used to act as a client or listener server on a port of your choice. 
+
+To connect to a server:
+```
+nc [MACHINE_IP] [PORT]
+GET / HTTP/1.1
+host: [host_name]
+```
+
+To act as a listener server:
+```
+nc -lvnp PORT_NUMBER
+```
 
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
