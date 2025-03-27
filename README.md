@@ -16,6 +16,8 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 ### Networking Security
 + [Passive Reconnaissance](#passive-reconnaissance)
 + [Active Reconnsaissance](#active-reconnaissance)
+    + Network Scanning
+        + [NMAP Live Host Discovery](#nmap-live-host-discovery)
 ### Cryptography/Hashing Fundamentals
 + [Cryptography](#cryptography)
 + [Hashing](#hashing)
