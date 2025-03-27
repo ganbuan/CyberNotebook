@@ -748,7 +748,7 @@ Using nmap, a scan usually follows the steps below:
 8. Scripts
 9. Write output
 
-### NMAP Live Host Discovery
+### nmap Live Host Discovery
 This section aims to answer the question: which systems are up?
 
 A summary of nmap commands:
@@ -773,6 +773,36 @@ Other options:
 | -n | No DNS lookup |
 | -R | Reverse-DNS lookup for all hosts |
 | -sn | Host discovery only |
+
+### nmap Basic Port Scanning
+With nmap, ports can be in the following states:
++ Open - a service is listening on the port
++ Closed - no service is listening on the port; port is accessible
++ Filtered - cannot determine if port is open/closed; port is inaccessible
++ Unfiltered - cannot determine if port is open/closed; port is accessible; encountered with ACK scans (i.e. **-sA**)
++ Open|Filtered - cannot determine whether the port is open or filtered
++ Closed|Filtered - cannot determine whether a port is closed or filtered
+
+A summary of nmap commands:
+
+| Scan Type | Command |
+| :------: | :-----: |
+| TCP Connect | nmap -sT [MACHINE_IP] |
+| TCP SYN | sudo nmap -sS [MACHINE_IP] |
+| UDP | sudo nmap -sU [MACHINE_IP] |
+
+Other options:
+
+| Option | Purpose |
+| :------: | :-----: |
+| -p- | All ports |
+| -p1-1023 | Scan ports 1 to 1023 |
+| -F | 100 most common ports |
+| -r | Scan ports in consecutive order |
+| -T<0-5> | Intensity; -T0 is slowest, -T5 is fastest |
+| --max-rate 50 | rate <= 50 packets/sec |
+| --min-rate 15 | rate >= 15 packets/sec |
+| --min-parallelism 100 | At least 100 probes in parallel |
 
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
