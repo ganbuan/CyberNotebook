@@ -670,6 +670,15 @@ dig @1.1.1.1 tryhackme.com MX
 ### E.g. DNSDumpster
 [DNS Dumpster](https://dnsdumpster.com/) is a free online tool that can discover subdomains as well as other detailed DNS queries. This tool presents the information in easy to read tables. A single query can return IP addresses, geolocation, MX records, TXT records, and listening servers
 
+### E.g. Shodan.io
+[Shodan.io](https://www.shodan.io/) is a search engine for connected devices. This can be useful to learn information about a target network or learn about exposed devices.
+
+Information provided include:
++ IP address
++ Hosting company
++ Geographic location
++ Server type and version
+
 ## Active Reconnaissance
 Active reconnaissance requires direct engagement with a target.
 
