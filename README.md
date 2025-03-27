@@ -734,6 +734,44 @@ To act as a listener server:
 nc -lvnp PORT_NUMBER
 ```
 
+### Network Scanning
+Using nmap, a scan usually follows the steps below:
+1. Enumerate targets
+2. Discover live hosts
+3. Reverse-DNS lookup
+4. Scan ports
+5. Detect versions
+6. Detect OS
+7. Traceroute
+8. Scripts
+9. Write output
+
+### NMAP Live Host Discovery
+This section aims to answer the question: which systems are up?
+
+A summary of nmap commands:
+
+| Scan Type | Command |
+| :------: | :-----: |
+| ARP | sudo nmap -PR -sn [MACHINE_IP/24] |
+| ICMP Echo| sudo nmap -PE -sn [MACHINE_IP/24] |
+| ICMP Timestamp | sudo nmap -PP -sn [MACHINE_IP/24] |
+| ICMP Address Mask | sudo nmap -PM -sn [MACHINE_IP/24] |
+| TCP SYN Ping | sudo nmap -PS22,80,443 -sn [MACHINE_IP/30] |
+| TCP ACK Ping | sudo nmap -PA22,80,443 -sn [MACHINE_IP/30] |
+| UDP Ping | sudo nmap -PU53,161,162 -sn [MACHINE_IP/30] |
+| Masscan | masscan [MACHINE_IP/24] -p[PORT_NUM] |
+
+Note: add **-sn** for host discovery without port-scanning
+
+Other options:
+
+| Option | Purpose |
+| :------: | :-----: |
+| -n | No DNS lookup |
+| -R | Reverse-DNS lookup for all hosts |
+| -sn | Host discovery only |
+
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
 
