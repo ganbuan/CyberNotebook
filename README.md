@@ -834,6 +834,21 @@ These scans can be used to discover and map firewall rules:
 | TCP Window | sudo nmap -sW [MACHINE_IP] |
 | Custom TCP | sudo nmap --scanflags URGACKPSHRSTSYNFIN [MACHINE_IP] |
 
+These commands allow scanning using spoofed IP/MAC addresses:
+
+| Scan Type | Command |
+| :------: | :-----: |
+| Spoofed Source IP | sudo nmap -S [SPOOFED_IP] [MACHINE_IP] |
+| Spoofed MAC Address | -spoof-mac [SPOOFED_MAC] |
+
+Note: spoofed MAC addresses only work if the attacking and target machines are in the same network; for these attacks to work, monitoring network traffic is needed
+
+These commands allow the use of decoy IP addresses:
+
+| Scan Type | Command |
+| :------: | :-----: |
+| Decoy | nmap -D [DECOY_IP],ME [MACHINE_IP] |
+
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
 
