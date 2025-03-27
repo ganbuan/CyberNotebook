@@ -805,6 +805,35 @@ Other options:
 | --min-rate 15 | rate >= 15 packets/sec |
 | --min-parallelism 100 | At least 100 probes in parallel |
 
+### nmap Advanced Port Scanning
+Some scans with specific flags can be useful against specific systems.
+
+The following scans can be used for targets behind a stateless firewall:
+
+| Scan Type | Command |
+| :------: | :-----: |
+| TCP Null | sudo nmap -sN [MACHINE_IP] |
+| TCP FIN | sudo nmap -sF [MACHINE_IP] |
+| TCP Xmas (i.e. FIN, PSH, URG) | sudo nmap -sX [MACHINE_IP] |
+
+Using a flag combination that does not match the SYN packet can possibly deceive these firewalls. Note: stateful firewalls will block all of these packets.
+
+The Maimon scan is simply an honorable mention: 
+
+| Scan Type | Command |
+| :------: | :-----: |
+| TCP Maimon | sudo nmap -sM [MACHINE_IP] |
+
+Note: this scan will not work in most modern networks
+
+These scans can be used to discover and map firewall rules:
+
+| Scan Type | Command |
+| :------: | :-----: |
+| TCP ACK | sudo nmap -sA [MACHINE_IP] |
+| TCP Window | sudo nmap -sW [MACHINE_IP] |
+| Custom TCP | sudo nmap --scanflags URGACKPSHRSTSYNFIN [MACHINE_IP] |
+
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
 
