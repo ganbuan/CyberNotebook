@@ -736,7 +736,7 @@ To act as a listener server:
 nc -lvnp PORT_NUMBER
 ```
 
-### Network Scanning
+## Network Scanning
 Using nmap, a scan usually follows the steps below:
 1. Enumerate targets
 2. Discover live hosts
