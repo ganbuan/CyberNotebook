@@ -16,7 +16,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 ### Networking Security
 + [Passive Reconnaissance](#passive-reconnaissance)
 + [Active Reconnsaissance](#active-reconnaissance)
-    + Network Scanning
+    + [Network Scanning](#network-scanning)
         + [nmap Live Host Discovery](#nmap-live-host-discovery)
         + [nmap Basic Port Scanning](#nmap-basic-port-scanning)
         + [nmap Advanced Port Scanning](#nmap-advanced-port-scanning)
@@ -742,9 +742,12 @@ nc -lvnp PORT_NUMBER
 ## Network Scanning
 Using nmap, a scan usually follows the steps below:
 1. Enumerate targets
+Live Host Discovery
 2. Discover live hosts
 3. Reverse-DNS lookup
+Port Scanning
 4. Scan ports
+Post Port Scanning
 5. Detect versions
 6. Detect OS
 7. Traceroute
