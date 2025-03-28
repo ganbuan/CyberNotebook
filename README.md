@@ -742,15 +742,9 @@ nc -lvnp PORT_NUMBER
 ## Network Scanning
 Using nmap, a scan usually follows the steps below:
 1. Enumerate targets
-
-Live Host Discovery
 2. Discover live hosts
 3. Reverse-DNS lookup
-
-Port Scanning
 4. Scan ports
-
-Post Port Scanning
 5. Detect versions
 6. Detect OS
 7. Traceroute
