@@ -808,7 +808,7 @@ Other options:
 ### nmap Advanced Port Scanning
 Some scans with specific flags can be useful against specific systems.
 
-The following scans can be used for targets behind a stateless firewall:
+The following scans can be used for *targets behind a stateless firewall*:
 
 | Scan Type | Command |
 | :------: | :-----: |
@@ -818,7 +818,7 @@ The following scans can be used for targets behind a stateless firewall:
 
 Using a flag combination that does not match the SYN packet can possibly deceive these firewalls. Note: stateful firewalls will block all of these packets.
 
-The Maimon scan is simply an honorable mention: 
+The *Maimon scan* is simply an honorable mention: 
 
 | Scan Type | Command |
 | :------: | :-----: |
@@ -826,7 +826,7 @@ The Maimon scan is simply an honorable mention:
 
 Note: this scan will not work in most modern networks
 
-These scans can be used to discover and map firewall rules:
+These scans can be used *to discover and map firewall rules*:
 
 | Scan Type | Command |
 | :------: | :-----: |
@@ -834,20 +834,93 @@ These scans can be used to discover and map firewall rules:
 | TCP Window | sudo nmap -sW [MACHINE_IP] |
 | Custom TCP | sudo nmap --scanflags URGACKPSHRSTSYNFIN [MACHINE_IP] |
 
-These commands allow scanning using spoofed IP/MAC addresses:
+These commands allow scanning *using spoofed IP/MAC addresses*:
 
 | Scan Type | Command |
 | :------: | :-----: |
 | Spoofed Source IP | sudo nmap -S [SPOOFED_IP] [MACHINE_IP] |
-| Spoofed MAC Address | -spoof-mac [SPOOFED_MAC] |
+| Spoofed MAC Address | --spoof-mac [SPOOFED_MAC] |
 
 Note: spoofed MAC addresses only work if the attacking and target machines are in the same network; for these attacks to work, monitoring network traffic is needed
 
-These commands allow the use of decoy IP addresses:
+These commands allow the use of *decoy IP addresses*:
 
 | Scan Type | Command |
 | :------: | :-----: |
 | Decoy | nmap -D [DECOY_IP],ME [MACHINE_IP] |
+
+*Idle/zombie scans* are a variation of spoofed IP addresses, using an idlze host to receive responses. The commands are as follows:
+
+| Scan Type | Command |
+| :------: | :-----: |
+| Idle/zombie | sudo nmap -sI [ZOMBIE_IP] [MACHINE_IP] |
+
+The key is to note the IP IDs, particularly the RST packets:
++ If the difference is 1, that means the port is closed. 
++ If the difference is 2, it means the port is open.
++ If there is no difference, a firewall may have blocked transmission
+
+Note: this is useless if the host is busy (i.e. not idle)
+
+Dividing or *fragmenting packets* into smaller sizes can help maneuver firewalls/IDSs. The following options achieve this:
+
+| Option | Command |
+| :------: | :-----: |
+| Fragment into 8 bytes | -f |
+| Fragment into 16 bytes | -ff |
+
+Other useful options include:
+
+| Option | Command |
+| :------: | :-----: |
+| --reason | Explains how conclusion is made |
+| -v | Verbose |
+| -vv | Very verbose |
+| -d | Debugging |
+| -dd | Debugging more details |
+
+### nmap Post Port Scanning
+These steps follow port scanning, particularly service detection, OS detection, nmap scripting engine, and saving scan outputs.
+
+These options probe for *running services in available ports*:
+
+| Option | Command |
+| :------: | :-----: |
+| -sV | Determine service/version on open ports |
+| -sV --version-light | Probe intensity 2 |
+| -sV --version-all | Probe intensity 9 |
+
+This option *detects OS*:
+
+| Option | Command |
+| :------: | :-----: |
+| -O | Detect OS |
+
+Note: OS fingerprints may get distorted due to virtualisation; do not trust completely
+
+This option *runs traceroute*:
+
+| Option | Command |
+| :------: | :-----: |
+| --traceroute | Run traceroute to target system |
+
+Use these options to *run scripts*:
+
+| Option | Command |
+| :------: | :-----: |
+| --scripts=[SCRIPT] | Run defined scripts |
+| -sC or --scripts=default | Run default scripts |
+
+Note: **-A** can be used to combine **-sV -O -sC --traceroute**
+
+Use these options to *control output*:
+
+| Option | Command |
+| :------: | :-----: |
+| -oN | Save output in normal format |
+| -oG | Save output in grepable format |
+| -oX | Save output in XML format |
+| -oA | Save output in normal, grepable, and XML formats |
 
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
