@@ -372,6 +372,13 @@ The *Teletype Network (TELNET)* protocol allows connection and communication wit
 
 **telnet [ip_address] [port_num]**: connects to a target machine at a specific port
 
+E.g. Connect to webserver
+```
+telnet [MACHINE_IP] 80
+GET /index.html HTTP/1.1
+host: telnet
+```
+
 ### DNS
 (Remembering Addresses)
 
@@ -406,6 +413,13 @@ A *WHOIS* record provides information about the entity that registered a domain 
 
 *HyperText Transfer Protocol (HTTP)* is the set of rules used for communicating with web servers for the transmition of webpage data (e.g. HTML, images, videos, etc)
 
+Popular HTTP servers include:
++ Apache
++ Internet Information Services (IIS)
++ nginx
+
+Note: Apache and Nginx are open-source, while IIS requires a paid license
+
 *Cookies* are small pieces of data that is stored on your computer. As HTTP request is stateless (i.e. does not keep track of previous requests), cookies can be used to remind the web server information about you, your settings, or whether you have been to the website before.
 
 ### FTP
@@ -426,7 +440,7 @@ FTP server listens on TCP port 21 by default. Data transfer is conducted via ano
 ### SMTP
 (Sending Email)
 
-*Simple Mail Transfer Protocol (SMTP)* defines how a mail client communicates with a mail server and how a mail server communicates with another.
+*Simple Mail Transfer Protocol (SMTP)* defines how a mail client communicates with a mail server and how a mail server communicates with another. Particularly, SMTP communicates with a Mail Transfer Agent (MTA) (i.e. sending email).
 
 Example SMTP commands used by the mail client to the SMTP server:
 + HELO/EHLO - initiates an SMTP session
@@ -440,7 +454,7 @@ The SMTP server listens on TCP port 25 by default.
 ### POP3
 (Receiving Email)
 
-The *Post Office Protocol v3 (POP3)* allows the client to communicate with a mail server to retrieve email messages.
+The *Post Office Protocol v3 (POP3)* allows the client to communicate with a mail server to retrieve email messages. Particularly, POP3 interacts with the Mail Deliver Agent (MDA) (i.e. downloading email).
 
 Some common POP3 commands include:
 + USER [username] - identifies the user
@@ -456,7 +470,7 @@ The POP3 server listens on TCP port 110 by default.
 ### IMAP
 (Syncrhonising Email)
 
-The *Internet Message Access Protocol (IMAP)* allows synchronising read, moved, and deleted messages. This is particularly useful for checking emails via multiple clients. As an effect, IMAP tends to use more storage as emails are kept on the server to be syncrhonised across the email clients.
+The *Internet Message Access Protocol (IMAP)* allows synchronising read, moved, and deleted messages. This is particularly useful for checking emails via multiple clients. As an effect, IMAP tends to use more storage as emails are kept on the server to be synchronised across the email clients.
 
 Some example of IMAP protocol commands include:
 + LOGIN [username] [password] - authenticates the user
@@ -469,7 +483,11 @@ The IMAP server listens on TCP port 143 by default.
 
 ## Networking Secure Protocols
 ### TLS
-*Transport Layer Security (TLS)* is a cryptographic protocol operating at the transport layer, which allows secure communication between a client and a server over an insecure network. TLS ensures that no one can read or modify the exchanged data. *Secure Sockets Layer (SSL)* is the precursor to TLS.
+*Transport Layer Security (TLS)* is a cryptographic protocol operating at the transport layer, which allows secure communication between a client and a server over an insecure network. TLS ensures that no one can read or modify the exchanged data. Note: modern servers can be expected to be using TLS
+
+*Secure Sockets Layer (SSL)* is the precursor to TLS. Note: TLS is more secure
+
+SSL and TLS can be added in the presentation layer.
 
 TLS revolves around the use of signed TLS certificates. The process is as follows:
 1. Server administrator submits a Certificate Signing Request (CSR) to a Certificate Authority (CA).
@@ -924,6 +942,36 @@ Use these options to *control output*:
 | -oX | Save output in XML format |
 | -oA | Save output in normal, grepable, and XML formats |
 
+## Network Attacks
+### Sniffing
+*Sniffing* occurs when network packets are captured to collect information about a target. This occurs when data is exchanged in cleartext.
+
+Note: this attack requires access to network traffic (e.g. via wiretap, switch with port mirroring)
+
+Tools that can be used for this attack include:
++ Tcpdump - open source CLI program that works on many OSes
++ Wireshark - open source GUI program
++ Tshark - CLI alternative to Wireshark
+
+E.g. tcpdump to sniff POP3
+```
+sudo tcpdump port 110 -A
+```
+
+Mitigation include:
++ Adding an encryption layer on top of network protocols (e.g. TLS, SSH instead of telnet)
+
+### Man-in-the-Middle (MITM)
+*MITM* attacks occur when a target system believes they are communicating with a legitimate destination but in reality is an attacker. This occurs when the two parties do not confirm authenticity and integrity of messages. 
+
+Tools that can be used for this attack include:
++ [Ettercap](https://www.ettercap-project.org/)
++ [Bettercap](https://www.bettercap.org/)
+
+Mitigation include:
++ Proper authentication (i.e. PKI) 
++ Encryption (i.e. TLS)
++ Signing of exchanged messages (e.g. trusted root certificates)
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
 
