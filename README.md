@@ -2511,6 +2511,7 @@ sudo snort -q -l /var/log/snort -r Task.pcap -A console -c /etc/snort/snort.conf
 ```
 
 ## Vulnerability Scanning
+### Vulnerabilities
 *Vulnerabilities* are weaknesses in software programs or hardware that can be leveraged by attackers. *Patching* is the process of fixing these vulnerabilities.
 
 However, these vulnerabilities must be scanned for. These scans can be categorised into the following:
@@ -2530,11 +2531,26 @@ However, these vulnerabilities must be scanned for. These scans can be categoris
 | Focuses on vulnerabilities to be exploited inside the network | Focuses on vulnerabilities to be exploited from outside the network |
 | Identifies vulnerabilities once an attacker gets inside a network | Identifies vulnerabilities for attackers outside the network |
 
-Some vulnerability scanning tools include:
+### Vulnerability Research
+Some automated ulnerability scanning tools include:
 + [Nessus](https://www.tenable.com/products/nessus) - provides extensive vulnerability scanning options for large enterprises; has both free and paid versions
 + [Qualys](https://www.qualys.com/) - provides compliance checks and asset management along with continuous scanning; cloud-based
 + [Nexpose](https://www.rapid7.com/products/nexpose/) - continuously discovers new network assets, scans them, and provides a vulnerability risk score; also provides compliance checks; offers on-premises and hybrid (i.e. cloud + on-premises) deployment
 + [OpenVAS](https://www.openvas.org/) - offers basic features with known vulnerabilities scanned through its database; less extensive but is beneficial for small organisations and invidivudal systems
+
+Manual scanning involves using the same techniques as automated scans. These involve testing for the following:
+
+| Vulnerability | Description |
+| :------: | :-----: |
+| Security Misconfigurations | Due to developer oversigh (e.g. exposing server information) |
+| Broken Access Control | Attackers can access confidential parts |
+| Insecure Deserialisation | Insecure processing of data sent across applications (e.g. passing malicious code) |
+| Injection | Attackers input malicious data into applications |
+
+Other useful tools include:
++ [Rapid7](https://www.rapid7.com/db/) - vulnerability research database; contains instructions for exploiting applications using Metasploit
++ Github - useful for finding PoCs and fresh exploits
++ Searchsploit - offline copy of Exploit-Db; available in Kali Linux
 
 ### CVE
 *Common Vulnerabilities and Exposures (CVE)* is a unique identifier given to software vulnerabilities. Developed by the MITRE Corporation, these CVE numbers are published online in a database. 
