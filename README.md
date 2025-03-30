@@ -21,6 +21,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
         + [nmap Basic Port Scanning](#nmap-basic-port-scanning)
         + [nmap Advanced Port Scanning](#nmap-advanced-port-scanning)
         + [nmap Post Port Scanning](#nmap-post-port-scanning)
++ [Network Attacks](#network-attacks)
 ### Cryptography/Hashing Fundamentals
 + [Cryptography](#cryptography)
 + [Hashing](#hashing)
@@ -972,6 +973,13 @@ Mitigation include:
 + Proper authentication (i.e. PKI) 
 + Encryption (i.e. TLS)
 + Signing of exchanged messages (e.g. trusted root certificates)
+
+### Password Attack
+Attacks against passwords attempt to bypass authentication. These are usually done by:
++ Password Guessing - requires knowledge of the target (e.g. pet's name, DoB)
++ Dictionary Attack - use of a wordlist or dictionary
++ Brute Force Attack - trying all possible character combinations
+
 ## Cryptography
 Cryptography is used to protect confidentiality, integrity, and authenticity. It is the practice and study of techniques for secure communication and data protection where we expect the presence of adversaries and third parties.
 
@@ -1927,7 +1935,7 @@ SSRF can be used further to:
 ### Commands
 Hydra commands follow the following syntax:
 
-**hydra -l [user] -P [passlist.txt] [MACHINE_IP]**
+**hydra -l [user] -P [passlist.txt] [MACHINE_IP] [SERVICE]**
 
 Example SSH
 
@@ -1935,9 +1943,10 @@ Example SSH
 
 | Option | Description |
 | :------: | :-----: |
-| -l | specifies the username for login |
-| -P | indicates a list of passwords |
-| -t | sets the number of threads to spawn |
+| -l [USERNAME] | specifies the username for login |
+| -P [FILE_PATH] | indicates a list of passwords |
+| -t [NUM] | sets the number of threads to spawn |
+| -s [PORT_NUM] | sets the number of threads to spawn |
 
 Example Post Web Form
 
@@ -2546,6 +2555,23 @@ A summary of scores is as follows:
 | 4.0 to 6.9 | Medium |
 | 7.0 to 8.9 | High |
 | 9.0 to 10 | Critical |
+
+### VPR 
+*Vulnerability Priority Rating (VPR) gives a score with a heavy focus on the risk of a vulnerability pertaining to the organisation itself, rather than impact (i.e. different from CVSS). This considers relevancy (i.e. no risk if not applicable).
+
+Score ranges are as follows:
+
+| VPR Score| Rating |
+| :------: | :-----: |
+| 0.0 to 3.9 | Low |
+| 4.0 to 6.9 | Medium |
+| 7.0 to 8.9 | High |
+| 9.0 to 10 | Critical |
+
+### Vulnerability Databases
+These are some resources that keep track of vulnerabilities:
++ [National Vulnerability Database (NVD)](https://nvd.nist.gov/)
++ [Exploit-DB](https://www.exploit-db.com/)
 
 ### E.g. Scanning w/ OpenVAS
 Install OpenVAS using Docker.
