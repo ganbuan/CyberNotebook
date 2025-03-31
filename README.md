@@ -53,7 +53,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 + [Hydra](#hydra)
 + [Gobuster](#gobuster)
 + [Shells](#shells)
-    +[Shell Payloads](#shell-payloads)
+    + [Shell Payloads](#shell-payloads)
 + [SQLMap](#sqlmap)
 ### Defensive Security Concepts
 + [SOC](#soc)
