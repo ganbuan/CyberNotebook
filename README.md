@@ -48,7 +48,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
         + [Command Injection/RCE](#command-injection--rce)
         + [SQLi](#sqli)
 + [Privilege Escalation](#privilege-escalation)
-    + [Tools](#tools)
+    + [Shell Tools](#shell-tools)
 ### Offensive Security Tools
 + [Metasploit](#metasploit)
 + [Burp Suite](#burp-suite)
@@ -3428,7 +3428,17 @@ There are ways to protect against SQLis:
 + Escaping User Input - method of prepending a backslash (i.e. \) to input, which causes them to be parsed as regular strings and not as special characters
 
 ## Privilege Escalation
-## Tools
+*Privilege escalation* is the act of gaining access to a higher permission account from a lower one. It involves exploitation of a vulnerability, design flaw, or configuration oversight.
+
+Gaining higher privileges allows:
++ Password resetting
++ Bypassing access controls
++ Editing software configurations
++ Enabling persistence
++ Changing privileges of existing/new users
++ Executing administrative commands
+
+## Shell Tools
 ### Netcat
 Starting a netcat listener for Linux
 ```
@@ -3626,3 +3636,47 @@ or
 net localgroup administrators <username> /add
 ```
 
+## Linux Privilege Escalation
+### Enumeration
+These commands and directories are commonly used:
+
+| Command | Description |
+| :------: | :-----: |
+| hostname | returns hostname of target machine |
+| uname -a | prints system information (i.e. kernel) |
+| /proc/version | returns information about processes; kernel version and presence of compiler (e.g. GCC) |
+| /etc/issue | returns information about OS |
+| ps | shows running processes |
+| env | shows environmental variables (e.g. PATH contains Python) |
+| sudo -l | lists all commands the user can run using sudo |
+| ls -la | show files, including secret files |
+| id | overview of user's privilege level and group memberships |
+| /etc/passwd | can show users |
+| history | may include stored information (e.g. credentials) |
+| ifconfig | provides information on network interfaces |
+| netstat | provides information on existing connections |
+| find | search target system for information |
+
+Several tools can automate this process:
++ [LinPeas](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS)
++ [LinEnum](https://github.com/rebootuser/LinEnum)
++ [Linux Exploit Suggester (LES)](https://github.com/mzet-/linux-exploit-suggester)
++ [Linux Smart Enumeration](https://github.com/diego-treitos/linux-smart-enumeration)
++ [Linux Priv Checker](https://github.com/linted/linuxprivchecker)
+
+### Kernel Exploits
+Privilege escalation can be achieved by exploiting an existing kernel vulnerability. 
+
+This exploit methodology is as follows:
+1. Identify kernel version
+2. Search and find exploit code for kernel version
+3. Run exploit
+
+Note: failed kernel exploits can lead to system crashes; important to ensure acceptable scope of pentest
+
+Research sources may include Google, Exploit-db, searchsploit.
+
+Exploit code can be transferred to the target system using *SimpleHTTPServer* Python module and *wget*.
+
+### Sudo
+A user can check its root privileges using *sudo -l*.
