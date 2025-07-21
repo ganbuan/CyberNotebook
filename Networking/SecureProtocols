@@ -1,0 +1,103 @@
+# 🔐 Networking Secure Protocols
+
+## 🔒 TLS (Transport Layer Security)
+Think of TLS as **a sealed envelope** delivered by a trusted courier—nobody can peek inside or change the contents without detection.
+
+- Cryptographic protocol operating at the **transport layer**
+- Secures client–server communication over insecure networks
+- Replaced **SSL (Secure Sockets Layer)**—which is like the outdated lock you’ve replaced with a smart deadbolt
+- TLS can be added at the **presentation layer** too
+
+**TLS Certificate Process** *(Think of a passport issued by a trusted government authority):*
+1. Server submits a **Certificate Signing Request (CSR)** to a **Certificate Authority (CA)**
+2. CA verifies and issues a **digital certificate**
+3. Signed certificate identifies the server/client to others, confirming validity via trusted CAs installed on hosts
+
+### 🔧 Common Secure Protocols and Ports
+
+\| Protocol \| Port \|
+\|----------\|------\|
+\| HTTPS    \| 443  \|
+\| SMTPS    \| 465/587 \|
+\| POP3S    \| 995  \|
+\| IMAPS    \| 993  \|
+\| SSH      \| 22   \|
+
+---
+
+## 🛡️ SSH (Secure Shell)
+Imagine SSH as **a secure tunnel through a mountain**, shielding your walk from prying eyes and bandits.
+
+- Replaces insecure Telnet
+- Based on **OpenSSH** libraries
+- Benefits:
+  - **Authentication**: password, public key, 2FA
+  - **Confidentiality**: encrypted traffic with MitM protection
+  - **Integrity**: tamper-proof communication
+  - **Tunneling**: reroutes other protocols securely (like a mini-VPN)
+  - **X11 Forwarding**: enables graphical app use remotely (Unix-like systems)
+
+🔧 Commands:
+\`\`\`bash
+ssh username@hostname        # connect via SSH
+ssh -X username@hostname     # enable GUI forwarding
+\`\`\`
+Port used: `22`
+
+---
+
+## 🌐 HTTPS (HyperText Transfer Protocol Secure)
+Think of HTTPS as **a private phone call**—encrypted so nobody can eavesdrop and verified so you know you’re talking to the right person.
+
+- HTTPS = HTTP + TLS
+- Encrypts requests/responses between browser and server
+- Verifies authenticity of the web server
+
+🧭 HTTPS Request Workflow:
+1. TCP 3-way handshake
+2. TLS session established
+3. Communicate via HTTP protocol (`GET / HTTP/1.1`)
+
+*Without the encryption key, intercepted packets are unreadable gibberish.*
+
+---
+
+## 📧 Secure Email Protocols (SMTPS, POP3S, IMAPS)
+Think of adding TLS to these protocols like **sealing your letters with wax and sending them via a trusted courier**.
+
+- `S` = Secure, by adding TLS encryption
+- Works similarly to HTTPS for email transmission and retrieval
+
+---
+
+## 📁 Secure File Transfer: SFTP vs FTPS
+These are **two secure ways of sending packages**, but with different couriers and procedures.
+
+### 🚄 SFTP (SSH File Transfer Protocol)
+- Built into SSH (uses port `22`)
+- Easier setup with Unix-like commands
+
+\`\`\`bash
+sftp username@hostname
+get file_name     # Download
+put file_name     # Upload
+\`\`\`
+
+### 🚚 FTPS (File Transfer Protocol Secure)
+- Uses TLS (port `990`)
+- Needs certificate setup and firewall accommodations
+- Control and data connections are separate—more complex
+
+---
+
+## 🌐 VPN (Virtual Private Network)
+VPN is like **a private underground tunnel between two houses**, keeping your commute invisible to outsiders.
+
+- Connects devices securely across networks
+- Creates a **virtual private network over the public internet**
+- Encryption ensures confidentiality and authentication
+
+### VPN Types:
+- **PPP**: basic authentication + encryption; non-routable
+- **PPTP**: adds routing capabilities; weaker security
+- **IPSec**: robust encryption using IP protocols; harder to configure but highly secure
