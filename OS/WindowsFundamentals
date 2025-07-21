@@ -1,1 +1,88 @@
+# Windows Fundamentals
 
+## NTFS (New Technology File System)
+
+NTFS is the modern file system used by Windows, replacing older systems like FAT32.
+
+**Benefits:**
+- Supports large files
+- Lets you set **specific permissions** (who can read, write, or control a file)
+- Allows **file/folder compression**
+- Enables **encryption** with *EFS (Encrypting File System)*
+
+**Permissions include:**
+- Full Control
+- Modify
+- Read & Execute
+- List Folder Contents
+- Read
+- Write
+
+🔍 **Alternate Data Streams (ADS):**
+A hidden feature in NTFS that allows files to carry additional, invisible metadata.
+
+---
+
+## Windows\System32
+
+📁 **C:\Windows** is the main Windows directory. Its location can be referenced with the environment variable `%windir%`.
+
+📁 **System32** is a critical subfolder that contains core operating system files—like the heart of Windows.
+
+---
+
+## User Accounts, Profiles & Permissions
+
+👤 **Account Types:**
+- **Administrator**: Full control (can add/remove users, change settings, etc.)
+- **Standard User**: Limited to personal files and settings
+
+🔐 **User Account Control (UAC):**
+Acts like a “security guard”—asks for admin approval before sensitive changes are made.
+
+🛠 Run `lusrmgr.msc` to open **Local Users and Groups Manager** (view/edit user accounts and groups).
+
+---
+
+## MSConfig (System Configuration Utility)
+
+Used for **troubleshooting and customizing Windows startup**.
+
+**Tabs:**
+1. **General** – Choose startup mode (Normal, Diagnostic, Selective)
+2. **Boot** – Control how the OS boots
+3. **Services** – View/start/stop services
+4. **Startup** – Manage startup programs (now linked to Task Manager in newer versions)
+5. **Tools** – Access helpful utilities
+
+**Useful Tools:**
+- Change UAC settings
+- Computer Management (`compmgmt`)
+- System Info (`msinfo32`)
+- Resource Monitor (`resmon`)
+- Command Prompt (`cmd`)
+- Registry Editor (`regedit`): like Windows' internal settings database
+
+---
+
+## Windows Security
+
+🛡️ **Windows Update** – Keeps the OS secure and updated  
+Access it: `control /name Microsoft.WindowsUpdate`
+
+🛡️ **Windows Security App** – Central hub for security settings
+
+**Protection Areas:**
+- **Virus & Threat Protection** – Defender scans, history, ransomware protection
+- **Firewall & Network Protection** – Manage firewall profiles  
+  Open advanced firewall: `WF.msc`
+- **App & Browser Control** – Protects from malicious apps/files
+- **Device Security** – Includes memory isolation, TPM info
+
+💾 **BitLocker** – Encrypts drives for protection, best used with TPM (security chip)
+
+📸 **Volume Shadow Copy Service (VSS)** – Like taking snapshots of your system for backup  
+Stored in the **System Volume Information** folder. Used for:
+- Restore points
+- System restore
+- Deleting old restore points
