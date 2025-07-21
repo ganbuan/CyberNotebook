@@ -1,0 +1,106 @@
+# 🧰 Networking Tools
+
+## 🕵️ Wireshark
+Wireshark is like **a magnifying glass for network traffic**—you don’t change anything, you just look closely at everything zoomed in.
+
+- Open-source **packet analyzer**
+- Inspects **live traffic** and saved **packet captures (PCAP)**
+- Helps with:
+  - Troubleshooting network issues (e.g. congestion, failures)
+  - Spotting anomalies (e.g. rogue hosts, abnormal ports)
+  - Learning protocols (e.g. HTTP response codes, payloads)
+
+⚠️ Not an IDS—Wireshark only **observes packets**, it doesn’t block or modify them.
+
+🧠 Uses OSI layers for packet breakdown:
+
+- **Layer 1 – Frame**: What physical frame you're analyzing
+- **Layer 2 – Source MAC**: MAC address of sender and receiver
+- **Layer 3 – Source IP**: IPv4 source/destination
+- **Layer 4 – Protocol**: Transport info (e.g. TCP, UDP, ports)
+- **Layer 4 – Protocol Errors**: TCP segment reassembly issues
+- **Layer 5 – App Protocol**: e.g. HTTP, FTP, SMB
+- **Layer 5 – App Data**: Specific app-level payloads
+
+---
+
+## 📡 tcpdump
+tcpdump is like **a digital wiretap**, watching packets as they pass through and letting you filter exactly what you want to see.
+
+- CLI-based **packet capture** tool
+- Uses `libpcap` (Unix) or `winpcap` (Windows)
+
+### 🎯 Main Command:
+```
+tcpdump
+```
+
+### 📥 Capture Options:
+- `-i [interface]` – capture on specific network interface  
+- `-w [file_name]` – write capture to file  
+- `-r [file_name]` – read packets from file  
+- `-c [count]` – capture limited number  
+- `-n` – don’t resolve IP addresses  
+- `-nn` – don’t resolve IP or protocol numbers  
+- `-v`, `-vv`, `-vvv` – verbose output  
+
+### 🧪 Filter Options:
+- `host [IP]` – filter by host  
+- `src host [IP]`, `dst host [IP]` – filter by source/destination  
+- `port [port]`, `src port`, `dst port`  
+- `[protocol]` – e.g. ip, ip6, icmp  
+- `greater [length]`, `less [length]`  
+- `[proto[expr:size]]` – reference specific header byte  
+- `[tcp[tcpflags]]` – match TCP flags (SYN, ACK, FIN, etc.)
+
+### 👁️ Display Options:
+- `-q` – brief output  
+- `-e` – show MAC header  
+- `-A` – ASCII output  
+- `-xx` – Hex format  
+- `-X` – Hex & ASCII
+
+---
+
+## 🔍 nmap
+nmap is like **a neighborhood watch drone**—it scans who's home, checks what's running inside, and maps the whole street.
+
+### 🎯 Main Command:
+```
+nmap
+```
+Use `sudo` or root for full feature access
+
+### 🔭 Target Listing:
+- `-sL [subnet]` – list targets without scanning
+
+### 🌐 Host Discovery:
+- `-sn [subnet]` – ping scan for active hosts
+
+### 📦 Port Scanning:
+- `-sT` – TCP connect scan (full handshake)  
+- `-sS` – SYN scan (stealthier)  
+- `-sU` – UDP scan  
+- `-F` – fast mode (top 100 ports)  
+- `-p [range]`, `-p-` – custom/all ports  
+- `-Pn` – scan even if host seems down  
+
+### 🔎 OS/Version Detection:
+- `-O` – Operating system detection  
+- `-sV` – Service/version scan  
+- `-A` – Full scan (OS, version, traceroute etc.)
+
+### ⏱️ Timing Control:
+- `-T[0-5]` – scan speed (0: paranoid → 5: insane)  
+- `--min-parallelism`, `--max-rate` – control probe volume  
+- `--host-timeout` – host time limit
+
+### 📣 Output Control:
+- `-v`, `-vv`, `-vvvv` – verbose levels  
+- `-d`, up to `-d9` – debug levels  
+
+### 📝 Report Output:
+- `-oN [file]` – normal format  
+- `-oX [file]` – XML  
+- `-oG [file]` – grep-friendly  
+- `-oA [base]` – all formats
