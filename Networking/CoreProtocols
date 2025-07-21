@@ -1,0 +1,113 @@
+
+# Networking Core Protocols
+
+| Protocol | Transport Protocol | Default Port # |
+| :------: | :----------------: | :------------: |
+| TELNET   | TCP                | 23             |
+| DNS      | UDP/TCP            | 53             |
+| HTTP     | TCP                | 80             |
+| HTTPS    | TCP                | 443            |
+| FTP      | TCP                | 21             |
+| SMTP     | TCP                | 25             |
+| POP3     | TCP                | 110            |
+| IMAP     | TCP                | 143            |
+
+---
+
+## Telnet
+- Think of Telnet like a remote control for computers via command line.
+- Used for remote access to systems or testing services on TCP ports.
+
+**Example:**  
+```bash
+telnet [IP] 80
+GET /index.html HTTP/1.1
+host: telnet
+```
+
+---
+
+## DNS (Domain Name System)
+- DNS is like the internet’s phonebook. You type a name, and DNS finds the number (IP address).  
+- Breaks down like this:  
+  - **TLD**: `.com` in `example.com`  
+  - **Second-Level Domain**: `example` in `example.com`  
+  - **Subdomain**: `mail` in `mail.example.com`  
+
+### Key Record Types:
+- **A**: IPv4 address  
+- **AAAA**: IPv6 address  
+- **CNAME**: Alias to another domain  
+- **MX**: Mail server  
+- **TXT**: Free text data (often for email verification)
+
+### DNS Process Summary:
+1. Device checks local cache
+2. Recursive DNS server checks its cache
+3. If needed, queries root DNS → TLD DNS → Authoritative DNS
+4. Returns result and caches it
+
+- DNS uses **UDP 53**, and **TCP 53** as fallback.
+
+---
+
+## WHOIS
+- WHOIS tells you **who owns a domain** (name, contact, etc).  
+- Often privacy-protected.
+
+**Command:**  
+```bash
+whois example.com
+```
+
+---
+
+## HTTP (HyperText Transfer Protocol)
+- HTTP is how websites talk to browsers.  
+- Stateless – every request is independent.
+
+**Web servers:** Apache, Nginx (free); IIS (licensed)  
+**Cookies**: Store user/session data across HTTP requests.
+
+---
+
+## FTP (File Transfer Protocol)
+- FTP is used for **transferring files** between systems.  
+- Runs on **TCP port 21**.
+
+**Commands:**  
+- `USER`, `PASS`: login  
+- `RETR`: download  
+- `STOR`: upload  
+
+**Command:**  
+```bash
+ftp [IP address]
+```
+
+---
+
+## SMTP (Simple Mail Transfer Protocol)
+- Used to **send emails** (server-to-server or client-to-server).  
+- Runs on **TCP port 25**.
+
+**Commands:**  
+- `HELO`, `MAIL FROM`, `RCPT TO`, `DATA`, `.` (end of message)
+
+---
+
+## POP3 (Post Office Protocol v3)
+- Downloads emails from server to client, no sync after.  
+- Runs on **TCP port 110**.
+
+**Commands:**  
+- `USER`, `PASS`, `STAT`, `LIST`, `RETR`, `DELE`, `QUIT`
+
+---
+
+## IMAP (Internet Message Access Protocol)
+- Keeps email **in sync across devices**.  
+- Runs on **TCP port 143**.
+
+**Commands:**  
+- `LOGIN`, `SELECT`, `FETCH`, `COPY`, `LOGOUT`
