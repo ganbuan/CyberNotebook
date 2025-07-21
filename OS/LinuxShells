@@ -1,0 +1,69 @@
+# Linux Shells
+
+Linux offers various **shells** — command-line environments that act like interpreters between you and the OS.
+
+🧠 Think of a shell like a **translator** that takes your commands and turns them into actions the computer understands.
+
+---
+
+## Common Shells
+
+You can find out your current shell with:
+```bash
+echo $SHELL
+```
+
+List all installed shells on your system:
+```bash
+cat /etc/shells
+```
+
+To switch shells, just type its name (e.g. `zsh`, `bash`, `fish`).
+
+| Feature | **Bash** | **Fish** | **Zsh** |
+|--------|----------|-----------|---------|
+| Full Name | Bourne Again Shell | Friendly Interactive Shell | Z Shell |
+| Scripting | Widely supported, well-documented | Limited | Bash-like scripting + extra features |
+| Tab Completion | Basic | Smart, built-in | Plugin-extensible |
+| Customization | Basic | Interactive tools | Highly customizable (e.g. `oh-my-zsh`) |
+| User Friendliness | Less beginner-friendly | Very beginner-friendly | Easy with custom setup |
+| Syntax Highlighting | ❌ | ✅ Built-in | ✅ With plugins |
+
+---
+
+## Shell Scripts
+
+📜 Shell scripts are files that contain a series of shell commands—like a **to-do list for your computer**.
+
+### Script Basics
+
+- Extension: `.sh`
+- Must start with a **shebang**:
+```bash
+#!/bin/bash
+```
+The shebang tells the system which interpreter to use (e.g. Bash).
+
+### Useful Commands:
+```bash
+read name      # Asks user to input and stores in variable 'name'
+
+for i in {1..5}; do
+  echo $i       # A loop from 1 to 5
+done
+
+if [ "$name" = "Alice" ]; then
+  echo "Hello, Alice!"   # Conditional logic
+fi
+```
+
+### Make a Script Executable:
+Before you can run a script, it needs permission to execute:
+```bash
+chmod +x script_name.sh
+```
+
+Then you can run it like:
+```bash
+./script_name.sh
+```
