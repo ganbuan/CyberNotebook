@@ -1,0 +1,208 @@
+# Networking Basics
+
+**Networks** are connections between devices—from two computers to billions.
+
+They come in two types:
+- **Private**: Secured and internal (like your home Wi-Fi)
+- **Public**: Open and accessible (like coffee shop Wi-Fi)
+
+The **Internet** is a giant public network made of many smaller networks. Its roots go back to ARPANET (1960s), which eventually led to the **World Wide Web (WWW)**.
+
+---
+
+## IP and MAC Addresses
+
+🔌 Devices have two main identifiers:
+
+- **IP Address** (like your home address): Used to locate your device on a network  
+  - Can be public or private  
+  - IPv4 or IPv6
+
+- **MAC Address** (like a device's fingerprint): A unique 12-digit hex address that identifies your network card
+
+📦 **Private IP Ranges (RFC 1918):**
+- `10.0.0.0/8`
+- `172.16.0.0/12`
+- `192.168.0.0/16`
+
+---
+
+## Networking Devices
+
+- **Switch**: Connects devices within a network using Ethernet
+- **Router**: Connects multiple networks and routes data between them
+
+---
+
+## Routing Algorithms
+
+Used by routers to find the best path for data:
+
+- **OSPF** – Open Shortest Path First: Calculates the most efficient routes
+- **EIGRP** – Cisco-specific, balances bandwidth and delay
+- **BGP** – Main Internet routing protocol (used by ISPs)
+- **RIP** – Older, hop-based routing (used in small networks)
+
+---
+
+## Subnetting
+
+🔢 Subnetting splits networks into smaller groups. Uses a **subnet mask** like `255.255.255.0`.
+
+Three key IPs in a subnet:
+- **Network Address**: e.g. `192.168.1.0`
+- **Host Address**: e.g. `192.168.1.100`
+- **Default Gateway**: e.g. `192.168.1.254`
+
+---
+
+## VLANs
+
+**VLANs (Virtual LANs)** logically separate devices on the same physical network—useful for **security and organization**.
+
+---
+
+## OSI Model (7 Layers)
+
+🧱 Think of the **OSI Model** like layers of a cake—each adds a piece to your data.
+
+| Layer | Name | Function | Examples |
+|-------|------|----------|----------|
+| 7 | Application | Interface to apps | HTTP, FTP, SMTP |
+| 6 | Presentation | Encoding & encryption | JPEG, MPEG, TLS |
+| 5 | Session | Manages sessions | RPC, NetBIOS |
+| 4 | Transport | Data delivery | TCP, UDP |
+| 3 | Network | Routing | IP, ICMP |
+| 2 | Data-Link | Frame delivery | Ethernet (802.3), Wi-Fi (802.11) |
+| 1 | Physical | Hardware | Cables, radio waves |
+
+---
+
+## TCP/IP Model (RFC 1122)
+
+More practical than OSI, the **TCP/IP Model** powers the Internet.
+
+| OSI Layer | TCP/IP Layer | Examples |
+|-----------|---------------|----------|
+| Application, Presentation, Session | Application | HTTP, FTP, DNS |
+| Transport | Transport | TCP, UDP |
+| Network | Internet | IP, ICMP |
+| Data-Link, Physical | Link | Ethernet, Wi-Fi |
+
+---
+
+## Packets vs Frames
+
+- **Packets** = units of data at Layer 3 (IP info included)
+- **Frames** = units of data at Layer 2 (no IP info)
+
+📑 Headers may include:
+- **TTL (Time To Live)** – expiry timer
+- **Checksum** – error detection
+- **Source/Destination IPs** – for routing
+
+---
+
+## Encapsulation
+
+Each OSI layer wraps data in headers/trailers:
+
+1. App data  
+2. + TCP/UDP header → Segment  
+3. + IP header → Packet  
+4. + Ethernet header/trailer → Frame
+
+---
+
+## TCP (Transmission Control Protocol)
+
+🧵 **Reliable** communication via a **3-way handshake**:
+
+1. `SYN` – start connection
+2. `SYN-ACK` – acknowledge and accept
+3. `ACK` – confirm
+
+Then:
+- `DATA` – transfer
+- `FIN` – clean disconnect
+- `RST` – emergency abort
+
+---
+
+## UDP (User Datagram Protocol)
+
+🚀 **Faster, but unreliable.** No connection setup, error checking, or re-sending.
+
+Used in video streaming, games, DNS, VoIP.
+
+---
+
+## Ports & Port Forwarding
+
+💡 Ports are like apartment numbers—help services talk to the right program.
+
+| Port | Service |
+|------|---------|
+| 21 | FTP |
+| 22 | SSH |
+| 80 | HTTP |
+| 443 | HTTPS |
+| 445 | SMB |
+| 3389 | RDP |
+
+**Port forwarding** opens specific ports on routers to allow external access.
+
+---
+
+## DHCP (Dynamic Host Configuration Protocol)
+
+Automatically assigns IPs using **DORA**:
+
+1. `Discover` – device asks for an IP
+2. `Offer` – server offers an IP
+3. `Request` – device accepts offer
+4. `Acknowledge` – server confirms
+
+📡 Uses:
+- UDP port 67 (server)
+- UDP port 68 (client)
+
+---
+
+## ARP (Address Resolution Protocol)
+
+🔄 Translates IP ➡️ MAC address
+
+Steps:
+1. ARP Request: "Who has this IP?"
+2. ARP Reply: "I do. Here's my MAC."
+3. Device saves to **ARP cache**
+
+🧾 Packaged directly in Ethernet frames (not TCP/IP)
+
+---
+
+## ICMP (Internet Control Message Protocol)
+
+Used for **diagnostics & errors**.
+
+- `ping` – check if host is reachable
+- `traceroute` – see route packets take
+
+🔍 Uses:
+- Type 8: Echo Request
+- Type 0: Echo Reply
+- Type 11: Time Exceeded
+
+---
+
+## NAT (Network Address Translation)
+
+🔐 Lets many devices share one public IP
+
+A router uses NAT to:
+- Assign private IPs to internal devices
+- Translate internal IP ↔ public IP
+- Track who requested what
+
+This keeps the internal network **secure and hidden** from the internet.
